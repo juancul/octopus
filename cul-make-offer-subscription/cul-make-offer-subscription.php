@@ -166,7 +166,7 @@ function add_offer_button($subscription) {
     //echo ($subscription_length - $subscription_completed_order_count).'<br>';
     if ($subscription_length <= 14){
         echo '<h2>Hacer una oferta</h2>
-               <p>Este alquiler es por '.$subscription_length.' meses. Para poder hacer una oferta para quedarte con el producto debes alquilar por otros 8 meses una vez este alquiler haya finalizado. No te preocupes te saldrá un botón para hacerlo</p>';
+               <p>Este alquiler es por '.$subscription_length.' meses. Para poder hacer una oferta para quedarte con el producto debes alquilar por otros '. 15 - $subscription_length.' meses una vez este alquiler haya finalizado. No te preocupes te saldrá un botón para hacerlo</p>';
     }
     if (($subscription_completed_order_count/$subscription_length)>.8) {
         echo '<h2>Hacer una oferta</h2>
