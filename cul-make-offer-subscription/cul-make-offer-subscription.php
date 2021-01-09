@@ -3,16 +3,19 @@
 /**
  * A plugin that adds collection information to the woocommerce subscription edit page
  *
- * @package cul-woocommerce-offer-subscription-information
+ * @package cul-make-offer-subscription
  *
- * Plugin Name:       CUL - Offers for Woocommerce rental information
+ * Plugin Name:       CUL - Make an offer for a subscription. Subscrition info in admin
  * Description:       Plugin that adds  a maken an offer button to subscription and adds subscription information to the woocommerce offer edit page
  * Version:           1.0
  * Author:            CUL
  */
 
 
-
+/*
+* Front
+* Adds all fields to the make an offer form needed to make an offer for a subscription product
+*/
 add_action('make_offer_form_before_submit_button', 'add_custom_field_make_offer_form', 10);
 add_action('make_offer_after_save_form_data', 'save_custom_field_make_offer_form', 10, 2);
 add_action('make_offer_after_buyer_meta_display', 'display_custom_field_buyer_section');
@@ -54,7 +57,10 @@ function display_custom_field_after_buyer_contact_details($post_id) {
         '<br /><strong>' . __('Alquiler:', 'offers-for-woocommerce') . '&nbsp;</strong>' . stripslashes($offer_subscription_id) : '';
 }
 
-// Add meta box for collections information
+/*
+* Admin
+* Add meta box for collections information
+*/
 add_action( 'add_meta_boxes', 'offers_rental_data_box' );
 function offers_rental_data_box() {
     add_meta_box(
@@ -128,7 +134,8 @@ function offer_meta_box_callback( $post )
 }
 
 
-/**
+/*
+* Front
 *Display Make an Offer button in subscription detail page
 */
 add_action('woocommerce_subscription_details_table', 'add_offer_button');
@@ -157,7 +164,10 @@ function add_offer_button($subscription) {
     //echo $subscription_length.'<br>';
     //echo $subscription_completed_order_count.'<br>';
     //echo ($subscription_length - $subscription_completed_order_count).'<br>';
-
+    if ($subscription_length <= 14){
+        echo '<h2>Hacer una oferta</h2>
+               <p>Este alquiler es por '.$subscription_length.' meses. Para poder hacer una oferta para quedarte con el producto debes alquilar por otros 8 meses una vez este alquiler haya finalizado. No te preocupes te saldrá un botón para hacerlo</p>';
+    }
     if (($subscription_completed_order_count/$subscription_length)>.8) {
         echo '<h2>Hacer una oferta</h2>
                <p>Puedes hacer una oferta para quedarte con el/los producto(s) que tienes en este alquiler haciendo clic en este botón:</p>';
