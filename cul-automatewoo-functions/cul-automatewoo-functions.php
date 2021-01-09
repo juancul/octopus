@@ -3,7 +3,7 @@
 /**
  * A plugin that adds collection information to the woocommerce subscription edit page
  *
- * @package cul-woocommerce-automatewoo-functions
+ * @package cul-automatewoo-functions
  *
  * Plugin Name:       CUL - Woocommerce AutomateWoo Custom Functions
  * Description:       Plugin that adds Custom functions to AutomateWoo
