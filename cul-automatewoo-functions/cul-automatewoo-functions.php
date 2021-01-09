@@ -5,7 +5,7 @@
  *
  * @package cul-automatewoo-functions
  *
- * Plugin Name:       CUL - Woocommerce AutomateWoo Custom Functions
+ * Plugin Name:       CUL - AutomateWoo Custom Functions
  * Description:       Plugin that adds CUL´s Custom functions to AutomateWoo
  * Version:           1.0
  * Author:            CUL
