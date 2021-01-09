@@ -1,0 +1,37 @@
+[data-tot-widget] iframe {
+	border: none;
+	max-width: 400px;
+	background: #fff;
+}
+
+.um-faicon-custom-tot {
+	background: url("../shared/icon.svg") no-repeat center center;
+	background-size: contain;
+	width: 26px;
+}
+
+.um-faicon-custom-tot-gray {
+	background: url("../shared/icon-gray.svg") no-repeat center center;
+	background-size: contain;
+	display: block !important;
+	text-align: center;
+	height: 26px;
+	width: 20px;
+	padding: 0;
+	margin-left: 2px;
+}
+.um-account-heading > .um-faicon-custom-tot-gray {
+	display: inline-block !important;
+}
+.um-account-icontip.uimob800-show.um-tip-w > .um-faicon-custom-tot-gray {
+	margin-top: 9px;
+}
+
+.woocommerce-error .tot-wc-order-validation a,
+.woocommerce-error .tot-wc-order-validation a:visited {
+	color: inherit;
+}
+
+.tot-hide-receipt .woocommerce-order {
+	display: none;
+}

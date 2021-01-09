@@ -1,0 +1,212 @@
+/**
+* All of the CSS for your admin-specific functionality should be
+* included in this file.
+*/
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900&display=swap');
+
+.mwb_upsell_bump_license_text {
+  position: relative;
+}
+#mwb_upsell_bump_license_ajax_loader,
+.mwb_ubo_animation_loader {
+  position: fixed;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(255,255,255,0.6);
+  bottom: 0;
+  top: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#mwb_upsell_bump_license_activate {
+  background-color: #7979f6;
+  padding: 10px 28px;
+  height: auto;
+  font-size: 14px;
+  text-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+/**
+ * License css.
+ */
+.mwb-upsell-bump-wrap {
+  margin-top: 30px;
+}
+.mwb-upsell-bump-wrap .mwb_upsell_bump_license_text {
+  border: solid 2px #ded5d5;
+  margin-top: 10px;
+  padding: 10px 15px;
+}
+.mwb-upsell-bump-wrap .mwb_upsell_bump_license_text table.mwb-upsell-bump-pro-form-table tr {
+  padding: 0;
+}
+.mwb-upsell-bump-wrap .mwb_upsell_bump_license_text table.mwb-upsell-bump-pro-form-table {
+  width: 100%;
+}
+.mwb-upsell-bump-wrap .mwb_upsell_bump_license_text table.mwb-upsell-bump-pro-form-table tr th {
+  width: 12%;
+  text-align: left;
+}
+.mwb-upsell-bump-wrap .mwb_upsell_bump_license_text table.mwb-upsell-bump-pro-form-table tr td {
+  width: 60%;
+  display: block;
+}
+.mwb-upsell-bump-wrap .mwb_upsell_bump_license_text p.submit {
+  padding: 20px 10px !important;
+}
+.mwb-upsell-bump-wrap h1 {
+  font-size: 22px !important;
+  background-color: #f1f1f1;
+  padding: 10px 10px;
+  border-radius: 10px 0px;
+}
+.mwb-upsell-bump-wrap .mwb_upsell_bump_license_text {
+  border: solid 2px #ccc;
+  margin-top: 10px;
+  padding: 10px 15px;
+}
+.mwb-upsell-bump-wrap .mwb-upsell-bump-pro-purchase-code {
+  border: solid 2px #ccc;
+  margin-top: 10px;
+  padding: 10px 15px;
+  width: calc(100% - 30px) !important;
+  float: left;
+}
+.mwb-upsell-bump-wrap .mwb_upsell_bump_license_text table.mwb-upsell-bump-pro-form-table tr td #mwb_upsell_license_ajax_loader {
+  float: left;
+  left: 10px;
+  top: 10px;
+  position: relative;
+}
+/*===================================
+=            After v1.2.0           =
+===================================*/
+.mwb_ubo_update_popup_wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1;
+  display: none;
+  padding: 15px;
+}
+.mwb_ubo_update_popup_inner {
+  background-color: #ffffff;
+  max-width: 550px;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  border-radius: 6px;
+  animation: flipInX 0.5s linear;
+}
+.mwb_ubo_update_popup_head {
+  max-width: 100px;
+  margin: 0 auto;
+}
+.mwb_ubo_update_popup_head img {
+  max-width: 100%;
+  width: auto;
+}
+.mwb_ubo_update_popup_ques h5 {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+.mwb_ubo_update_popup_ques p {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 15px 0;
+}
+.mwb_ubo_update_no, 
+.mwb_ubo_update_yes {
+  padding: 8px 30px;
+  display: inline-block;
+  background-color: #6dbe45;
+  color: #ffffff;
+  margin: 10px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.mwb_ubo_update_no {
+  background-color: #f04848;
+}
+.mwb_ubo_update_no:hover, 
+.mwb_ubo_update_yes:hover,
+.mwb_ubo_update_no:focus, 
+.mwb_ubo_update_yes:focus{
+  opacity: 0.8;
+  outline: 0;
+  box-shadow: none;
+  color: #ffffff;
+}
+.mwb_ubo_lite_update_popup_show {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.3s linear all;
+  display: flex;
+}
+.mwb_ubo_premium_strip:after {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 39px solid transparent;
+  border-top: 21px solid #78c900;
+  position: absolute;
+  content: '';
+  top: 8px;
+  left: 24px;
+  transform: rotate(27deg);
+  z-index: -1;
+}
+.mwb_ubo_premium_strip {
+  border: 1px solid #78c900;
+  color: #ffffff;
+  background-color: #78c900;
+  position: absolute;
+  top: 15px;
+  bottom: 0;
+  right: 0;
+  left: 0px;
+  width: 32px;
+  height: 21px;
+  transform: skewY(-26deg);
+  transform-origin: top left;
+  color: #ffffff;
+  text-align: right;
+  font-size: 14px;
+}
+.mwb-upsell-bump-attributes p {
+  font-style: italic;
+}
+
+.mwb-upsell-bump-attributes.yes p {
+  color: #72b750 !important;
+}
+
+.mwb-upsell-bump-attributes.no p {
+  color: #90907b !important;
+}s
+/*===================================
+=            Media Query            =
+===================================*/
+@media only screen and (max-width:767px)  {
+  .mwb-upsell-bump-wrap .mwb_upsell_bump_license_text table.mwb-upsell-bump-pro-form-table tr td{
+    width: 100%;
+    display: block;
+  }
+  .mwb-upsell-bump-wrap .mwb_upsell_bump_license_text table.mwb-upsell-bump-pro-form-table tr th {
+    width: 100%;
+  }
+}
