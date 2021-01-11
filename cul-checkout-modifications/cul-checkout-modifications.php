@@ -3,10 +3,11 @@
 /**
  * A plugin that adds collection information to the woocommerce subscription edit page
  *
- * @package cul-woocommerce-remove-checkout-fields-renewals
+ * @package cul-checkout-modifications
  *
- * Plugin Name:       CUL - Remove checkout fields for renewal payments
- * Description:       Plugin that Remove checkout fields for renewal payments
+ *
+ * Plugin Name:       CUL - Modifications in checkout
+ * Description:       Plugin that Remove checkout fields, adds checkout messages and shows content depending on the products in the cart (offer, monthly plans)
  * Version:           1.0
  * Author:            CUL
  */
