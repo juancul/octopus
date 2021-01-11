@@ -17,7 +17,7 @@ function cul_find_offer_product_in_cart() {
     $products = WC()->cart->cart_contents;
     $cartTitles = '';
     foreach ($products as $product) {
-        $cartTitles .= $product['quantity'] . '-' . $product['data']->get_title();;
+        $cartTitles .= $product['data']->get_title();
     }
 
     if (strpos($cartTitles, 'Oferta por alquiler') !== false) {
@@ -26,6 +26,36 @@ function cul_find_offer_product_in_cart() {
 
     else {
       return false;
+    }
+  
+}
+
+// This function returns the smallest amount of months one of the plans has in the cart
+function cul_find_plan_duration_in_cart() {
+
+    $products = WC()->cart->cart_contents;
+    $all_variation_titles = '';
+    foreach ($products as $product) {
+        $variation_id = $product['variation_id'].'<br>';
+        $all_variation_titles .= get_the_title($variation_id);
+
+        if (strpos($all_variation_titles, '6 Meses') !== false) {
+            return 6;
+        }
+        else if (strpos($all_variation_titles, '9 Meses') !== false) {
+            return 9;
+        }
+        else if (strpos($all_variation_titles, '12 Meses') !== false) {
+            return 12;
+        }
+        else if (strpos($all_variation_titles, '18 Meses') !== false) {
+            return 18;
+        }
+
+        else {
+          return false;
+        }
+        
     }
   
 }
@@ -108,7 +138,35 @@ function custom_override_checkout_fields($fields) {
                 </style>';
     }
     else {
-        echo ' <style>
+        //Show a message depending of the smallest plan in the cart
+        if (cul_find_plan_duration_in_cart() == 6){
+            echo '<div class="woocommerce-info">
+                    <strong><span class="cart-notice" style="color: #a374dd">Este alquiler es un compromiso por 6 meses. Solo podrás hacer una oferta para quedarte con los productos si vuelves a alquilar por otros 6 meses una vez termines este plan</span></strong>
+              </div>';
+        }
+        else if (cul_find_plan_duration_in_cart() == 9){
+            echo '<div class="woocommerce-info">
+                    <strong><span class="cart-notice" style="color: #a374dd">Este alquiler es un compromiso por 9 meses. Solo podrás hacer una oferta para quedarte con los productos si vuelves a alquilar por otros 4 meses una vez termines este plan</span></strong>
+              </div>';
+        }
+        else if (cul_find_plan_duration_in_cart() == 12){
+            echo '<div class="woocommerce-info">
+                    <strong><span class="cart-notice" style="color: #a374dd">Este alquiler es un compromiso por 12 meses. Solo podrás hacer una oferta para quedarte con los productos si vuelves a alquilar por otros 2 meses una vez termines este plan</span></strong>
+              </div>';
+        }
+        else if (cul_find_plan_duration_in_cart() == 18){
+            echo '<div class="woocommerce-info">
+                    <strong><span class="cart-notice" style="color: #a374dd">Este alquiler es un compromiso por 18 meses. Solo podrás hacer una oferta para quedarte con los productos una vez termines este plan</span></strong>
+              </div>';
+        }
+        else{
+            echo '<div class="woocommerce-info">
+                    <strong><span class="cart-notice" style="color: #a374dd">Recuerda que te está comprometiendo a un plan de 6, 12 o 18 meses. Si el plan al que te comprometes es de 6, 9 o 12 meses recuerda que para hacer una oferta debes alquilar algunos meses más.</span></strong>
+              </div>';
+
+        }
+        
+        /*echo ' <style>
                     .mwb_upsell_offer_parent_wrapper { 
                         display:none;!important; 
                     }
@@ -144,7 +202,7 @@ function custom_override_checkout_fields($fields) {
                 </style>
                 <div class="woocommerce-info">
                     <strong><span class="cart-notice" style="color: #a374dd">En este momento no estamos recibiendo solicitudes nuevas de alquiler. Vuelve pronto!</span></strong>
-                </div>';
+                </div>';*/
     }
     return $fields;
 }
