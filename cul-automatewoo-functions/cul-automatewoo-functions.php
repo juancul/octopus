@@ -134,5 +134,5 @@ function my_automatewoo_subscrition_status_finalized_offer( $workflow ) {
     add_post_meta( $subscription_id, 'aw_offer_id', $offer_id, true );
 
     //Automatewoo log
-    $workflow->log_action_note( $workflow , __( 'Subscription moved to finalized with offer (expired-offer) with order id:'.$order_id. ' and offer id: '.$offer_id.' Subscription id: '.$subscription_id, 'automatewoo' ) );
+    $workflow->log_action_note( $workflow , __( 'subscription moved to finalized with offer (expired-offer) with order id:'.$order_id. ' and offer id: '.$offer_id.' Subscription id: '.$subscription_id, 'automatewoo' ) );
 }
