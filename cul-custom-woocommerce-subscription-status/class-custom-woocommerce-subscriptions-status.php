@@ -225,7 +225,7 @@ class Custom_Woocommerce_Subscription_Status
         }
 
         if ($new_status == 'expired-offer') {
-            if ($subscription->payment_method_supports('subscription_suspension') && $subscription->has_status(array('active', 'pending', 'on-hold', 'like-on-hold', 'late-payment', 'late-payment-30', 'late-payment-60', 'late-payment-90', 'late-payment-120', 'late-payment-150', 'late-payment-180', 'fraud', 'bad-payment', 'expired-offer'))) {
+            if ($subscription->payment_method_supports('subscription_suspension') && $subscription->has_status(array('active', 'pending', 'on-hold', 'like-on-hold', 'late-payment', 'late-payment-30', 'late-payment-60', 'late-payment-90', 'late-payment-120', 'late-payment-150', 'late-payment-180', 'fraud', 'bad-payment', 'expired-offer', 'expired'))) {
                 $can_be_updated = true;
             } else {
                 $can_be_updated = false;
