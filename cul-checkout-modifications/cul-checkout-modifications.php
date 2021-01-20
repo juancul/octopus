@@ -140,7 +140,7 @@ function custom_override_checkout_fields($fields) {
     }
     else {
         //Show a message depending of the smallest plan in the cart
-        if (cul_find_plan_duration_in_cart() == 6){
+        /*if (cul_find_plan_duration_in_cart() == 6){
             echo '<div class="woocommerce-info">
                     <strong><span class="cart-notice" style="color: #a374dd">Este alquiler es un compromiso por 6 meses. Solo podrás hacer una oferta para quedarte con los productos si vuelves a alquilar por otros 6 meses una vez termines este plan</span></strong>
               </div>';
@@ -165,7 +165,7 @@ function custom_override_checkout_fields($fields) {
                     <strong><span class="cart-notice" style="color: #a374dd">Recuerda que te está comprometiendo a un plan de 6, 12 o 18 meses. Si el plan al que te comprometes es de 6, 9 o 12 meses recuerda que para hacer una oferta debes alquilar algunos meses más.</span></strong>
               </div>';
 
-        }
+        }*/
         
         /*echo ' <style>
                     .mwb_upsell_offer_parent_wrapper { 
