@@ -113,6 +113,7 @@ abstract class WC_WooMercadoPago_Hook_Abstract
             $woo = WC_WooMercadoPago_Module::woocommerce_instance();
             $gateways = $woo->payment_gateways->get_available_payment_gateways();
 
+
             $available_payments = array();
             foreach ($gateways as $gateway) {
                 $available_payments[] = $gateway->id;
@@ -198,22 +199,6 @@ abstract class WC_WooMercadoPago_Hook_Abstract
      */
     private function validateCredentials($key, $value, $valueCredentialProduction = null)
     {
-        if ($key == '_mp_public_key_test' && $value == $this->payment->mp_public_key_test) {
-            return true;
-        }
-
-        if ($key == '_mp_access_token_test' && $value == $this->payment->mp_access_token_test) {
-            return true;
-        }
-
-        if ($key == '_mp_public_key_prod' && $value == $this->payment->mp_public_key_prod) {
-            return true;
-        }
-
-        if ($key == '_mp_access_token_prod' && $value == $this->payment->mp_access_token_prod) {
-            return true;
-        }
-
         if ($this->validatePublicKey($key, $value)) {
             return true;
         }
