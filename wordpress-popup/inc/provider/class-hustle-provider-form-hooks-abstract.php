@@ -72,7 +72,7 @@ abstract class Hustle_Provider_Form_Hooks_Abstract {
 	 * Details of the subscriber from api
 	 *
 	 * @since 4.0.2
-	 * @var Hustle_Provider_Form_Settings_Abstract|null
+	 * @var mixed
 	 */
 	protected $_subscriber = array();
 

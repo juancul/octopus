@@ -6,7 +6,7 @@ Description: A plugin to manage ALL your tracking code and conversion pixels, si
 Author: IntellyWP
 Author URI: http://intellywp.com/
 Email: info@intellywp.com
-Version: 1.12.3
+Version: 2.0.0
 WC requires at least: 3.0.0
 WC tested up to: 4
 */
@@ -26,7 +26,7 @@ define('TCMP_PLUGIN_PREFIX', 'TCMP_');
 define('TCMP_PLUGIN_FILE',__FILE__);
 define('TCMP_PLUGIN_SLUG', 'tracking-code-manager');
 define('TCMP_PLUGIN_NAME', 'Tracking Code Manager');
-define('TCMP_PLUGIN_VERSION', '1.12.3');
+define('TCMP_PLUGIN_VERSION', '2.0.0');
 define('TCMP_PLUGIN_AUTHOR', 'IntellyWP');
 
 define('TCMP_PLUGIN_DIR', dirname(__FILE__).'/');
@@ -72,8 +72,8 @@ define('TCMP_TAB_MANAGER_URI', TCMP_PAGE_MANAGER.'&tab='.TCMP_TAB_MANAGER);
 define('TCMP_TAB_SETTINGS', 'settings');
 define('TCMP_TAB_SETTINGS_URI', TCMP_PAGE_MANAGER.'&tab='.TCMP_TAB_SETTINGS);
 define('TCMP_TAB_DOCS', 'docs');
-define('TCMP_TAB_DOCS_URI', 'http://support.intellywp.com/category/57-tracking-code-manager');
-define('TCMP_TAB_DOCS_DCV_URI', 'http://support.intellywp.com/article/28-dynamic-conversion-values');
+define('TCMP_TAB_DOCS_URI', 'http://intellywp.com/docs/category/tracking-code-manager/');
+define('TCMP_TAB_DOCS_DCV_URI', 'https://data443.atlassian.net/servicedesk/customer/kb/view/947486813');
 define('TCMP_TAB_ABOUT', 'about');
 define('TCMP_TAB_ABOUT_URI', TCMP_PAGE_MANAGER.'&tab='.TCMP_TAB_ABOUT);
 define('TCMP_TAB_WHATS_NEW', 'whatsnew');

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: utm,tracker,gclid,tracking,utm tracking,grabber,shortcodes,contact form 7,leads,collect,collect leads
 Requires at least: 3.6.0
 Tested up to: 5.6
-Stable tag: 2.7.16
+Stable tag: 2.7.17
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -139,6 +139,9 @@ Community version tracks your leads/users for 30 days. However you can define yo
 1. Zapier Integration
 
 == Changelog ==
+
+= 2.7.17 =
+* GCLID Reporter apps released.
 
 = 2.7.16 =
 * Bugfix: Potential XSS fix. Big shout out to Marcos Oliveira (@marcosvixtor). Thanks for reporting it.

@@ -1,15 +1,20 @@
 === Tracking Code Manager ===
-Contributors: IntellyWP
+Contributors: IntellyWP, data443
 Donate link: http://intellywp.com/tracking-code-manager/
 Tags: adwords remarketing,analytics conversion tracking,conversion pixel,conversion tracking,conversion tracking adwords,conversion tracking pixel,conversion tracking script,Facebook Ads,facebook conversion pixel,facebook custom audience,facebook retargeting,google adwords,google analytics web tracking code,google tag manager,html snippet,html snippets,html tracking code,javascript snippet,javascript snippets,header and footer,pay per click tracking,pixel tracking code,remarketing,retargeting,snippets,Tag Management,track conversion,track conversions,tracking code,tracking codes,tracking script,woocommerce,edd,easy digital downloads,wp ecommerce,wp e-commerce
 Requires at least: 2.7
-Tested up to: 5.4
+Tested up to: 5.6
 
 A plugin to manage ALL your tracking code and conversion pixels. Compatible with Facebook Ads, Google Adwords, WooCommerce, Easy Digital Downloads, ..
 
 == Description ==
 
 **Tracking Code manager is a plugin that give you the ability to manage ALL your tracking code and scripts in one single page.**
+
+<p>This plugin is a service of <a href="https://www.data443.com" rel="nofollow ugc">Data443.com</a>.</p>
+
+<p>Data443 is a Data Security and Privacy Compliance company that is publicly traded <a href="https://finance.yahoo.com/quote/ATDS?p=ATD" rel="nofollow ugc">ATDS</a>.  We have been providing leading GDPR compliance products such as <a href="https://wordpress.org/plugins/gdpr-framework/" rel="nofollow ugc">WordPress GDPR Framework</a> and <a href="https://www.data443.com/classidocs-home/" rel="nofollow ugc">ClassiDocs</a>, Blockchain privacy, and enterprise cloud eDiscovery tools.</p>
+
 
 It doesn’t matter the place where you want to put your code, because with Tracking Code Manager you can put it wherever you want, with no restrictions.
 
@@ -101,93 +106,15 @@ Have a look at the source code of your page (search for: Tracking Code Manager) 
 
 == Changelog ==
 
-= 1.12.3 =
-*Release Date - 2020-07-19*
+= 2.0.0 =
+*Release Date - 2021-01-19*
 
-* Tested with WordPress 5.4
-* Tested with WooCommerce 4.3
+* Tested with WP 5.6 Plugin updated and supported.
 
-= 1.12.2 =
-*Release Date - 2020-03-19*
+=1.8.2 =
+*Release Date - 10/17/2020*
 
-* Tested with WooCommerce 3.8. Plugin updated and supported.
-
-== Changelog ==
-
-= 1.12.1 =
-*Release Date - 2019-12-02*
-
-* Tested with WordPress 5.3
-* Tested with WooCommerce 3.8
-
-= 1.12.0 =
-*Release Date - 2019-05-18*
-
-* Tested with WordPress 5.2
-* Tested with WooCommerce 3.6.3
-
-= 1.11.9 =
-*Release Date - 2019-03-16*
-
-* Tested with WP 5.1.1. Plugin updated and supported.
-
-= 1.11.8 =
-*Release Date - 2019-01-24*
-
-* Tested with WordPress 5.0.3
-* Tested with WooCommerce 3.5.4
-* [Fixed] Deprecated functions on WooCommerce final thank you page
-
-= 1.11.7 =
-*Release Date - 2018-05-01*
-
-* Finally compatible with WP 4.9.5. Plugin updated and supported.
-
-= 1.11.6 =
-*Release Date - 14/09/2017*
-
-* FIX PHP COMPATIBILITY ISSUE
-
-= 1.11.5 =
-*Release Date - 13/09/2017*
-
-* FIXED SANITIZED REQUIREMENTS
-
-= 1.11.4 =
-*Release Date - 05/09/2017*
-
-* FULLY COMPATIBLE WITH WORDPRESS 4.8.1
-* [Fixed, thanks DefendsCode] Cross-Site Scripting for tcmp_action
-* [Fixed, thanks DefendsCode] Denial of Service  for tcmp_do_action()
-* [Fixed] "How to contact us?" links
-
-= 1.11.1 =
-*Release Date - 15/09/2016*
-
-* Bugfix woocommerce_thankyou_order_id (thanks to @oxymoron)
-
-= 1.11.0 =
-*Release Date - 21/08/2016*
-
-* Compatible with PHP < 5.3
-* Bug fix &amp
-
-= 1.10.13 =
-*Release Date - 29/05/2016*
-
-* Fixed incompatibility with PHP version less than 5.3
-
-= 1.10.12 =
-*Release Date - 28/02/2016*
-* Various bugfixes
-= 1.10.8 =
-*Release Date - 05/02/2016*
-
-* Use tracking codes by device types
-* Sort tracking codes using drag & drop
-* Shortcode support
-* Fixed 6 small issues
-* Quick support links added
+* Branding Update Only
 
 = 1.8.1 =
 *Release Date - 13/09/2015*

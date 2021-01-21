@@ -13,7 +13,7 @@ class Hustle_Dashboard_Admin extends Hustle_Admin_Page_Abstract {
 
 	const WELCOME_MODAL_NAME   = 'welcome_modal';
 	const MIGRATE_MODAL_NAME   = 'migrate_modal';
-	const HIGHLIGHT_MODAL_NAME = 'release_highlight_modal_435';
+	const HIGHLIGHT_MODAL_NAME = 'release_highlight_modal_440';
 	const MIGRATE_NOTICE_NAME  = 'migrate_notice';
 
 	/**

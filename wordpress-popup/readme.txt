@@ -3,23 +3,23 @@ Plugin Name: Hustle - Email Marketing, Lead Generation, Opt-ins, Popups
 Author: WPMU DEV
 Author URI: https://premium.wpmudev.org/
 Contributors: WPMUDEV, WebFactory
-Tags: marketing, popup, optin, newsletter, subscription form, email, advertise, signup, mailing list, wordpress popup plugin, popup maker, pop-up, opt-in, black friday
+Tags: marketing, popup, optin, newsletter, subscription form, email, advertise, signup, mailing list, wordpress popup plugin, popup maker, pop-up, opt-in
 Requires at least: 4.6
 Tested up to: 5.6
-Stable tag: 7.3.6
+Stable tag: 7.3.7
 
 Setup email optin forms, popups, newsletter forms & subscription forms to generate email leads with the best marketing popup builder
 
 
 == Description ==
 
-*Hustle is the ultimate marketing plugin for building a mailing list and converting site traffic. Promoting your offers, sales, and giveaways (e.g. Black Friday, Christmas, Halloween) just got easier with simple to set up optin forms, targeted marketing popups, and designer-made templates. Build a social following while you’re at it with Hustle’s diverse social sharing capabilities. From the award winning developers of [Smush](https://wordpress.org/plugins/wp-smushit/) image optimization and [Forminator](https://wordpress.org/plugins/forminator/) form builder at WPMU DEV.*
+*Hustle is the ultimate marketing plugin for building a mailing list and converting site traffic. Lead generation just got easier with simple set up optin forms, targeted marketing popups, and designer-made templates. Build a social following while you’re at it with Hustle’s diverse social sharing capabilities. From the award winning developers of [Smush](https://wordpress.org/plugins/wp-smushit/) image optimization and [Forminator](https://wordpress.org/plugins/forminator/) form builder at WPMU DEV.*
 
 Hustle lets you easily grow your mailing list or display targeted ads across your site with popups, optins, slide-ins, widgets, and shortcodes.
 
 [youtube https://www.youtube.com/watch?v=oKgRSUdjcNg&feature=youtu.be]
 
-### Instant Templates For Every Kind Of Offer (Black Friday, Christmas, One-Time)
+### Instant Templates For Every Kind Of Offer
 
 Hustle makes the process of creating popups, slide-ins, and embeds easier with a range of pre-designed templates. The templates available represent a number of different use cases (e.g. Black Friday, giveaway, COVID notice, newsletter signup), meaning you can get started with a module that aligns with your campaign goals. See them in action below:
 
@@ -79,12 +79,14 @@ Hustle integrates with all the popular email services. Just connect your account
 - Constant Contact
 - ConvertKit
 - GetResponse
+- Mailster
 - Hubspot
 - Sendy
 - Mad Mimi
 - Mautic
 - Infusionsoft
 - SendinBlue
+- MailPoet
 - MailerLite
 - iContact
 - Zapier
@@ -181,7 +183,12 @@ No! Hustle gives you all the same settings and options as Hustle Pro. The only d
 
 == Changelog ==
 
-= 7.3.7 ( 2020-12-14 ) =
+= 7.4.0 ( 2021-01-11 ) =
+
+- New: Mailpoet 3 integration
+- New: Mailster integration
+
+= 7.3.7 ( 2020-12-21 ) =
 
 - New: New Year template
 - Enhance: Compatibility with PHP 8
@@ -230,17 +237,6 @@ No! Hustle gives you all the same settings and options as Hustle Pro. The only d
 - New: Button for going to the documentation page
 - New: Reset button for the appearance Typography and Advanced settings
 - Enhance: Allow displaying the analytics widget without a title
-
-= 7.3.0 ( 2020-08-20 ) =
-
-- Add pre-built templates to choose from when creating a module
-- Add settings for changing the typography properties of the modules' elements
-- Add settings for adjusting the border, spacing, and shadow of the modules' elements
-- Add settings for adjusting the module layout
-- Add settings for handling the module appearance in mobiles
-- Fix Campaign Monitor not updating a subscribed user's details
-- Fix emails list export not working on Flywheel
-- Fix minor UI and UX issues
 
 [Changelog for previous versions](https://premium.wpmudev.org/project/hustle/#view-changelog).
 

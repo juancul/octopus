@@ -5,5 +5,5 @@
 	Front Developer: Leighton Sapir
 	Location: Ecuador
 
-    Designer: Victor Ivanov
-    Location: Melbourne, Australia
+    Designer: Mukul Chawla
+    Location: India

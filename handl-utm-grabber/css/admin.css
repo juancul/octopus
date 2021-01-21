@@ -193,3 +193,19 @@ body.admin-color-fresh #adminmenu #toplevel_page_handl-utm-grabber a[href="admin
   text-decoration: none;
 }
 
+#handl-utm-apps p{
+  font-size: 1.1em;
+}
+
+#handl-utm-apps .card{
+  max-width: 300px;
+  min-width: 300px;
+}
+
+#handl-utm-apps .card h4{
+  font-size: 1.3em;
+}
+
+#handl-utm-apps .card a{
+  text-decoration: none;
+}

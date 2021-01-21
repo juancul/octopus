@@ -63,6 +63,14 @@ abstract class Hustle_Provider_Form_Settings_Abstract {
 	protected $form_completion_options = array();
 
 	/**
+	 * Instance of Hustle_Layout_Helper
+	 *
+	 * @since 4.4.0
+	 * @var Hustle_Layout_Helper
+	 */
+	private $renderer;
+
+	/**
 	 * Hustle_Provider_Form_Settings_Abstract
 	 *
 	 * @since 3.0.5
@@ -77,6 +85,20 @@ abstract class Hustle_Provider_Form_Settings_Abstract {
 		$this->provider  = $provider;
 
 		$this->addon_form_settings = $this->get_form_settings_values( false );
+	}
+
+	/**
+	 * Gets the instance of the renderer class.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @return Hustle_Layout_Helper
+	 */
+	final protected function get_renderer() {
+		if ( empty( $this->renderer ) ) {
+			$this->renderer = new Hustle_Layout_Helper();
+		}
+		return $this->renderer;
 	}
 
 	/**
@@ -651,5 +673,65 @@ abstract class Hustle_Provider_Form_Settings_Abstract {
 	 */
 	public function get_form_completion_options( $saved_form_settings ) {
 		return $this->form_completion_options;
+	}
+
+	/**
+	 * Returns the module's fields to be used in the mapping step.
+	 * This array is intended to be passed as the select's options argument.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @param bool        $required Whether to retrieve required fields only.
+	 * @param bool|string $type Field type to filter fields. False if retrieving all fields.
+	 * @return array
+	 */
+	protected function get_form_fields_for_map_step( $required = false, $type = false ) {
+		$module = new Hustle_Module_Model( $this->module_id );
+
+		$module_fields = $module->get_form_fields();
+
+		/**
+		 * Filters the fields used for mapping the data sent to the provider.
+		 *
+		 * @since 4.4.0
+		 *
+		 * @param int $module_id Current module ID.
+		 * @param string $provider_slug Slug of the current provider.
+		 */
+		$excluded_form_fields = apply_filters( 'hustle_fields_excluded_from_mapping', array( 'recaptcha', 'submit' ), $this->module_id, $this->provider->get_slug() );
+
+		$map_fields = array();
+		foreach ( $module_fields as $field ) {
+			if ( ! in_array( $field['type'], $excluded_form_fields, true ) ) {
+				// When retrieving required fields only.
+				if ( $required && 'false' === $field['required'] ) {
+					continue;
+				}
+
+				// When retrieving fields of a type only.
+				if ( $type && $type !== $field['type'] ) {
+					continue;
+				}
+				$map_fields[ $field['name'] ] = $field['label'] . ' | ' . $field['name'];
+			}
+		}
+
+		return $map_fields;
+	}
+
+	/**
+	 * Gets the main email field for the mapping step.
+	 *
+	 * @since 4.4.0
+	 *
+	 * @return array
+	 */
+	protected function get_main_email_field_for_map_step() {
+		$module        = new Hustle_Module_Model( $this->module_id );
+		$module_fields = $module->get_form_fields();
+
+		return array(
+			'email' => $module_fields['email']['label'] . ' | ' . $module_fields['email']['name'],
+		);
 	}
 }

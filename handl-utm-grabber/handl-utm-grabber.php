@@ -4,7 +4,7 @@ Plugin Name: HandL UTM Grabber
 Plugin URI: http://www.haktansuren.com/handl-utm-grabber
 Description: The easiest way to capture UTMs on your (optin) forms.
 Author: Haktan Suren
-Version: 2.7.16
+Version: 2.7.17
 Author URI: http://www.haktansuren.com/
 */
 
@@ -105,6 +105,15 @@ function handl_utm_grabber_menu() {
         '99.3875'
     );
 
+	add_submenu_page(
+		'handl-utm-grabber.php',
+		'Apps',
+		'Apps',
+		'manage_options',
+		'handl_apps',
+		'handl_apps'
+	);
+
     add_submenu_page(
         'handl-utm-grabber.php',
         '',
@@ -130,6 +139,33 @@ function handl_go_premium(){
     }
 }
 
+function handl_apps(){
+	wp_enqueue_script('handl-utm-grabber-admin');
+
+	?>
+    <div class='wrap' id="handl-utm-apps">
+        <h2><span class="dashicons dashicons-screenoptions" style='line-height: 1.1;font-size: 30px; padding-right: 10px;'></span> HandL UTM Grabber: Apps</h2>
+        <p>We compiled the list of applications we highly recommend to you!</p>
+            <div class="card">
+                <a target="_blank" href="https://handldigital.com/utm-grabber/documentation/public/books/103-internal-apps/page/handl-gclid-reporter?utm_campaign=HandLGCLIDReporter&utm_source=WordPress_FREE&utm_medium=wordpress_apps_page">
+                    <img src="<?php print(plugins_url('img/gclid_reporter.png',__FILE__));?>"></img>
+                </a>
+                <div class="container">
+                    <a target="_blank" href="https://handldigital.com/utm-grabber/documentation/public/books/103-internal-apps/page/handl-gclid-reporter?utm_campaign=HandLGCLIDReporter&utm_source=WordPress_FREE&utm_medium=wordpress_apps_page">
+                        <h4>
+                            <b>GCLID Reporter (FREE*)</b>
+                        </h4>
+                    </a>
+                    <p>If you are using Google Ads, you should try this app.<br><br>
+                        *Temporarily
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <?php
+}
+
 function handl_on_admin_init(){
     handl_go_premium();
 }
@@ -146,7 +182,7 @@ function handl_utm_grabber_menu_page(){
     wp_enqueue_script('handl-utm-grabber-admin');
 ?>
 	<div class='wrap' id="handl-utm-menu">
-		<h2><span class="dashicons dashicons-admin-settings" style='line-height: 1.1;font-size: 30px; padding-right: 10px;'></span> HandL UTM Grabber</h2>
+		<h2><span class="dashicons dashicons-admin-settings" style='line-height: 1.1;font-size: 30px; padding-right: 10px;'></span> HandL UTM Grabber: Settings</h2>
 		<form method='post' action='options.php'>
 			<?php settings_fields( 'handl-utm-grabber-settings-group' ); ?>
 			<?php do_settings_sections( 'handl-utm-grabber-settings-group' ); ?>
@@ -351,7 +387,7 @@ if ( ! function_exists( 'handl_admin_notice__success' ) ) {
     function handl_admin_notice__success() {
         global $pagenow;
         if ($pagenow == 'plugins.php'){
-            $field = 'check_v2714_doc';
+            $field = 'check_v2717_doc';
             if (!get_option($field)) {
                 ?>
                 <style>
@@ -392,6 +428,7 @@ if ( ! function_exists( 'handl_admin_notice__success' ) ) {
                 <div class="notice notice-success handl-notice-dismiss is-dismissible">
                     <p class='handl-notice-title'>Enjoy using our community version? You will love HandL UTM Grabber V3 even more  </p>
                     <ul>
+                        <li>📈 Are you using <b>Google Ads?</b> <a href="https://handldigital.com/utm-grabber/documentation/public/books/103-internal-apps/page/handl-gclid-reporter?utm_campaign=HandLGCLIDReporter&utm_source=WordPress_FREE&utm_medium=wordpress_settings_page" target="_blank">Click here</a> to generate your <b>GCLID</b> report for <b>FREE (temporarily)</b></li>
 
 <!--                        <li>🎁 💰 <b>Black Friday: Don't miss the biggest sale of the year</b>. <a target="_blank" href="--><?php //print handl_v3_generate_links("BlackFriday2020", "", "wordpress_notification");?><!--">Click here</a> to get <b>50% off</b>. Make your Black Friday memorable with this limited-time, festive deal.</li>-->
 <!--                        <li> <p style="font-size:1.25em">💵 <b>BLACK FRIDAY SALES FOR WP COMMUNITY:</b> $20 OFF on every plans. <a target="_blank" href="--><?php //print handl_v3_generate_links('20OFFPromo', '', 'dash-widget'); ?><!--">Click here</a> to score the deal. Limited availability. Act now!</p></li>-->
@@ -418,11 +455,11 @@ if ( ! function_exists( 'handl_admin_notice__success' ) ) {
         }
     }
 }
-//add_action( 'admin_notices', 'handl_admin_notice__success' );
+add_action( 'admin_notices', 'handl_admin_notice__success' );
 
 if ( ! function_exists( 'handl_notice_dismiss' ) ) {
     function handl_notice_dismiss() {
-        add_option( 'check_v2714_doc', '1', '', 'yes' ) or update_option( 'check_v2714_doc', '1' );
+        add_option( 'check_v2717_doc', '1', '', 'yes' ) or update_option( 'check_v2717_doc', '1' );
         die();
     }
 }
@@ -848,6 +885,7 @@ function getHandLNotifications(){
     return [
 //	    'black_friday_2020_double' => '🎁 💰 <b>Black Friday Sale is ON</b> Don\'t miss the biggest sale of the year. <a target="_blank" href="'.handl_v3_generate_links("BlackFriday2020", "", "wordpress_notification").'">Click here</a> to get <b>50% off</b>. Limited availability. Act now!',
 //            'black_friday_2020_20off' => '💵 <b>BLACK FRIDAY SALES FOR WP COMMUNITY:</b> $20 OFF on every plans. <a target="_blank" href="'.handl_v3_generate_links("20OFFPromo", "", "wordpress_notification").'">Click here</a> to score the deal. Limited availability. Act now!',
+	    'gclid_reporter' => '📈 Are you collecting <b>GCLID?</b> <a href="https://handldigital.com/utm-grabber/documentation/public/books/103-internal-apps/page/handl-gclid-reporter?utm_campaign=HandLGCLIDReporter&utm_source=WordPress_FREE&utm_medium=wordpress_settings_page" target="_blank">Click here</a> to generate your <b>GCLID</b> report for FREE (temporarily)',
         'free_audit' => '🔍 Get your <a href="https://handldigital.com/free-utm-audit/?utm_campaign=UTMAudit&utm_source=WordPress_FREE&utm_medium=wordpress_settings_page" target="_blank">FREE marketing/UTM audit</a> here. 100% human reply. No credit card required.',
         'documentation' => '📚 Have you seen our knowledge-base site? <a target="_blank" href="https://handldigital.com/utm-grabber/documentation/public/books?utm_campaign=HandLDocumentation&utm_source=WordPress_FREE&utm_medium=wordpress_notification">Click here</a> to access.',
     ];

@@ -1,32 +1,27 @@
 === Plugin Name ===
 Contributors: alekv, wolfbaer, woopt
-Tags: woocommerce, google ads, adwords, conversion tracking,
+Tags: woocommerce, google ads, conversion tracking, dynamic retargeting, remarketing , adwords
 Requires at least: 3.7
 Tested up to: 5.6
 Requires PHP: 7.2
-Stable tag: 1.7.4
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Track the dynamic order value in Google Ads from WooCommerce
+Track the order value and create dynamic remarketing lists in Google Ads from WooCommerce
 
 == Description ==
 
-This plugin <strong>tracks the value of WooCommerce orders in Google Ads</strong>.
+This plugin <strong>tracks the value of WooCommerce orders and collects data for dynamic remarketing lists in Google Ads</strong>.
 
-With this you can optimize all your Google Ads campaigns to achieve maximum efficiency.
+With this data you can optimize all your Google Ads campaigns to achieve maximum efficiency.
 
 <strong>Highlights</strong>
 
 * Precise measurement by preventing duplicate reporting effectively, excluding admins and shop managers from tracking, and not counting failed payments.
-* Easy to install and maintain.
+* Collects dynamic remarketing audiences for dynamic retargeting: [Google Ads Dynamic Remarketing](https://support.google.com/google-ads/answer/3124536)
 * Implements the new Google Add Cart Data functionality. More info about the new feature: [add cart data to the conversion](https://support.google.com/google-ads/answer/9028254)
 * Support for various cookie consent management systems
- * [Cookie Notice](https://wordpress.org/plugins/cookie-notice/)
- * [Cookie Law Info](https://wordpress.org/plugins/cookie-law-info/)
- * [GDPR Cookie Compliance](https://wordpress.org/plugins/gdpr-cookie-compliance/)
- * [Borlabs Cookie](https://borlabs.io/borlabs-cookie/) (from version 2.1.0)
-   [Borlabs Cookie Setup](https://wolfundbaer.ch/en/blog/our-marketing-plugins-now-support-borlabs-cookie/)
 
 <strong>Documentation</strong>
 
@@ -44,7 +39,7 @@ It works with the following Cookie Consent Management plugins out of the box:
 * [Borlabs Cookie](https://borlabs.io/borlabs-cookie/) (from version 2.1.0)
   [Borlabs Cookie Setup](https://wolfundbaer.ch/en/blog/our-marketing-plugins-now-support-borlabs-cookie/)
 
-It is also possible for developers of Cookie Consent Management plugins to deactivate our plugin with a filter:
+It is also possible for developers of Cookie Consent Management plugins to deactivate the pixel injection with a filter:
 
 `add_filter( 'wgact_cookie_prevention', '__return_true' );`
 
@@ -67,11 +62,12 @@ Yes. Head over to this link: [Documentation](https://docs.wolfundbaer.ch/wgact/#
 
 = How do I check if the plugin is working properly? =
 
-1. Log out of the shop.
-2. Turn off any kind of ad or script blocker in your browser.
-3. Search for one of your keywords and click on one of your ads.
-4. Purchase an item from your shop.
-5. Wait up to 48 hours until the conversion shows up in Google Ads.
+1. Turn off any kind of caching and / or minification plugins.
+2. Log out of the shop.
+3. Turn off any kind of ad or script blocker in your browser.
+4. Search for one of your keywords and click on one of your ads.
+5. Purchase an item from your shop.
+6. Wait up to 48 hours until the conversion shows up in Google Ads. (usually takes only a few hours)
 
 With the Google Tag Assistant you will also be able to see the tag fired on the thankyou page.
 
@@ -90,15 +86,95 @@ Here is a non-exhaustive list of causes that might interfere with the plugin cod
 * Minification plugins try to minify the JavaScript code of the plugin. Not all minification plugins do this good enough and can cause problems. Turn off the JavaScript minification and try again.
 * Caching could also cause problems if caching is set too aggressively. Generally don't ever enable HTML caching on a WooCommerce shop, as it can cause troubles with plugins that generate dynamic output.
 
+= I see issues in the backend of my shop. Admin pages get rendered weird, and popups don't go away when I click to close them. How can I fix this? =
+
+You probably have some script or ad blocker activated. Deactivate it and the issues should go away. Usually you can disable the blocker for just that particular site (your WooCommerce back end).
+
+Our plugin injects tracking pixels on the front end of WooCommerce shops. As a consequence scripts of our plugin have been added to some privacy filter lists. The idea is to prevent the scripts running if a shop visitor has some ad blocker enabled and wants to visit the front end of the shop. This is totally ok for visitors of the front end of the shop. But, it becomes an issue for admins of the shop who have a blocker activated in their browser and visit the backend of the shop.
+
+Unfortunately there is no way for us to generally approve our scripts in all blockers for the WooCommerce back end.
+
+Therefore we recommend admins of the shop to exclude their own shop from the blocker in their browser.
+
 = Where can I report a bug or suggest improvements? =
 
 Please post your problem in the WGACT Support forum: http://wordpress.org/support/plugin/woocommerce-google-adwords-conversion-tracking-tag
 You can send the link to the front page of your shop too if you think it would be of help.
 
 == Screenshots ==
+
 1. Settings page
 
 == Changelog ==
+
+= 1.8.1 =
+
+* Fix: Version number
+* Fix: FB default pixel id
+
+= 1.8.0 =
+
+* New: Google Analytics UA standard beta
+* New: Google Analytics 4 beta
+* New: Google Optimize beta
+* New: Activation indicators
+* Tweak: Put admin scripts into header for faster rendering
+* Fix: Detect proper admin path in tabs.js
+
+= 1.7.13 =
+
+* New: Facebook pixel
+* Tweak: Adjust db and bump up to version 3
+* Tweak: Introduced Pixel_Manager and restructured Google Ads class
+
+= 1.7.12 =
+
+* Fix: Removed namespace for main class because it was conflicting with freemius in some cases
+
+= 1.7.11 =
+
+* Fix: Directory name fix
+* New: Warning message if an ad- or script-blocker is active
+* Tweak: Improved one of the db saving functions
+* Tweak: Start using namespaces
+
+
+= 1.7.10 =
+
+* Fix: child theme detection
+
+= 1.7.9 =
+
+* Fix: Roll back to 1.7.7 since namespace don't work everywhere
+* Fix: child theme detection
+
+= 1.7.8 =
+
+* New: Warning message if an ad- or script-blocker is active
+* Tweak: Improved one of the db saving functions
+* Tweak: Start using namespaces
+
+= 1.7.7 =
+
+* Fix: Don't show the rating popup if an admin uses a script blocker
+
+= 1.7.6 =
+
+* Fix: Improved check if dynamic remarketing settings already has been set before checking for it.
+* Fix: Saving to the database threw sometimes warnings that have been fixed.
+* Tweak: Styling changes
+
+= 1.7.5 =
+
+* New: Added checks for freemius servers
+* New: Dynamic remarketing pixels
+* New: Deactivation trigger for the WGDR plugin if dynamic remarketing is enabled
+* Fix: Adjusted the cookie name for Cookie Law Info
+* Fix: Improved detection if WooCommerce is active on multisite
+* Fix: Fixed default setting for conversion_id
+* Tweak: Added back rating testing code
+* Tweak: Adjusted some links
+* Tweak: Code style cleanups
 
 = 1.7.4 =
 

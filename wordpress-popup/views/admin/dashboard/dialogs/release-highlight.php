@@ -36,10 +36,10 @@ $banner_img_2x = self::$plugin_url . 'assets/images/release-highlight-header@2x.
 				</figure>
 
 				<?php /* translators: current user's name */ ?>
-				<h3 id="hustle-dialog--release-highlight-title" class="sui-box-title sui-lg"><?php esc_html_e( 'New! Holiday Templates', 'hustle' ); ?></h3>
+				<h3 id="hustle-dialog--release-highlight-title" class="sui-box-title sui-lg"><?php esc_html_e( 'New! Mailster and Mailpoet Integration', 'hustle' ); ?></h3>
 
 				<p id="hustle-dialog--release-highlight-description" class="sui-description">
-					<?php esc_html_e( 'We’ve added new festive templates to our collection. So whether you want to advertise discounts or deals over the festive season, you can use our Christmas or Holiday templates to drive more conversion on your website.', 'hustle' ); ?>
+					<?php esc_html_e( "We are happy to let you know that we've added Mailster and Mailpoet to our integrations. If you use either of these services for sending email campaigns or managing your mailing contacts, you can now build your mailing list using Hustle opt-in forms.", 'hustle' ); ?>
 				</p>
 
 			</div>

@@ -1,8 +1,8 @@
-# Copyright (C) 2020 Hustle 4.3.5
-# This file is distributed under the same license as the Hustle 4.3.5 package.
+# Copyright (C) 2020 Hustle 4.4.0
+# This file is distributed under the same license as the Hustle 4.4.0 package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Hustle 4.3.5\n"
+"Project-Id-Version: Hustle 4.4.0\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Draft"
 msgstr ""
 
-#: inc/class-hustle-admin-page-abstract.php:251, inc/class-hustle-notifications.php:573, inc/class-hustle-notifications.php:630, inc/class-hustle-notifications.php:766
+#: inc/class-hustle-admin-page-abstract.php:251, inc/class-hustle-notifications.php:509, inc/class-hustle-notifications.php:645
 msgid "Dismiss"
 msgstr ""
 
@@ -106,7 +106,7 @@ msgstr ""
 msgid "Total Modules"
 msgstr ""
 
-#: inc/class-hustle-dashboard-admin.php:265, inc/class-hustle-dashboard-admin.php:301, inc/class-hustle-module-page-abstract.php:820, views/admin/commons/sui-wizard/elements/image-fitting.php:35, views/admin/commons/sui-wizard/tab-appearance/row-typography/advanced/text-decoration.php:12, views/admin/commons/sui-wizard/tab-appearance/row-typography/advanced/text-transform.php:12, views/admin/commons/sui-wizard/tab-visibility/conditions.php:1375, views/admin/integrations-page/summary.php:33
+#: inc/class-hustle-dashboard-admin.php:265, inc/class-hustle-dashboard-admin.php:301, inc/class-hustle-module-page-abstract.php:820, inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:382, inc/providers/mailster/class-hustle-mailster-form-settings.php:432, views/admin/commons/sui-wizard/elements/image-fitting.php:35, views/admin/commons/sui-wizard/tab-appearance/row-typography/advanced/text-decoration.php:12, views/admin/commons/sui-wizard/tab-appearance/row-typography/advanced/text-transform.php:12, views/admin/commons/sui-wizard/tab-visibility/conditions.php:1375, views/admin/integrations-page/summary.php:33
 msgid "None"
 msgstr ""
 
@@ -126,12 +126,12 @@ msgstr ""
 msgid "Renew Membership"
 msgstr ""
 
-#: inc/class-hustle-module-admin.php:141, inc/class-hustle-notifications.php:468
+#: inc/class-hustle-module-admin.php:141, inc/class-hustle-notifications.php:462
 msgid "Upgrade"
 msgstr ""
 
-#: inc/class-hustle-module-admin.php:138
-msgid "Upgrade *60% OFF Sale*"
+#: inc/class-hustle-module-admin.php:138, views/admin/upsell.php:17
+msgid "Upgrade to Hustle Pro"
 msgstr ""
 
 #: inc/class-hustle-module-admin.php:176
@@ -684,129 +684,93 @@ msgstr ""
 msgid "Sorry, you are not allowed to access this page."
 msgstr ""
 
-#: inc/class-hustle-notifications.php:254, inc/class-hustle-notifications.php:630, views/admin/dashboard/dialogs/migrate-data.php:99
+#: inc/class-hustle-notifications.php:249, inc/class-hustle-notifications.php:509, views/admin/dashboard/dialogs/migrate-data.php:99
 msgid "Migrate Data"
 msgstr ""
 
-#: inc/class-hustle-notifications.php:254
+#: inc/class-hustle-notifications.php:249
 msgid "Remind me later"
 msgstr ""
 
 #. translators: user's name
-#: inc/class-hustle-notifications.php:270
+#: inc/class-hustle-notifications.php:265
 msgid "Hey %s, we have updated our Constant Contact integration to support the latest v3.0 API. Since you are connected to the old API version, we recommend you to migrate your integration to the latest API version as we'll cease to support the deprecated API at some point."
 msgstr ""
 
 #. translators: user's name
-#: inc/class-hustle-notifications.php:274
+#: inc/class-hustle-notifications.php:269
 msgid "Hey %s, we have updated our InfusionSoft integration to support the latest REST API. Since you are connected to the old API version, we recommend you to migrate your integration to the latest API version as we'll cease to support the deprecated API at some point."
 msgstr ""
 
 #. translators: 1. user's name,
-#: inc/class-hustle-notifications.php:278
+#: inc/class-hustle-notifications.php:273
 msgid "Hey %1$s, we have updated our AWeber integration to support the oAuth 2.0. Since you are connected via oAuth 1.0, we recommend you to migrate your %2$s integration to the latest authorization method as we'll cease to support the deprecated oAuth method at some point."
 msgstr ""
 
-#: inc/class-hustle-notifications.php:335
+#: inc/class-hustle-notifications.php:330
 msgid "Sign Me Up"
 msgstr ""
 
-#: inc/class-hustle-notifications.php:380
+#: inc/class-hustle-notifications.php:375
 msgid "Heads up!"
 msgstr ""
 
 #. translators: current version
-#: inc/class-hustle-notifications.php:382
+#: inc/class-hustle-notifications.php:377
 msgid "We’ve fixed visibility conditions in Hustle %1$s which may affect the visibility behavior of your pop-ups and other modules."
 msgstr ""
 
 #. translators: current version
-#: inc/class-hustle-notifications.php:384
+#: inc/class-hustle-notifications.php:379
 msgid "Prior to Hustle %1$s, the visibility engine would require you to set rules for every post type your theme used, not just the ones you specified to make it appear on correct pages. We’ve updated this behavior to only display modules based on the post types explicitly defined in your conditions. For Example, if you add a “Pages” condition to show your module on 1 page only, you’d no longer have to add other post type conditions to hide your module on them. After updating, we recommend double-checking your Hustle modules’ visibility conditions are working as expected."
 msgstr ""
 
-#: inc/class-hustle-notifications.php:433
+#: inc/class-hustle-notifications.php:427
 msgid "Congratulations! You have activated Hustle Pro! We have automatically deactivated the free version."
 msgstr ""
 
-#: inc/class-hustle-notifications.php:441
+#: inc/class-hustle-notifications.php:435
 msgid "You already have Hustle Pro activated. If you really wish to go back to the free version of Hustle, please deactivate the Pro version first"
 msgstr ""
 
-#: inc/class-hustle-notifications.php:476
+#: inc/class-hustle-notifications.php:470
 msgid "Hey"
 msgstr ""
 
 #. translators: user's name
-#: inc/class-hustle-notifications.php:480
+#: inc/class-hustle-notifications.php:474
 msgid "%s, it appears you have an active WPMU DEV membership but haven't upgraded Hustle to the pro version. You won't lose an any settings upgrading, go for it!"
 msgstr ""
 
-#: inc/class-hustle-notifications.php:511
-msgid "60% OFF"
-msgstr ""
-
-#: inc/class-hustle-notifications.php:513
-msgid "Black Friday 60% OFF Hustle Pro!"
-msgstr ""
-
-#: inc/class-hustle-notifications.php:518
-msgid "Limited Black Friday offer!"
-msgstr ""
-
-#: inc/class-hustle-notifications.php:524
-msgid "Days"
-msgstr ""
-
-#: inc/class-hustle-notifications.php:534
-msgid "Hours"
-msgstr ""
-
-#: inc/class-hustle-notifications.php:544
-msgid "Minutes"
-msgstr ""
-
-#: inc/class-hustle-notifications.php:562
-msgid "Get Hustle Pro for the lowest price you will ever see and create UNLIMITED Popups, Optins, Slide-ins, and Embeds!"
-msgstr ""
-
-#: inc/class-hustle-notifications.php:564
-msgid "*Only admin users can see this message"
-msgstr ""
-
-#: inc/class-hustle-notifications.php:569
-msgid "Get 60% OFF Hustle Pro"
-msgstr ""
-
 #. translators: user's name
-#: inc/class-hustle-notifications.php:628
+#: inc/class-hustle-notifications.php:507
 msgid "Hey %s, nice work on updating the Hustle! However, you need to migrate the data of your existing modules such as tracking data and email list manually."
 msgstr ""
 
 #. translators: user's name
-#: inc/class-hustle-notifications.php:652
+#: inc/class-hustle-notifications.php:531
 msgid "Hey %s, we have improved Hustle’s front-end code in this update, which included modifying some CSS classes. Any custom CSS you were using may have been affected. We recommend reviewing the modules (which were using custom CSS) to ensure they don't need any adjustments."
 msgstr ""
 
 #. translators: 1. user's name, 2. opening 'a' tag to sendgrid link, 3. closing 'a' tag, 4. opening 'b' tag, 5. closing 'b' tag
-#: inc/class-hustle-notifications.php:688
+#: inc/class-hustle-notifications.php:567
 msgid "Hey %1$s, we have updated our %4$sSendGrid%5$s integration to support the %2$snew Marketing Campaigns%3$s. You need to review your existing SendGrid integration(s) and select the Marketing Campaigns version (new or legacy) you are using to avoid failed API calls."
 msgstr ""
 
-#: inc/class-hustle-notifications.php:696
+#: inc/class-hustle-notifications.php:575
 msgid "Review Integrations"
 msgstr ""
 
-#: inc/class-hustle-notifications.php:744
+#: inc/class-hustle-notifications.php:623
 msgid "Check conditions"
 msgstr ""
 
-#: inc/class-hustle-notifications.php:756
+#: inc/class-hustle-notifications.php:635
 msgid "Hustle - Module visibility behaviour update"
 msgstr ""
 
 #. translators: 4.1 version pro or free
-#: inc/class-hustle-notifications.php:761
+#: inc/class-hustle-notifications.php:640
 msgid "Hustle %s fixes a visibility bug which may affect the visibility behavior of your popups and other modules. Please review the visibility conditions of each of your modules to ensure they will appear as you expect."
 msgstr ""
 
@@ -995,103 +959,111 @@ msgstr ""
 msgid "Midnight"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:61, inc/helpers/class-hustle-templates-helper.php:184
+#: inc/helpers/class-hustle-templates-helper.php:61, inc/helpers/class-hustle-templates-helper.php:193
+msgid "New Year"
+msgstr ""
+
+#: inc/helpers/class-hustle-templates-helper.php:62, inc/helpers/class-hustle-templates-helper.php:194
+msgid "Engage your clients right from the start of the year with a New Year special."
+msgstr ""
+
+#: inc/helpers/class-hustle-templates-helper.php:70, inc/helpers/class-hustle-templates-helper.php:202
 msgid "Christmas"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:62, inc/helpers/class-hustle-templates-helper.php:185
+#: inc/helpers/class-hustle-templates-helper.php:71, inc/helpers/class-hustle-templates-helper.php:203
 msgid "Encourage your visitors to purchase discounted items as part of a Christmas special."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:70, inc/helpers/class-hustle-templates-helper.php:193
+#: inc/helpers/class-hustle-templates-helper.php:79, inc/helpers/class-hustle-templates-helper.php:211
 msgid "Happy Holidays"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:71, inc/helpers/class-hustle-templates-helper.php:194
+#: inc/helpers/class-hustle-templates-helper.php:80, inc/helpers/class-hustle-templates-helper.php:212
 msgid "Encourage your visitors to purchase discounted items as part of a holiday special."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:79, inc/helpers/class-hustle-templates-helper.php:202
+#: inc/helpers/class-hustle-templates-helper.php:88, inc/helpers/class-hustle-templates-helper.php:220
 msgid "Minimalist"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:80, inc/helpers/class-hustle-templates-helper.php:89, inc/helpers/class-hustle-templates-helper.php:203, inc/helpers/class-hustle-templates-helper.php:212
+#: inc/helpers/class-hustle-templates-helper.php:89, inc/helpers/class-hustle-templates-helper.php:98, inc/helpers/class-hustle-templates-helper.php:221, inc/helpers/class-hustle-templates-helper.php:230
 msgid "Tailored to promote your seasonal offers in a modern layout."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:88, inc/helpers/class-hustle-templates-helper.php:211
+#: inc/helpers/class-hustle-templates-helper.php:97, inc/helpers/class-hustle-templates-helper.php:229
 msgid "Spring Sale"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:97
+#: inc/helpers/class-hustle-templates-helper.php:106
 msgid "Stay - Exit Intent"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:98
+#: inc/helpers/class-hustle-templates-helper.php:107
 msgid "Capture your visitors' attention when they are about to leave with an exclusive offer."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:106, inc/helpers/class-hustle-templates-helper.php:220
+#: inc/helpers/class-hustle-templates-helper.php:115, inc/helpers/class-hustle-templates-helper.php:238
 msgid "Foodie"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:107, inc/helpers/class-hustle-templates-helper.php:221
+#: inc/helpers/class-hustle-templates-helper.php:116, inc/helpers/class-hustle-templates-helper.php:239
 msgid "Put your products front and center with a background image and bold typography."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:115, inc/helpers/class-hustle-templates-helper.php:229
+#: inc/helpers/class-hustle-templates-helper.php:124, inc/helpers/class-hustle-templates-helper.php:247
 msgid "Tech"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:116, inc/helpers/class-hustle-templates-helper.php:230
+#: inc/helpers/class-hustle-templates-helper.php:125, inc/helpers/class-hustle-templates-helper.php:248
 msgid "A perfect template to showcase your latest app and grab visitors' interest."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:124, inc/helpers/class-hustle-templates-helper.php:238
+#: inc/helpers/class-hustle-templates-helper.php:133, inc/helpers/class-hustle-templates-helper.php:256
 msgid "Black Friday"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:125, inc/helpers/class-hustle-templates-helper.php:239
+#: inc/helpers/class-hustle-templates-helper.php:134, inc/helpers/class-hustle-templates-helper.php:257
 msgid "Promote your Black Friday deals in a dark theme."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:133
+#: inc/helpers/class-hustle-templates-helper.php:142
 msgid "Newsletter Signup"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:134
+#: inc/helpers/class-hustle-templates-helper.php:143
 msgid "A classic opt-in to increase your newsletter signups."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:142
+#: inc/helpers/class-hustle-templates-helper.php:151
 msgid "Spin the Wheel"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:143
+#: inc/helpers/class-hustle-templates-helper.php:152
 msgid "Encourage your visitors to signup with the wheel of fortune."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:151, inc/helpers/class-hustle-templates-helper.php:256
+#: inc/helpers/class-hustle-templates-helper.php:160, inc/helpers/class-hustle-templates-helper.php:274
 msgid "Give Away"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:152, inc/helpers/class-hustle-templates-helper.php:257
+#: inc/helpers/class-hustle-templates-helper.php:161, inc/helpers/class-hustle-templates-helper.php:275
 msgid "A simple yet effective template to announce your giveaways."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:160, inc/helpers/class-hustle-templates-helper.php:265
+#: inc/helpers/class-hustle-templates-helper.php:169, inc/helpers/class-hustle-templates-helper.php:283
 msgid "Pandemic"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:161, inc/helpers/class-hustle-templates-helper.php:266
+#: inc/helpers/class-hustle-templates-helper.php:170, inc/helpers/class-hustle-templates-helper.php:284
 msgid "Tailored for quickly setting up Covid-19 alerts/updates for your visitors."
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:247
+#: inc/helpers/class-hustle-templates-helper.php:265
 msgid "Ad-Block"
 msgstr ""
 
-#: inc/helpers/class-hustle-templates-helper.php:248
+#: inc/helpers/class-hustle-templates-helper.php:266
 msgid "Don't let them access your content if they have an ad-blocking extension on."
 msgstr ""
 
@@ -1375,7 +1347,7 @@ msgstr ""
 msgid "Active Integrations"
 msgstr ""
 
-#: inc/hustle-entries-admin.php:793, inc/hustle-sshare-model.php:275, inc/providers/icontact/hustle-icontact.php:224, inc/providers/madmimi/hustle-mad-mimi.php:202, views/admin/commons/sui-wizard/dialogs/optin-fields.php:16
+#: inc/hustle-entries-admin.php:793, inc/hustle-sshare-model.php:275, inc/providers/icontact/hustle-icontact.php:224, inc/providers/madmimi/hustle-mad-mimi.php:202, inc/providers/mailster/class-hustle-mailster-form-settings.php:340, views/admin/commons/sui-wizard/dialogs/optin-fields.php:16
 msgid "Email"
 msgstr ""
 
@@ -3188,11 +3160,11 @@ msgstr ""
 msgid "Unexpected error occurred."
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign-form-hooks.php:52, inc/providers/activecampaign/hustle-activecampaign-form-hooks.php:221, inc/providers/aweber/hustle-aweber-form-hooks.php:48, inc/providers/aweber/hustle-aweber-form-hooks.php:277, inc/providers/campaignmonitor/hustle-campaignmonitor-form-hooks.php:51, inc/providers/campaignmonitor/hustle-campaignmonitor-form-hooks.php:208, inc/providers/constantcontact/hustle-constantcontact-form-hooks.php:47, inc/providers/constantcontact/hustle-constantcontact-form-hooks.php:182, inc/providers/convertkit/hustle-convertkit-form-hooks.php:55, inc/providers/convertkit/hustle-convertkit-form-hooks.php:225, inc/providers/e_newsletter/hustle-e-newsletter-form-hooks.php:47, inc/providers/e_newsletter/hustle-e-newsletter-form-hooks.php:181, inc/providers/getresponse/hustle-get-response-form-hooks.php:55, inc/providers/getresponse/hustle-get-response-form-hooks.php:255, inc/providers/hubspot/hustle-hubspot-form-hooks.php:47, inc/providers/hubspot/hustle-hubspot-form-hooks.php:225, inc/providers/icontact/hustle-icontact-form-hooks.php:47, inc/providers/icontact/hustle-icontact-form-hooks.php:250, inc/providers/infusionsoft/hustle-infusion-soft-form-hooks.php:63, inc/providers/infusionsoft/hustle-infusion-soft-form-hooks.php:248, inc/providers/madmimi/hustle-mad-mimi-form-hooks.php:45, inc/providers/madmimi/hustle-mad-mimi-form-hooks.php:214, inc/providers/mailchimp/hustle-mailchimp-form-hooks.php:72, inc/providers/mailchimp/hustle-mailchimp-form-hooks.php:392, inc/providers/mailerlite/hustle-mailerlite-form-hooks.php:46, inc/providers/mailerlite/hustle-mailerlite-form-hooks.php:208, inc/providers/mautic/hustle-mautic-form-hooks.php:47, inc/providers/mautic/hustle-mautic-form-hooks.php:222, inc/providers/sendgrid/hustle-sendgrid-form-hooks.php:46, inc/providers/sendgrid/hustle-sendgrid-form-hooks.php:198, inc/providers/sendinblue/hustle-sendinblue-form-hooks.php:45, inc/providers/sendinblue/hustle-sendinblue-form-hooks.php:226, inc/providers/sendy/hustle-sendy-form-hooks.php:40, inc/providers/sendy/hustle-sendy-form-hooks.php:140
+#: inc/providers/activecampaign/hustle-activecampaign-form-hooks.php:52, inc/providers/activecampaign/hustle-activecampaign-form-hooks.php:221, inc/providers/aweber/hustle-aweber-form-hooks.php:48, inc/providers/aweber/hustle-aweber-form-hooks.php:277, inc/providers/campaignmonitor/hustle-campaignmonitor-form-hooks.php:51, inc/providers/campaignmonitor/hustle-campaignmonitor-form-hooks.php:208, inc/providers/constantcontact/hustle-constantcontact-form-hooks.php:47, inc/providers/constantcontact/hustle-constantcontact-form-hooks.php:182, inc/providers/convertkit/hustle-convertkit-form-hooks.php:55, inc/providers/convertkit/hustle-convertkit-form-hooks.php:225, inc/providers/e_newsletter/hustle-e-newsletter-form-hooks.php:47, inc/providers/e_newsletter/hustle-e-newsletter-form-hooks.php:181, inc/providers/getresponse/hustle-get-response-form-hooks.php:55, inc/providers/getresponse/hustle-get-response-form-hooks.php:255, inc/providers/hubspot/hustle-hubspot-form-hooks.php:47, inc/providers/hubspot/hustle-hubspot-form-hooks.php:225, inc/providers/icontact/hustle-icontact-form-hooks.php:47, inc/providers/icontact/hustle-icontact-form-hooks.php:250, inc/providers/infusionsoft/hustle-infusion-soft-form-hooks.php:63, inc/providers/infusionsoft/hustle-infusion-soft-form-hooks.php:248, inc/providers/madmimi/hustle-mad-mimi-form-hooks.php:45, inc/providers/madmimi/hustle-mad-mimi-form-hooks.php:214, inc/providers/mailchimp/hustle-mailchimp-form-hooks.php:72, inc/providers/mailchimp/hustle-mailchimp-form-hooks.php:392, inc/providers/mailerlite/hustle-mailerlite-form-hooks.php:46, inc/providers/mailerlite/hustle-mailerlite-form-hooks.php:208, inc/providers/mailpoet/class-hustle-mailpoet-form-hooks.php:46, inc/providers/mailpoet/class-hustle-mailpoet-form-hooks.php:189, inc/providers/mailster/class-hustle-mailster-form-hooks.php:29, inc/providers/mailster/class-hustle-mailster-form-hooks.php:145, inc/providers/mautic/hustle-mautic-form-hooks.php:47, inc/providers/mautic/hustle-mautic-form-hooks.php:222, inc/providers/sendgrid/hustle-sendgrid-form-hooks.php:46, inc/providers/sendgrid/hustle-sendgrid-form-hooks.php:198, inc/providers/sendinblue/hustle-sendinblue-form-hooks.php:45, inc/providers/sendinblue/hustle-sendinblue-form-hooks.php:226, inc/providers/sendy/hustle-sendy-form-hooks.php:40, inc/providers/sendy/hustle-sendy-form-hooks.php:140
 msgid "Required Field \"email\" was not filled by the user."
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign-form-hooks.php:160, inc/providers/aweber/hustle-aweber-form-hooks.php:122, inc/providers/convertkit/hustle-convertkit-form-hooks.php:68, inc/providers/e_newsletter/hustle-e-newsletter-form-hooks.php:144, inc/providers/getresponse/hustle-get-response-form-hooks.php:95, inc/providers/hubspot/hustle-hubspot-form-hooks.php:55, inc/providers/icontact/hustle-icontact-form-hooks.php:62, inc/providers/madmimi/hustle-mad-mimi-form-hooks.php:59, inc/providers/mailchimp/hustle-mailchimp-form-hooks.php:286, inc/providers/mailerlite/hustle-mailerlite-form-hooks.php:102, inc/providers/mautic/hustle-mautic-form-hooks.php:71, inc/providers/sendgrid/hustle-sendgrid-form-hooks.php:58, inc/providers/sendinblue/hustle-sendinblue-form-hooks.php:57
+#: inc/providers/activecampaign/hustle-activecampaign-form-hooks.php:160, inc/providers/aweber/hustle-aweber-form-hooks.php:122, inc/providers/convertkit/hustle-convertkit-form-hooks.php:68, inc/providers/e_newsletter/hustle-e-newsletter-form-hooks.php:144, inc/providers/getresponse/hustle-get-response-form-hooks.php:95, inc/providers/hubspot/hustle-hubspot-form-hooks.php:55, inc/providers/icontact/hustle-icontact-form-hooks.php:62, inc/providers/madmimi/hustle-mad-mimi-form-hooks.php:59, inc/providers/mailchimp/hustle-mailchimp-form-hooks.php:286, inc/providers/mailerlite/hustle-mailerlite-form-hooks.php:102, inc/providers/mailster/class-hustle-mailster-form-hooks.php:234, inc/providers/mautic/hustle-mautic-form-hooks.php:71, inc/providers/sendgrid/hustle-sendgrid-form-hooks.php:58, inc/providers/sendinblue/hustle-sendinblue-form-hooks.php:57
 msgid "Member could not be subscribed."
 msgstr ""
 
@@ -3204,11 +3176,11 @@ msgstr ""
 msgid "ActiveCampaign Forms or Lists"
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:121, inc/providers/activecampaign/hustle-activecampaign.php:306, inc/providers/aweber/hustle-aweber-form-settings.php:94, inc/providers/aweber/hustle-aweber.php:477, inc/providers/campaignmonitor/hustle-campaignmonitor-form-settings.php:92, inc/providers/campaignmonitor/hustle-campaignmonitor.php:328, inc/providers/constantcontact/hustle-constantcontact-form-settings.php:113, inc/providers/constantcontact/hustle-constantcontact.php:178, inc/providers/convertkit/hustle-convertkit-form-settings.php:94, inc/providers/convertkit/hustle-convertkit.php:288, inc/providers/e_newsletter/hustle-e-newsletter-form-settings.php:90, inc/providers/e_newsletter/hustle-e-newsletter.php:238, inc/providers/getresponse/hustle-get-response-form-settings.php:94, inc/providers/getresponse/hustle-get-response.php:270, inc/providers/hubspot/hustle-hubspot-form-settings.php:97, inc/providers/hubspot/hustle-hubspot.php:169, inc/providers/icontact/hustle-icontact-form-settings.php:98, inc/providers/icontact/hustle-icontact.php:341, inc/providers/infusionsoft/hustle-infusion-soft-form-settings.php:96, inc/providers/infusionsoft/hustle-infusion-soft.php:311, inc/providers/local-list/hustle-local-list-form-settings.php:101, inc/providers/madmimi/hustle-mad-mimi-form-settings.php:99, inc/providers/madmimi/hustle-mad-mimi.php:293, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:185, inc/providers/mailchimp/hustle-mailchimp.php:369, inc/providers/mailerlite/hustle-mailerlite-form-settings.php:97, inc/providers/mailerlite/hustle-mailerlite.php:242, inc/providers/mautic/hustle-mautic-form-settings.php:94, inc/providers/mautic/hustle-mautic.php:328, inc/providers/sendgrid/hustle-sendgrid-form-settings.php:94, inc/providers/sendgrid/hustle-sendgrid.php:272, inc/providers/sendinblue/hustle-sendinblue-form-settings.php:94, inc/providers/sendinblue/hustle-sendinblue.php:268, inc/providers/sendy/hustle-sendy-form-settings.php:53, inc/providers/sendy/hustle-sendy.php:317, inc/providers/zapier/hustle-zapier-form-settings.php:109, inc/providers/zapier/hustle-zapier.php:200
+#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:121, inc/providers/activecampaign/hustle-activecampaign.php:306, inc/providers/aweber/hustle-aweber-form-settings.php:94, inc/providers/aweber/hustle-aweber.php:477, inc/providers/campaignmonitor/hustle-campaignmonitor-form-settings.php:92, inc/providers/campaignmonitor/hustle-campaignmonitor.php:328, inc/providers/constantcontact/hustle-constantcontact-form-settings.php:113, inc/providers/constantcontact/hustle-constantcontact.php:178, inc/providers/convertkit/hustle-convertkit-form-settings.php:94, inc/providers/convertkit/hustle-convertkit.php:288, inc/providers/e_newsletter/hustle-e-newsletter-form-settings.php:90, inc/providers/e_newsletter/hustle-e-newsletter.php:238, inc/providers/getresponse/hustle-get-response-form-settings.php:94, inc/providers/getresponse/hustle-get-response.php:270, inc/providers/hubspot/hustle-hubspot-form-settings.php:97, inc/providers/hubspot/hustle-hubspot.php:169, inc/providers/icontact/hustle-icontact-form-settings.php:98, inc/providers/icontact/hustle-icontact.php:341, inc/providers/infusionsoft/hustle-infusion-soft-form-settings.php:96, inc/providers/infusionsoft/hustle-infusion-soft.php:311, inc/providers/local-list/hustle-local-list-form-settings.php:101, inc/providers/madmimi/hustle-mad-mimi-form-settings.php:99, inc/providers/madmimi/hustle-mad-mimi.php:293, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:185, inc/providers/mailchimp/hustle-mailchimp.php:369, inc/providers/mailerlite/hustle-mailerlite-form-settings.php:97, inc/providers/mailerlite/hustle-mailerlite.php:242, inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:98, inc/providers/mailpoet/class-hustle-mailpoet.php:278, inc/providers/mailster/class-hustle-mailster-form-settings.php:97, inc/providers/mailster/class-hustle-mailster.php:252, inc/providers/mautic/hustle-mautic-form-settings.php:94, inc/providers/mautic/hustle-mautic.php:328, inc/providers/sendgrid/hustle-sendgrid-form-settings.php:94, inc/providers/sendgrid/hustle-sendgrid.php:272, inc/providers/sendinblue/hustle-sendinblue-form-settings.php:94, inc/providers/sendinblue/hustle-sendinblue.php:268, inc/providers/sendy/hustle-sendy-form-settings.php:53, inc/providers/sendy/hustle-sendy.php:317, inc/providers/zapier/hustle-zapier-form-settings.php:109, inc/providers/zapier/hustle-zapier.php:200
 msgid "Disconnect"
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:129, inc/providers/icontact/hustle-icontact-form-settings.php:101, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:193, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:333, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:497, inc/provider/class-hustle-provider-form-settings-abstract.php:602, views/admin/dashboard/dialogs/migrate-data.php:201, views/admin/dialogs/final-integration-form-delete.php:32
+#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:129, inc/providers/icontact/hustle-icontact-form-settings.php:101, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:193, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:333, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:497, inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:108, inc/providers/mailster/class-hustle-mailster-form-settings.php:107, inc/provider/class-hustle-provider-form-settings-abstract.php:624, views/admin/dashboard/dialogs/migrate-data.php:201, views/admin/dialogs/final-integration-form-delete.php:32
 msgid "Continue"
 msgstr ""
 
@@ -3224,7 +3196,7 @@ msgstr ""
 msgid "The form is required."
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:220, inc/providers/aweber/hustle-aweber-form-settings.php:76, inc/providers/campaignmonitor/hustle-campaignmonitor-form-settings.php:74, inc/providers/constantcontact/hustle-constantcontact-form-settings.php:78, inc/providers/convertkit/hustle-convertkit-form-settings.php:76, inc/providers/e_newsletter/hustle-e-newsletter-form-settings.php:68, inc/providers/getresponse/hustle-get-response-form-settings.php:76, inc/providers/hubspot/hustle-hubspot-form-settings.php:77, inc/providers/infusionsoft/hustle-infusion-soft-form-settings.php:76, inc/providers/madmimi/hustle-mad-mimi-form-settings.php:77, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:165, inc/providers/mailerlite/hustle-mailerlite-form-settings.php:76, inc/providers/sendgrid/hustle-sendgrid-form-settings.php:76, inc/providers/sendinblue/hustle-sendinblue-form-settings.php:76
+#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:220, inc/providers/aweber/hustle-aweber-form-settings.php:76, inc/providers/campaignmonitor/hustle-campaignmonitor-form-settings.php:74, inc/providers/constantcontact/hustle-constantcontact-form-settings.php:78, inc/providers/convertkit/hustle-convertkit-form-settings.php:76, inc/providers/e_newsletter/hustle-e-newsletter-form-settings.php:68, inc/providers/getresponse/hustle-get-response-form-settings.php:76, inc/providers/hubspot/hustle-hubspot-form-settings.php:77, inc/providers/infusionsoft/hustle-infusion-soft-form-settings.php:76, inc/providers/madmimi/hustle-mad-mimi-form-settings.php:77, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:165, inc/providers/mailerlite/hustle-mailerlite-form-settings.php:76, inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:78, inc/providers/mailster/class-hustle-mailster-form-settings.php:199, inc/providers/sendgrid/hustle-sendgrid-form-settings.php:76, inc/providers/sendinblue/hustle-sendinblue-form-settings.php:76
 msgid "The email list is required."
 msgstr ""
 
@@ -3244,15 +3216,15 @@ msgstr ""
 msgid "Choose the list you want to send form data to."
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:240, inc/providers/icontact/hustle-icontact-form-settings.php:290, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:330, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:386, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:494
+#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:240, inc/providers/icontact/hustle-icontact-form-settings.php:290, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:330, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:386, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:494, inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:220, inc/providers/mailster/class-hustle-mailster-form-settings.php:268
 msgid "Back"
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:248, inc/providers/activecampaign/hustle-activecampaign.php:314, inc/providers/aweber/hustle-aweber-form-settings.php:102, inc/providers/aweber/hustle-aweber.php:485, inc/providers/campaignmonitor/hustle-campaignmonitor-form-settings.php:100, inc/providers/campaignmonitor/hustle-campaignmonitor.php:336, inc/providers/constantcontact/hustle-constantcontact-form-settings.php:123, inc/providers/convertkit/hustle-convertkit-form-settings.php:102, inc/providers/convertkit/hustle-convertkit.php:296, inc/providers/e_newsletter/hustle-e-newsletter-form-settings.php:98, inc/providers/e_newsletter/hustle-e-newsletter.php:246, inc/providers/getresponse/hustle-get-response-form-settings.php:102, inc/providers/getresponse/hustle-get-response.php:278, inc/providers/hubspot/hustle-hubspot-form-settings.php:107, inc/providers/icontact/hustle-icontact-form-settings.php:298, inc/providers/icontact/hustle-icontact.php:349, inc/providers/infusionsoft/hustle-infusion-soft-form-settings.php:99, inc/providers/infusionsoft/hustle-infusion-soft.php:319, inc/providers/local-list/hustle-local-list-form-settings.php:104, inc/providers/madmimi/hustle-mad-mimi-form-settings.php:107, inc/providers/madmimi/hustle-mad-mimi.php:301, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:389, inc/providers/mailchimp/hustle-mailchimp.php:373, inc/providers/mailerlite/hustle-mailerlite-form-settings.php:105, inc/providers/mailerlite/hustle-mailerlite.php:250, inc/providers/mautic/hustle-mautic-form-settings.php:102, inc/providers/mautic/hustle-mautic.php:336, inc/providers/sendgrid/hustle-sendgrid-form-settings.php:102, inc/providers/sendgrid/hustle-sendgrid.php:280, inc/providers/sendinblue/hustle-sendinblue-form-settings.php:102, inc/providers/sendinblue/hustle-sendinblue.php:276, inc/providers/sendy/hustle-sendy.php:325, inc/providers/zapier/hustle-zapier-form-settings.php:119, inc/providers/zapier/hustle-zapier.php:208
+#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:248, inc/providers/activecampaign/hustle-activecampaign.php:314, inc/providers/aweber/hustle-aweber-form-settings.php:102, inc/providers/aweber/hustle-aweber.php:485, inc/providers/campaignmonitor/hustle-campaignmonitor-form-settings.php:100, inc/providers/campaignmonitor/hustle-campaignmonitor.php:336, inc/providers/constantcontact/hustle-constantcontact-form-settings.php:123, inc/providers/convertkit/hustle-convertkit-form-settings.php:102, inc/providers/convertkit/hustle-convertkit.php:296, inc/providers/e_newsletter/hustle-e-newsletter-form-settings.php:98, inc/providers/e_newsletter/hustle-e-newsletter.php:246, inc/providers/getresponse/hustle-get-response-form-settings.php:102, inc/providers/getresponse/hustle-get-response.php:278, inc/providers/hubspot/hustle-hubspot-form-settings.php:107, inc/providers/icontact/hustle-icontact-form-settings.php:298, inc/providers/icontact/hustle-icontact.php:349, inc/providers/infusionsoft/hustle-infusion-soft-form-settings.php:99, inc/providers/infusionsoft/hustle-infusion-soft.php:319, inc/providers/local-list/hustle-local-list-form-settings.php:104, inc/providers/madmimi/hustle-mad-mimi-form-settings.php:107, inc/providers/madmimi/hustle-mad-mimi.php:301, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:389, inc/providers/mailchimp/hustle-mailchimp.php:373, inc/providers/mailerlite/hustle-mailerlite-form-settings.php:105, inc/providers/mailerlite/hustle-mailerlite.php:250, inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:228, inc/providers/mailster/class-hustle-mailster-form-settings.php:276, inc/providers/mautic/hustle-mautic-form-settings.php:102, inc/providers/mautic/hustle-mautic.php:336, inc/providers/sendgrid/hustle-sendgrid-form-settings.php:102, inc/providers/sendgrid/hustle-sendgrid.php:280, inc/providers/sendinblue/hustle-sendinblue-form-settings.php:102, inc/providers/sendinblue/hustle-sendinblue.php:276, inc/providers/sendy/hustle-sendy.php:325, inc/providers/zapier/hustle-zapier-form-settings.php:119, inc/providers/zapier/hustle-zapier.php:208
 msgid "Save"
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:352, inc/providers/aweber/hustle-aweber-form-settings.php:197, inc/providers/campaignmonitor/hustle-campaignmonitor-form-settings.php:171, inc/providers/constantcontact/hustle-constantcontact-form-settings.php:192, inc/providers/convertkit/hustle-convertkit-form-settings.php:170, inc/providers/getresponse/hustle-get-response-form-settings.php:171, inc/providers/icontact/hustle-icontact-form-settings.php:190, inc/providers/infusionsoft/hustle-infusion-soft-form-settings.php:166, inc/providers/madmimi/hustle-mad-mimi-form-settings.php:191, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:599, inc/providers/mailerlite/hustle-mailerlite-form-settings.php:183, inc/providers/sendgrid/hustle-sendgrid-form-settings.php:172, inc/providers/sendinblue/hustle-sendinblue-form-settings.php:194
+#: inc/providers/activecampaign/hustle-activecampaign-form-settings.php:352, inc/providers/aweber/hustle-aweber-form-settings.php:197, inc/providers/campaignmonitor/hustle-campaignmonitor-form-settings.php:171, inc/providers/constantcontact/hustle-constantcontact-form-settings.php:192, inc/providers/convertkit/hustle-convertkit-form-settings.php:170, inc/providers/getresponse/hustle-get-response-form-settings.php:171, inc/providers/icontact/hustle-icontact-form-settings.php:190, inc/providers/infusionsoft/hustle-infusion-soft-form-settings.php:166, inc/providers/madmimi/hustle-mad-mimi-form-settings.php:191, inc/providers/mailchimp/hustle-mailchimp-form-settings.php:599, inc/providers/mailerlite/hustle-mailerlite-form-settings.php:183, inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:156, inc/providers/mailster/class-hustle-mailster-form-settings.php:151, inc/providers/sendgrid/hustle-sendgrid-form-settings.php:172, inc/providers/sendinblue/hustle-sendinblue-form-settings.php:194
 msgid "Email List"
 msgstr ""
 
@@ -3280,11 +3252,11 @@ msgstr ""
 msgid "Activecampaign Added"
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign.php:189, inc/providers/aweber/hustle-aweber.php:389, inc/providers/campaignmonitor/hustle-campaignmonitor.php:204, inc/providers/convertkit/hustle-convertkit.php:172, inc/providers/e_newsletter/hustle-e-newsletter.php:171, inc/providers/getresponse/hustle-get-response.php:175, inc/providers/icontact/hustle-icontact.php:199, inc/providers/infusionsoft/hustle-infusion-soft.php:192, inc/providers/madmimi/hustle-mad-mimi.php:177, inc/providers/mailchimp/hustle-mailchimp.php:272, inc/providers/mailerlite/hustle-mailerlite.php:149, inc/providers/mautic/hustle-mautic.php:187, inc/providers/sendgrid/hustle-sendgrid.php:163, inc/providers/sendinblue/hustle-sendinblue.php:173, inc/providers/sendy/hustle-sendy.php:181, inc/providers/zapier/hustle-zapier.php:163
+#: inc/providers/activecampaign/hustle-activecampaign.php:189, inc/providers/aweber/hustle-aweber.php:389, inc/providers/campaignmonitor/hustle-campaignmonitor.php:204, inc/providers/convertkit/hustle-convertkit.php:172, inc/providers/e_newsletter/hustle-e-newsletter.php:171, inc/providers/getresponse/hustle-get-response.php:175, inc/providers/icontact/hustle-icontact.php:199, inc/providers/infusionsoft/hustle-infusion-soft.php:192, inc/providers/madmimi/hustle-mad-mimi.php:177, inc/providers/mailchimp/hustle-mailchimp.php:272, inc/providers/mailerlite/hustle-mailerlite.php:149, inc/providers/mailpoet/class-hustle-mailpoet.php:213, inc/providers/mailster/class-hustle-mailster.php:190, inc/providers/mautic/hustle-mautic.php:187, inc/providers/sendgrid/hustle-sendgrid.php:163, inc/providers/sendinblue/hustle-sendinblue.php:173, inc/providers/sendy/hustle-sendy.php:181, inc/providers/zapier/hustle-zapier.php:163
 msgid "You can now go to your pop-ups, slide-ins and embeds and assign them to this integration"
 msgstr ""
 
-#: inc/providers/activecampaign/hustle-activecampaign.php:192, inc/providers/aweber/hustle-aweber.php:392, inc/providers/campaignmonitor/hustle-campaignmonitor.php:207, inc/providers/convertkit/hustle-convertkit.php:175, inc/providers/e_newsletter/hustle-e-newsletter.php:174, inc/providers/getresponse/hustle-get-response.php:178, inc/providers/icontact/hustle-icontact.php:202, inc/providers/infusionsoft/hustle-infusion-soft.php:195, inc/providers/madmimi/hustle-mad-mimi.php:180, inc/providers/mailchimp/hustle-mailchimp.php:275, inc/providers/mailerlite/hustle-mailerlite.php:152, inc/providers/mautic/hustle-mautic.php:190, inc/providers/sendgrid/hustle-sendgrid.php:166, inc/providers/sendinblue/hustle-sendinblue.php:176, inc/providers/sendy/hustle-sendy-form-settings.php:60, inc/providers/sendy/hustle-sendy.php:184, inc/providers/zapier/hustle-zapier.php:166, inc/provider/class-hustle-provider-abstract.php:1318, views/admin/dialogs/modal-preview.php:30
+#: inc/providers/activecampaign/hustle-activecampaign.php:192, inc/providers/aweber/hustle-aweber.php:392, inc/providers/campaignmonitor/hustle-campaignmonitor.php:207, inc/providers/convertkit/hustle-convertkit.php:175, inc/providers/e_newsletter/hustle-e-newsletter.php:174, inc/providers/getresponse/hustle-get-response.php:178, inc/providers/icontact/hustle-icontact.php:202, inc/providers/infusionsoft/hustle-infusion-soft.php:195, inc/providers/madmimi/hustle-mad-mimi.php:180, inc/providers/mailchimp/hustle-mailchimp.php:275, inc/providers/mailerlite/hustle-mailerlite.php:152, inc/providers/mailpoet/class-hustle-mailpoet.php:216, inc/providers/mailpoet/class-hustle-mailpoet.php:271, inc/providers/mailster/class-hustle-mailster.php:193, inc/providers/mailster/class-hustle-mailster.php:245, inc/providers/mautic/hustle-mautic.php:190, inc/providers/sendgrid/hustle-sendgrid.php:166, inc/providers/sendinblue/hustle-sendinblue.php:176, inc/providers/sendy/hustle-sendy-form-settings.php:60, inc/providers/sendy/hustle-sendy.php:184, inc/providers/zapier/hustle-zapier.php:166, inc/provider/class-hustle-provider-abstract.php:1318, views/admin/dialogs/modal-preview.php:30
 msgid "Close"
 msgstr ""
 
@@ -3649,7 +3621,7 @@ msgstr ""
 msgid "Install e-Newsletter"
 msgstr ""
 
-#: inc/providers/e_newsletter/hustle-e-newsletter.php:256, inc/providers/zapier/hustle-zapier.php:218, views/admin/settings/tab-analytics.php:91
+#: inc/providers/e_newsletter/hustle-e-newsletter.php:256, inc/providers/mailpoet/class-hustle-mailpoet.php:289, inc/providers/mailster/class-hustle-mailster.php:263, inc/providers/zapier/hustle-zapier.php:218, views/admin/settings/tab-analytics.php:91
 msgid "Activate"
 msgstr ""
 
@@ -4137,7 +4109,7 @@ msgstr ""
 msgid "There was an error fetching the lists. Please make sure the %1$sselected account settings%2$s are correct."
 msgstr ""
 
-#: inc/providers/mailchimp/hustle-mailchimp-form-settings.php:629
+#: inc/providers/mailchimp/hustle-mailchimp-form-settings.php:629, inc/providers/mailster/class-hustle-mailster-form-settings.php:169
 msgid "Extra Options"
 msgstr ""
 
@@ -4221,6 +4193,127 @@ msgstr ""
 
 #: inc/providers/mailerlite/hustle-mailerlite.php:305
 msgid "Invalid MailerLite API key."
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-hooks.php:108
+msgid "Successfully added or updated member on Mailpoet list"
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-hooks.php:126
+msgid "User added to the list but the emails could not be sent."
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-hooks.php:127
+msgid "The user could not be subscribed."
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:82
+msgid "Mailpoet List"
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:83, inc/providers/mailster/class-hustle-mailster-form-settings.php:84
+msgid "Choose the subscriber's list to which you want to send form data."
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:207, inc/providers/mailster/class-hustle-mailster-form-settings.php:255
+msgid "Map Fields"
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:208
+msgid "Map your Hustle fields to Mailpoet’s List fields below. Unmapped fields will be skipped."
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:254, inc/providers/mailster/class-hustle-mailster-form-settings.php:302
+msgid "Mapping the fields is required."
+msgstr ""
+
+#. translators: Missing required fields separated by comma.
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:268
+msgid "The following fields are required: %s"
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:306, inc/providers/mailster/class-hustle-mailster-form-settings.php:359
+msgid "Provider Field"
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:307, inc/providers/mailster/class-hustle-mailster-form-settings.php:360
+msgid "Hustle Field"
+msgstr ""
+
+#. translators: 1. opening 'b' tag, 2. closing 'b' tag, 3. closing and opening 'p' tag.
+#. translators: 1. opening 'b' tag, 2. closing 'b' tag, 3. closing and opening 'p' tag.
+#: inc/providers/mailpoet/class-hustle-mailpoet-form-settings.php:345, inc/providers/mailster/class-hustle-mailster-form-settings.php:395
+msgid "%1$sImportant!%2$s If you've just added new fields in your hustle module, you need to first save your changes for the fields to show up in the dropdown above.%3$sAlso, when a field’s name is changed in hustle, its mapping will be lost, and you’ll need to re-map it in the integration."
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet.php:213
+msgid "Mailpoet Added"
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet.php:223, inc/providers/mailster/class-hustle-mailster.php:200
+msgid "successfully connected"
+msgstr ""
+
+#. translators: 1. opening 'a' tag to the Mailpoet's wp page, 2. closing 'a' tag
+#: inc/providers/mailpoet/class-hustle-mailpoet.php:234
+msgid "This integration requires the %1$sMailpoet 3%2$s. Install and activate it and try again."
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet.php:249
+msgid "Connect Mailpoet 3"
+msgstr ""
+
+#: inc/providers/mailpoet/class-hustle-mailpoet.php:250
+msgid "Mailpoet lets you send beautiful emails that reach inboxes every time and create loyal subscribers."
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster-form-hooks.php:208
+msgid "User successfully added"
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster-form-hooks.php:209
+msgid "User successfully updated"
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster-form-settings.php:83
+msgid "Mailster List"
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster-form-settings.php:180
+msgid "Automatically opt-in new users to the mailing list"
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster-form-settings.php:256
+msgid "Map your Hustle fields to Mailster’s List fields below. Unmapped fields will be skipped."
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster-form-settings.php:307
+msgid "The following fields are required: Email"
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster-form-settings.php:344
+msgid "First name"
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster-form-settings.php:348
+msgid "Last name"
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster.php:190
+msgid "Mailster Added"
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster.php:216
+msgid "Connect Mailster"
+msgstr ""
+
+#: inc/providers/mailster/class-hustle-mailster.php:217
+msgid "Mailster lets you create, manage, and send email newsletter campaings from within your WordPress site."
+msgstr ""
+
+#. translators: 1. opening 'a' tag to the Mailster's wp page, 2. closing 'a' tag, 3. opening 'b' tag, 4. closing 'b' tag
+#: inc/providers/mailster/class-hustle-mailster.php:224
+msgid "This integration requires the %1$sMailster Newsletter Plugin%2$s, %3$sversion 2.2%4$s or newer. Install and activate it and try again."
 msgstr ""
 
 #: inc/providers/mautic/hustle-mautic-form-hooks.php:154, inc/providers/mautic/hustle-mautic-form-hooks.php:143
@@ -4638,23 +4731,23 @@ msgstr ""
 msgid "Confirmation message"
 msgstr ""
 
-#: inc/provider/class-hustle-provider-form-settings-abstract.php:174
+#: inc/provider/class-hustle-provider-form-settings-abstract.php:196
 msgid "No options to select from."
 msgstr ""
 
-#: inc/provider/class-hustle-provider-form-settings-abstract.php:563
+#: inc/provider/class-hustle-provider-form-settings-abstract.php:585
 msgid "Choose Account"
 msgstr ""
 
-#: inc/provider/class-hustle-provider-form-settings-abstract.php:576
+#: inc/provider/class-hustle-provider-form-settings-abstract.php:598
 msgid "Connect Account"
 msgstr ""
 
-#: inc/provider/class-hustle-provider-form-settings-abstract.php:577
+#: inc/provider/class-hustle-provider-form-settings-abstract.php:599
 msgid "Select the integration account you want to connect your module to."
 msgstr ""
 
-#: inc/provider/class-hustle-provider-form-settings-abstract.php:591
+#: inc/provider/class-hustle-provider-form-settings-abstract.php:613
 msgid "Please select an account."
 msgstr ""
 
@@ -4674,7 +4767,7 @@ msgstr ""
 msgid "The 4.0.x visibility metas couldn't be restored."
 msgstr ""
 
-#: views/admin/commons/modal-template.php:73, views/admin/commons/sui-listing/dialogs/create-module/create-non-sshare.php:23, views/admin/commons/sui-listing/dialogs/create-module/create-sshare.php:16, views/admin/commons/sui-listing/dialogs/create-module/non-sshare-templates-step.php:17, views/admin/commons/sui-listing/dialogs/delete-module.php:33, views/admin/commons/sui-wizard/dialogs/add-schedule.php:55, views/admin/commons/sui-wizard/dialogs/add-schedule.php:68, views/admin/dashboard/dialogs/fresh-install.php:52, views/admin/dashboard/dialogs/fresh-install.php:106, views/admin/dashboard/dialogs/release-highlight.php:31, views/admin/dashboard/dialogs/review-conditions.php:34, views/admin/dialogs/black-friday.php:31, views/admin/dialogs/modal-integration.php:32, views/admin/dialogs/modal-migrate-aweber.php:29, views/admin/dialogs/modal-migrate-ctct.php:31, views/admin/dialogs/modal-preview.php:34, views/admin/dialogs/remove-active-integration.php:27
+#: views/admin/commons/modal-template.php:73, views/admin/commons/sui-listing/dialogs/create-module/create-non-sshare.php:23, views/admin/commons/sui-listing/dialogs/create-module/create-sshare.php:16, views/admin/commons/sui-listing/dialogs/create-module/non-sshare-templates-step.php:17, views/admin/commons/sui-listing/dialogs/delete-module.php:33, views/admin/commons/sui-wizard/dialogs/add-schedule.php:55, views/admin/commons/sui-wizard/dialogs/add-schedule.php:68, views/admin/dashboard/dialogs/fresh-install.php:52, views/admin/dashboard/dialogs/fresh-install.php:106, views/admin/dashboard/dialogs/release-highlight.php:31, views/admin/dashboard/dialogs/review-conditions.php:34, views/admin/dialogs/modal-integration.php:32, views/admin/dialogs/modal-migrate-aweber.php:29, views/admin/dialogs/modal-migrate-ctct.php:31, views/admin/dialogs/modal-preview.php:34, views/admin/dialogs/remove-active-integration.php:27
 msgid "Close this dialog window"
 msgstr ""
 
@@ -8377,11 +8470,11 @@ msgstr ""
 
 #. translators: current user's name
 #: views/admin/dashboard/dialogs/release-highlight.php:39
-msgid "New! Holiday Templates"
+msgid "New! Mailster and Mailpoet Integration"
 msgstr ""
 
 #: views/admin/dashboard/dialogs/release-highlight.php:42
-msgid "We’ve added new festive templates to our collection. So whether you want to advertise discounts or deals over the festive season, you can use our Christmas or Holiday templates to drive more conversion on your website."
+msgid "We are happy to let you know that we've added Mailster and Mailpoet to our integrations. If you use either of these services for sending email campaigns or managing your mailing contacts, you can now build your mailing list using Hustle opt-in forms."
 msgstr ""
 
 #: views/admin/dashboard/dialogs/release-highlight.php:50
@@ -8457,54 +8550,6 @@ msgstr ""
 
 #: views/admin/dashboard/templates/widget-pages.php:41
 msgid "Total Shares"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:48
-msgid "Hustle Pro 60% OFF"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:50
-msgid "For all your popup and optin needs."
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:52
-msgid "Before $60 per year, now $24 per year. A total of 8 months free!"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:59
-msgid "year"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:62
-msgid "Total of 8 months free!"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:72
-msgid "Get 60% Off Hustle Pro"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:76
-msgid "Hustle Pro Benefits"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:82
-msgid "Unlimited Popups"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:87
-msgid "Unlimited Optins"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:92
-msgid "Unlimited Slide-ins"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:97
-msgid "24/7 Support"
-msgstr ""
-
-#: views/admin/dialogs/black-friday.php:114
-msgid "Check All Plans"
 msgstr ""
 
 #: views/admin/dialogs/final-integration-form-delete.php:16
@@ -10008,10 +10053,6 @@ msgstr ""
 
 #: views/admin/sshare/wizard.php:20
 msgid "social share"
-msgstr ""
-
-#: views/admin/upsell.php:17
-msgid "Upgrade to Hustle Pro"
 msgstr ""
 
 #. translators: 1. opening 'strong' tag, 2. closing 'strong' tag
