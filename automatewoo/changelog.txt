@@ -1,4 +1,29 @@
 == AutomateWoo Changelog ==
+2021-01-06 - version 5.2.1
+* Fix - Remove invalid 5.2 announcement link from changelog
+
+2021-01-06 - version 5.2.0
+* Updated Minimum Requirements - WooCommerce 4.5
+* New - Add support for PHP 8
+* New - Add "Reply to" field to email actions
+* New - Add "cart.id" variable
+* New - Moved all event handling to use ActionScheduler
+* New - Convert tools background processor to use ActionScheduler
+* New - Add a customer filter to the carts page
+* Fix - Issue where the customer win back trigger would stall due to stale customer last purchase data
+* Fix - Add welcome notice for add-ons
+* Fix - Move the the Membership Created trigger to run async to improve stability
+* Tweak - Display warnings when using deprecated functions and classes
+* Deprecated - AutomateWoo\Events
+* Deprecated - AutomateWoo\Report_Events
+* Deprecated - AutomateWoo\Background_Processes\Event_Runner
+* Deprecated - AutomateWoo\Event
+* Deprecated - AutomateWoo\Event_Factory
+* Deprecated - AutomateWoo\Events_Runner_Async_Request
+* Deprecated - AutomateWoo\Event_Query
+* Deprecated - AutomateWoo\Action::can_be_previewed()
+* Deprecated - AutomateWoo\Action::preview()
+
 2020-11-17 - version 5.1.3
 * Fix - Ensure AW admin works if WooCommerce Admin is disabled via the woocommerce_admin_disabled filter
 * New - Add warning notice that some features will not work if WooCommerce Admin is disabled

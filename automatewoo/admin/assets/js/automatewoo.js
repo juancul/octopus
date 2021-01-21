@@ -39,8 +39,6 @@ var AutomateWoo, AW = {};
 	 */
 	AW.initEnhancedSelects = function() {
 
-		AW.initEnhancedSelectsLegacy();
-
 		$( 'select.automatewoo-json-search' ).filter( ':not(.enhanced)' ).each( function() {
 			var select2_args = {
 				allowClear:  $( this ).data( 'allow_clear' ) ? true : false,
@@ -91,89 +89,7 @@ var AutomateWoo, AW = {};
 		});
 
 	};
-
-
-	AW.initEnhancedSelectsLegacy = function() {
-
-		$( '.automatewoo-json-search:not(select)' ).filter( ':not(.enhanced)' ).each( function() {
-			var select2_args = {
-				allowClear:  $( this ).data( 'allow_clear' ) ? true : false,
-				placeholder: $( this ).data( 'placeholder' ),
-				minimumInputLength: 1,
-				escapeMarkup: function( m ) {
-					return m;
-				},
-				ajax: {
-					url:         ajaxurl,
-					dataType:    'json',
-					quietMillis: 250,
-					data: function( term ) {
-
-						var data = {
-							term: term,
-							action: $( this ).data( 'action' )
-						};
-
-						// pass in sibling field data
-						var sibling = $(this).data('pass-sibling');
-						if ( sibling ) {
-							var $sibling = $('[name="'+ sibling+ '"]');
-
-							if ( $sibling.length ) {
-								data['sibling'] = $sibling.val()
-							}
-						}
-
-						return data;
-					},
-					results: function( data ) {
-						var terms = [];
-						if ( data ) {
-							$.each( data, function( id, text ) {
-								terms.push( { id: id, text: text } );
-							});
-						}
-						return {
-							results: terms
-						};
-					},
-					cache: true
-				}
-			};
-
-			if ( $( this ).data( 'multiple' ) === true ) {
-				select2_args.multiple = true;
-				select2_args.initSelection = function( element, callback ) {
-					var data     = $.parseJSON( element.attr( 'data-selected' ) );
-					var selected = [];
-
-					$( element.val().split( ',' ) ).each( function( i, val ) {
-						selected.push({
-							id: val,
-							text: data[ val ]
-						});
-					});
-					return callback( selected );
-				};
-				select2_args.formatSelection = function( data ) {
-					return '<div class="selected-option" data-id="' + data.id + '">' + data.text + '</div>';
-				};
-			} else {
-				select2_args.multiple = false;
-				select2_args.initSelection = function( element, callback ) {
-					var data = {
-						id: element.val(),
-						text: element.attr( 'data-selected' )
-					};
-					return callback( data );
-				};
-			}
-
-			$( this ).select2( select2_args ).addClass( 'enhanced' );
-		});
-	};
-
-
+	
 
 	AW.initWorkflowStatusSwitch = function() {
 

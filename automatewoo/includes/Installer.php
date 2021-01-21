@@ -275,7 +275,7 @@ class Installer {
 
 	static function do_plugin_updated_actions() {
 		do_action( 'automatewoo_updated' );
-		Events::schedule_async_event( 'automatewoo_updated_async' );
+		AW()->action_scheduler()->enqueue_async_action( 'automatewoo_updated_async' );
 
 		// Queue the requirements changes notice to show (if necessary).
 		AdminNotices::add_notice( 'requirements_changes' );

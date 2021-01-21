@@ -1,26 +1,27 @@
-# Copyright (C) 2020 WooCommerce
+# Copyright (C) 2021 WooCommerce
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: AutomateWoo 5.1.3\n"
+"Project-Id-Version: AutomateWoo 5.2.1\n"
 "Report-Msgid-Bugs-To: https://woocommerce.com/my-account/create-a-ticket/\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-11-17 10:35:43+00:00\n"
+"POT-Creation-Date: 2021-01-06 4:42:1+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: automatewoo\n"
 
 #. Plugin Name of the plugin
-#: admin/admin.php:127
-#: admin/admin.php:600
+#: admin/admin.php:129
+#: admin/admin.php:135
+#: admin/admin.php:636
 #: admin/controllers/licenses.php:74
 #: admin/coupons-list.php:30
 #: admin/licenses-table.php:47
-#: admin/WCAdminConnectPages.php:60
+#: admin/WCAdminConnectPages.php:74
 #: automatewoo.php:36
 #: includes/Actions/Change_Workflow_Status.php:18
 #: includes/Actions/Clear_Queued_Events.php:17
@@ -46,186 +47,189 @@ msgstr ""
 msgid "https://woocommerce.com"
 msgstr ""
 
-#: admin/admin.php:130
+#: admin/admin.php:143
 #: admin/views/page-dashboard.php:26
-#: admin/WCAdminConnectPages.php:61
+#: admin/WCAdminConnectPages.php:75
 msgid "Dashboard"
 msgstr ""
 
-#: admin/admin.php:135
+#: admin/admin.php:148
 #: admin/reports-tabs/runs-by-date.php:14
-#: admin/WCAdminConnectPages.php:73
+#: admin/WCAdminConnectPages.php:87
 #: includes/Actions/Clear_Queued_Events.php:26
-#: includes/Post_Types.php:25
+#: includes/Post_Types.php:27
 #: includes/Triggers/Workflow_Times_Run_Reaches.php:18
 #: admin/assets/build/index.js:11
 msgid "Workflows"
 msgstr ""
 
-#: admin/admin.php:140
+#: admin/admin.php:153
 #: admin/reports/email-tracking.php:336
 #: admin/reports/logs.php:19
-#: admin/WCAdminConnectPages.php:100
+#: admin/WCAdminConnectPages.php:114
 msgid "Logs"
 msgstr ""
 
-#: admin/admin.php:145
-#: admin/WCAdminConnectPages.php:101
+#: admin/admin.php:158
+#: admin/WCAdminConnectPages.php:115
 #: admin/assets/build/index.js:10
 msgid "Queue"
 msgstr ""
 
-#: admin/admin.php:151
+#: admin/admin.php:164
 #: admin/reports/carts.php:21
 #: admin/settings-tabs/carts.php:17
-#: admin/WCAdminConnectPages.php:102
+#: admin/WCAdminConnectPages.php:116
 #: includes/Privacy_Policy_Guide.php:34
 #: includes/Triggers/Abstract_Abandoned_Cart.php:21
 msgid "Carts"
 msgstr ""
 
-#: admin/admin.php:156
+#: admin/admin.php:169
 #: admin/reports/guests.php:23
-#: admin/WCAdminConnectPages.php:103
+#: admin/WCAdminConnectPages.php:117
 #: includes/Triggers/Guest_Created.php:19
 msgid "Guests"
 msgstr ""
 
-#: admin/admin.php:162
+#: admin/admin.php:175
 #: admin/reports/opt-ins.php:21
-#: admin/WCAdminConnectPages.php:104
+#: admin/WCAdminConnectPages.php:118
 msgid "Opt-ins"
 msgstr ""
 
-#: admin/admin.php:162
+#: admin/admin.php:175
 #: admin/reports/opt-ins.php:21
-#: admin/WCAdminConnectPages.php:104
+#: admin/WCAdminConnectPages.php:118
 msgid "Opt-outs"
 msgstr ""
 
-#: admin/admin.php:167
-#: admin/WCAdminConnectPages.php:168
+#: admin/admin.php:180
+#: admin/WCAdminConnectPages.php:182
 msgid "Reports"
 msgstr ""
 
-#: admin/admin.php:172
-#: admin/WCAdminConnectPages.php:188
+#: admin/admin.php:185
+#: admin/WCAdminConnectPages.php:202
 msgid "Tools"
 msgstr ""
 
-#: admin/admin.php:177
-#: admin/WCAdminConnectPages.php:149
+#: admin/admin.php:190
+#: admin/WCAdminConnectPages.php:163
 #: includes/Installer.php:269
 msgid "Settings"
 msgstr ""
 
-#: admin/admin.php:182
-#: admin/reports/events.php:23
+#: admin/admin.php:195
+#: admin/reports/events.php:25
 #: admin/reports/queue.php:19
 msgid "Events"
 msgstr ""
 
-#: admin/admin.php:187
+#: admin/admin.php:201
 #: admin/views/action.php:30
 msgid "Preview"
 msgstr ""
 
-#: admin/admin.php:193
+#: admin/admin.php:208
 msgid "License"
 msgid_plural "Licenses"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin.php:199
+#: admin/admin.php:214
 msgid "AutomateWoo Data Update"
 msgstr ""
 
-#: admin/admin.php:221
+#: admin/admin.php:256
 msgid "Manual Workflow Runner"
 msgstr ""
 
-#: admin/admin.php:274
+#: admin/admin.php:310
 msgid "This field does not support variables."
 msgstr ""
 
-#: admin/admin.php:275
+#: admin/admin.php:311
 msgid "Variable '%s' is not available with the selected trigger. Please only use variables listed in the the variables box."
 msgstr ""
 
-#: admin/admin.php:276
+#: admin/admin.php:312
 msgid "Variable '%s' is not a valid. Please only use variables listed in the the variables box."
 msgstr ""
 
-#: admin/admin.php:622
+#: admin/admin.php:658
 msgid "Your AutomateWoo license has expired."
 msgstr ""
 
-#: admin/admin.php:624
+#: admin/admin.php:660
 msgid "<a href=\"%s\" target=\"_blank\">Renew your license</a> to receive updates and support."
 msgstr ""
 
-#: admin/admin.php:635
+#: admin/admin.php:671
 msgid "AutomateWoo - You have unactivated products."
 msgstr ""
 
-#: admin/admin.php:637
+#: admin/admin.php:673
 msgid "AutomateWoo is not activated."
 msgstr ""
 
-#: admin/admin.php:641
+#: admin/admin.php:677
 msgid "Please <a href=\"%s\">enter your license key</a> to receive plugin updates."
 msgstr ""
 
-#: admin/ajax.php:355
-msgid "Error: "
+#. translators: %s: Error message
+#. translators: %s: The error message.
+#: admin/ajax.php:362
+#: admin/assets/build/index.js:11
+msgid "Error: %s"
 msgstr ""
 
-#: admin/ajax.php:361
+#: admin/ajax.php:369
 msgid "Success! %s email%s sent."
 msgstr ""
 
-#: admin/ajax.php:389
+#: admin/ajax.php:397
 msgid "Message sent."
 msgstr ""
 
-#: admin/ajax.php:406
+#: admin/ajax.php:414
 msgid "Permission error."
 msgstr ""
 
-#: admin/ajax.php:427
+#: admin/ajax.php:435
 #: admin/views/page-data-upgrade.php:19
 msgid "Add-on could not be updated"
 msgstr ""
 
-#: admin/ajax.php:562
+#: admin/ajax.php:570
 msgid "No log found."
 msgstr ""
 
-#: admin/ajax.php:576
+#: admin/ajax.php:584
 msgid "No queued event found."
 msgstr ""
 
-#: admin/ajax.php:594
+#: admin/ajax.php:602
 msgid "Variable not found."
 msgstr ""
 
-#: admin/ajax.php:608
+#: admin/ajax.php:616
 msgid "No cart found."
 msgstr ""
 
-#: admin/controllers/carts.php:43
+#: admin/controllers/carts.php:44
 msgid "Currently active carts are shown here which includes any cart that has not been cleared at purchase or emptied by its owner. Carts are automatically deleted %s days after their last update."
 msgstr ""
 
-#: admin/controllers/carts.php:65
+#: admin/controllers/carts.php:66
 msgid "Please select some carts to bulk edit."
 msgstr ""
 
-#: admin/controllers/carts.php:88
+#: admin/controllers/carts.php:89
 #: admin/controllers/guests.php:112
 #: admin/controllers/logs.php:110
 #: admin/controllers/opt-ins.php:97
-#: admin/controllers/queue.php:120
+#: admin/controllers/queue.php:121
 #: admin/reports-tabs/conversions-list.php:57
 msgid "Bulk edit completed."
 msgstr ""
@@ -266,15 +270,11 @@ msgstr ""
 msgid "Guest successfully deleted."
 msgstr ""
 
-#: admin/controllers/licenses.php:85
-msgid "View getting started guide"
-msgstr ""
-
-#: admin/controllers/licenses.php:92
+#: admin/controllers/licenses.php:87
 msgid "%s activated successfully."
 msgstr ""
 
-#: admin/controllers/licenses.php:115
+#: admin/controllers/licenses.php:110
 msgid "Your license was successfully deactivated."
 msgstr ""
 
@@ -322,23 +322,23 @@ msgstr ""
 msgid "Please select some items to bulk edit."
 msgstr ""
 
-#: admin/controllers/queue.php:50
+#: admin/controllers/queue.php:51
 msgid "Workflows that are not set to run immediately will be added to this queue. The queue is checked every two minutes so actual run times will vary slightly. <%s>Read more&hellip;<%s>"
 msgstr ""
 
-#: admin/controllers/queue.php:57
+#: admin/controllers/queue.php:58
 msgid "Failed queue items will be deleted after %d days"
 msgstr ""
 
-#: admin/controllers/queue.php:83
+#: admin/controllers/queue.php:84
 msgid "Queued event run successfully."
 msgstr ""
 
-#: admin/controllers/queue.php:87
+#: admin/controllers/queue.php:88
 msgid "Queued event failed to run."
 msgstr ""
 
-#: admin/controllers/queue.php:102
+#: admin/controllers/queue.php:103
 #: admin/reports-tabs/conversions-list.php:43
 msgid "Please select some queued events to bulk edit."
 msgstr ""
@@ -348,32 +348,32 @@ msgid "WARNING: After switching to 'Opt-in mode' current customers will not be a
 msgstr ""
 
 #: admin/controllers/settings.php:40
-#: admin/notices.php:122
+#: includes/AdminNotices.php:122
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 
-#: admin/controllers/tools.php:103
+#: admin/controllers/tools.php:102
 msgid "Invalid tool."
 msgstr ""
 
-#: admin/controllers/tools.php:109
+#: admin/controllers/tools.php:108
 msgid "Failed to init process."
 msgstr ""
 
-#: admin/controllers/tools.php:131
+#: admin/controllers/tools.php:130
 #: admin/user-tags-export.php:60
 msgid "Security check failed."
 msgstr ""
 
-#: admin/controllers/tools.php:136
+#: admin/controllers/tools.php:135
 msgid "Process could not be validated."
 msgstr ""
 
-#: admin/controllers/tools.php:145
+#: admin/controllers/tools.php:144
 msgid "Process failed."
 msgstr ""
 
-#: admin/controllers/tools.php:151
+#: admin/controllers/tools.php:150
 msgid "Success - Items may be still be processing in the background."
 msgstr ""
 
@@ -469,7 +469,7 @@ msgid "Order"
 msgstr ""
 
 #: admin/data-layer-formatter.php:40
-#: admin/reports/carts.php:33
+#: admin/reports/carts.php:41
 #: admin/reports/conversions-list.php:140
 #: admin/reports/logs.php:110
 #: admin/reports/opt-ins.php:59
@@ -492,7 +492,7 @@ msgstr ""
 
 #: admin/data-layer-formatter.php:58
 #: admin/reports/carts.php:20
-#: admin/reports/carts.php:31
+#: admin/reports/carts.php:39
 #: includes/Privacy_Exporters.php:338
 #: includes/Variables/Cart_Link.php:17
 msgid "Cart"
@@ -541,7 +541,7 @@ msgid "%1$s &ndash; %2$s"
 msgstr ""
 
 #: admin/json-search.php:171
-#: admin/list-table.php:96
+#: admin/list-table.php:98
 #: includes/Format.php:256
 msgid "[Guest]"
 msgstr ""
@@ -589,41 +589,25 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: admin/list-table.php:80
-#: includes/Customer.php:352
+#: admin/list-table.php:82
+#: includes/Customer.php:354
 #: includes/Data_Layer.php:405
-#: includes/Guest.php:196
+#: includes/Guest.php:200
 msgctxt "full name"
 msgid "%1$s %2$s"
 msgstr ""
 
-#: admin/list-table.php:167
+#: admin/list-table.php:169
 msgid "Filter"
 msgstr ""
 
-#: admin/list-table.php:230
+#: admin/list-table.php:232
 #: admin/reports/abstract-graph.php:89
 msgid "Search for a workflow&hellip;"
 msgstr ""
 
-#: admin/list-table.php:258
+#: admin/list-table.php:260
 msgid "Search for a customer&hellip;"
-msgstr ""
-
-#: admin/notices.php:171
-msgid "AutomateWoo %1$s will require WordPress version %2$s or newer and WooCommerce version %3$s or newer."
-msgstr ""
-
-#: admin/notices.php:178
-msgid "AutomateWoo %1$s will require WordPress version %2$s or newer."
-msgstr ""
-
-#: admin/notices.php:184
-msgid "AutomateWoo %1$s will require WooCommerce version %2$s or newer."
-msgstr ""
-
-#: admin/notices.php:195
-msgid "Update required soon:"
 msgstr ""
 
 #: admin/reports-tabs/conversions-list.php:16
@@ -674,45 +658,45 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: admin/reports/carts.php:32
-#: admin/reports/events.php:74
+#: admin/reports/carts.php:40
+#: admin/reports/events.php:76
 #: admin/settings-tabs/status.php:17
 #: includes/Actions/Change_Workflow_Status.php:25
 msgid "Status"
 msgstr ""
 
-#: admin/reports/carts.php:34
+#: admin/reports/carts.php:42
 #: admin/views/page-guest-details.php:59
 msgid "Last active"
 msgstr ""
 
-#: admin/reports/carts.php:35
+#: admin/reports/carts.php:43
 #: includes/Data_Type.php:84
 #: includes/Privacy_Exporters.php:145
 msgid "Items"
 msgstr ""
 
-#: admin/reports/carts.php:36
+#: admin/reports/carts.php:44
 #: admin/views/modal-cart-info.php:111
 #: templates/email/cart-table.php:114
 msgid "Total"
 msgstr ""
 
-#: admin/reports/carts.php:41
+#: admin/reports/carts.php:49
 #: admin/reports/guests.php:49
 #: includes/Privacy_Exporters.php:59
 msgid "Language"
 msgstr ""
 
-#: admin/reports/carts.php:168
+#: admin/reports/carts.php:186
 msgid "Change status to active"
 msgstr ""
 
-#: admin/reports/carts.php:169
+#: admin/reports/carts.php:187
 msgid "Change status to abandoned"
 msgstr ""
 
-#: admin/reports/carts.php:170
+#: admin/reports/carts.php:188
 #: admin/reports/guests.php:171
 #: admin/reports/guests.php:182
 #: admin/reports/logs.php:168
@@ -740,7 +724,7 @@ msgstr ""
 #: admin/views/modal-log-info.php:27
 #: admin/views/modal-queued-event-info.php:28
 #: includes/Fields/Workflow.php:26
-#: includes/Post_Types.php:26
+#: includes/Post_Types.php:28
 #: admin/assets/build/index.js:2
 msgid "Workflow"
 msgstr ""
@@ -835,21 +819,21 @@ msgstr ""
 msgid "Opens"
 msgstr ""
 
-#: admin/reports/events.php:22
-#: admin/reports/events.php:73
+#: admin/reports/events.php:24
+#: admin/reports/events.php:75
 #: admin/reports/queue.php:18
 msgid "Event"
 msgstr ""
 
-#: admin/reports/events.php:75
+#: admin/reports/events.php:77
 msgid "Hook"
 msgstr ""
 
-#: admin/reports/events.php:76
+#: admin/reports/events.php:78
 msgid "Arguments"
 msgstr ""
 
-#: admin/reports/events.php:77
+#: admin/reports/events.php:79
 msgid "Scheduled date"
 msgstr ""
 
@@ -864,7 +848,8 @@ msgstr ""
 #: admin/reports/guests.php:42
 #: admin/views/page-guest-details.php:44
 #: includes/Actions/Order_Resend_Email.php:57
-#: includes/Actions/Send_Email_Abstract.php:33
+#: includes/Actions/Send_Email_Abstract.php:34
+#: includes/Fields/EmailAddressWithName.php:48
 msgid "Email"
 msgstr ""
 
@@ -879,7 +864,7 @@ msgid "Created"
 msgstr ""
 
 #: admin/reports/guests.php:45
-#: admin/workflow-edit.php:253
+#: admin/workflow-edit.php:254
 msgid "Actions"
 msgstr ""
 
@@ -1307,7 +1292,7 @@ msgid "There are no users with that tag."
 msgstr ""
 
 #: admin/views/action.php:31
-#: includes/Post_Types.php:30
+#: includes/Post_Types.php:32
 msgid "Edit"
 msgstr ""
 
@@ -1471,7 +1456,7 @@ msgstr ""
 #: admin/views/meta-box-save.php:17
 #: admin/views/meta-box-save.php:106
 #: admin/views/meta-box-save.php:111
-#: admin/workflow-edit.php:223
+#: admin/workflow-edit.php:224
 msgid "Save"
 msgstr ""
 
@@ -1485,7 +1470,7 @@ msgstr ""
 
 #: admin/views/meta-box-save.php:60
 #: includes/Actions/Change_Workflow_Status.php:28
-#: includes/Post_Types.php:65
+#: includes/Post_Types.php:71
 msgid "Disabled"
 msgstr ""
 
@@ -1558,7 +1543,7 @@ msgid "Months"
 msgstr ""
 
 #: admin/views/meta-box-timing.php:108
-#: admin/workflow-edit.php:258
+#: admin/workflow-edit.php:259
 #: admin/workflow-list.php:40
 msgid "Timing"
 msgstr ""
@@ -1598,7 +1583,7 @@ msgid "(24 hour time)"
 msgstr ""
 
 #: admin/views/meta-box-trigger.php:31
-#: admin/workflow-edit.php:228
+#: admin/workflow-edit.php:229
 msgid "Trigger"
 msgstr ""
 
@@ -1610,7 +1595,7 @@ msgid "[Select]"
 msgstr ""
 
 #: admin/views/meta-box-variables.php:15
-#: admin/workflow-edit.php:268
+#: admin/workflow-edit.php:269
 msgid "Variables"
 msgstr ""
 
@@ -1765,6 +1750,7 @@ msgid "Guest ID"
 msgstr ""
 
 #: admin/views/page-guest-details.php:39
+#: includes/Fields/EmailAddressWithName.php:41
 msgid "Name"
 msgstr ""
 
@@ -1873,25 +1859,25 @@ msgstr ""
 msgid "Welcome to AutomateWoo"
 msgstr ""
 
-#: admin/WCAdminConnectPages.php:84
-#: includes/Post_Types.php:29
+#: admin/WCAdminConnectPages.php:98
+#: includes/Post_Types.php:31
 msgid "Add New Workflow"
 msgstr ""
 
-#: admin/WCAdminConnectPages.php:94
-#: includes/Post_Types.php:31
+#: admin/WCAdminConnectPages.php:108
+#: includes/Post_Types.php:33
 msgid "Edit Workflow"
 msgstr ""
 
-#: admin/workflow-edit.php:234
+#: admin/workflow-edit.php:235
 msgid "Manual workflow options"
 msgstr ""
 
-#: admin/workflow-edit.php:248
+#: admin/workflow-edit.php:249
 msgid "Rules <small>(optional)</small>"
 msgstr ""
 
-#: admin/workflow-edit.php:263
+#: admin/workflow-edit.php:264
 msgid "Options"
 msgstr ""
 
@@ -2007,31 +1993,31 @@ msgstr[1] ""
 msgid "Manual"
 msgstr ""
 
-#: automatewoo.php:95
+#: automatewoo.php:100
 msgid "%s is inactive."
 msgstr ""
 
-#: automatewoo.php:98
+#: automatewoo.php:103
 msgid "%1$s The plugin requires PHP version %2$s or newer."
 msgstr ""
 
-#: automatewoo.php:101
+#: automatewoo.php:106
 msgid "%1$s The plugin requires WooCommerce version %2$s or newer."
 msgstr ""
 
-#: automatewoo.php:104
+#: automatewoo.php:109
 msgid "%1$s The plugin requires WordPress version %2$s or newer."
 msgstr ""
 
-#: includes/Action.php:133
-#: includes/Action.php:147
+#: includes/Action.php:125
+#: includes/Action.php:139
 #: includes/Actions/Change_Post_Status.php:19
 #: includes/Rules/Rule.php:398
 #: includes/Trigger.php:301
 msgid "Other"
 msgstr ""
 
-#: includes/Action.php:342
+#: includes/Action.php:361
 msgid "THIS ACTION IS DEPRECATED AND SHOULD NOT BE USED."
 msgstr ""
 
@@ -2189,7 +2175,7 @@ msgid "If delete is selected the subscriber's email will not be added to the sup
 msgstr ""
 
 #: includes/Actions/Campaign_Monitor_Remove_Subscriber.php:27
-#: includes/Workflow_Email.php:260
+#: includes/Workflow_Email.php:307
 msgid "Unsubscribe"
 msgstr ""
 
@@ -2531,96 +2517,104 @@ msgstr ""
 msgid "Remove Points"
 msgstr ""
 
-#: includes/Actions/Send_Email.php:26
+#: includes/Actions/Send_Email.php:29
 msgid "Send Email"
 msgstr ""
 
-#: includes/Actions/Send_Email.php:28
+#: includes/Actions/Send_Email.php:31
 msgid "This action sends an HTML email using a template. The default template matches the style of your WooCommerce transactional emails. <%s>View email templates documentation<%s>."
 msgstr ""
 
-#: includes/Actions/Send_Email.php:40
+#: includes/Actions/Send_Email.php:43
 msgid "Email heading"
 msgstr ""
 
-#: includes/Actions/Send_Email.php:42
+#: includes/Actions/Send_Email.php:45
 msgid "The appearance will depend on your email template. Not all templates support this field."
 msgstr ""
 
-#: includes/Actions/Send_Email.php:46
+#: includes/Actions/Send_Email.php:49
 msgid "Email preheader"
 msgstr ""
 
-#: includes/Actions/Send_Email.php:48
+#: includes/Actions/Send_Email.php:51
 msgid "A preheader is a short text summary that follows the subject line when an email is viewed in the inbox. If no preheader is set the first text found in the email is used."
 msgstr ""
 
-#: includes/Actions/Send_Email.php:52
+#: includes/Actions/Send_Email.php:55
 msgid "Template"
 msgstr ""
 
-#: includes/Actions/Send_Email.php:53
+#: includes/Actions/Send_Email.php:56
 msgid "Select which template to use when formatting the email. If you select 'None', the email will have no template but the email will still be sent as an HTML email."
 msgstr ""
 
-#: includes/Actions/Send_Email_Abstract.php:42
+#: includes/Actions/Send_Email_Abstract.php:43
 msgid "To"
 msgstr ""
 
-#: includes/Actions/Send_Email_Abstract.php:43
+#: includes/Actions/Send_Email_Abstract.php:44
 msgid "Enter emails here or use variables such as {{ customer.email }}. Multiple emails can be separated by commas. Add <b>--notracking</b> after an email to disable open and click tracking for that recipient."
 msgstr ""
 
-#: includes/Actions/Send_Email_Abstract.php:44
+#: includes/Actions/Send_Email_Abstract.php:45
 msgid "E.g. {{ customer.email }}, admin@example.org --notracking"
 msgstr ""
 
-#: includes/Actions/Send_Email_Abstract.php:50
+#: includes/Actions/Send_Email_Abstract.php:51
 msgid "Email subject"
 msgstr ""
 
-#: includes/Actions/Send_Email_Abstract.php:79
+#: includes/Actions/Send_Email_Abstract.php:57
+msgid "Reply to"
+msgstr ""
+
+#: includes/Actions/Send_Email_Abstract.php:59
+msgid "Optionally set a reply-to email for the email. Please note that not all email delivery services support \"Reply-To\" email headers."
+msgstr ""
+
+#: includes/Actions/Send_Email_Abstract.php:101
 msgid "Email successfully sent."
 msgstr ""
 
-#: includes/Actions/Send_Email_Plain_Text.php:28
+#: includes/Actions/Send_Email_Plain_Text.php:31
 msgid "Send Email - Plain Text"
 msgstr ""
 
-#: includes/Actions/Send_Email_Plain_Text.php:29
+#: includes/Actions/Send_Email_Plain_Text.php:32
 msgid "This action sends a plain text email. It will contain no HTML which means open tracking and click tracking will not work. Some variables may display unexpectedly due to having HTML removed. If necessary, an unsubscribe link will be added after the email content."
 msgstr ""
 
-#: includes/Actions/Send_Email_Plain_Text.php:40
+#: includes/Actions/Send_Email_Plain_Text.php:43
 #: includes/Fields/Email_Content.php:33
 msgid "Email content"
 msgstr ""
 
-#: includes/Actions/Send_Email_Plain_Text.php:41
+#: includes/Actions/Send_Email_Plain_Text.php:44
 msgid "All HTML will be removed from this field when sending. Variables that use HTML may display unexpectedly because of this."
 msgstr ""
 
-#: includes/Actions/Send_Email_Raw.php:25
-msgid "Send Email - Raw HTML [BETA]"
+#: includes/Actions/Send_Email_Raw.php:28
+msgid "Send Email - Raw HTML"
 msgstr ""
 
-#: includes/Actions/Send_Email_Raw.php:26
+#: includes/Actions/Send_Email_Raw.php:29
 msgid "This action sends emails with only the HTML/CSS entered in the action's HTML field and is designed for advanced use only. This is different from the standard Send Email action, which inserts the email content into a template. Some variables may display unexpectedly due to the different CSS. Please note that you should include an unsubscribe link by using the variable {{ unsubscribe_url }}."
 msgstr ""
 
-#: includes/Actions/Send_Email_Raw.php:35
+#: includes/Actions/Send_Email_Raw.php:38
 msgid "Include AutomateWoo CSS"
 msgstr ""
 
-#: includes/Actions/Send_Email_Raw.php:37
+#: includes/Actions/Send_Email_Raw.php:40
 msgid "Checking this box adds the basic AutomateWoo CSS that is used to style variables to your custom HTML."
 msgstr ""
 
-#: includes/Actions/Send_Email_Raw.php:41
+#: includes/Actions/Send_Email_Raw.php:44
 msgid "Email HTML"
 msgstr ""
 
-#: includes/Actions/Send_Email_Raw.php:42
+#: includes/Actions/Send_Email_Raw.php:45
 msgid "Any CSS included in the HTML will be automatically inlined."
 msgstr ""
 
@@ -2656,20 +2650,20 @@ msgstr ""
 msgid "SMS body"
 msgstr ""
 
-#: includes/Actions/Send_SMS_Twilio.php:62
-msgid "No valid recipients"
-msgstr ""
-
-#: includes/Actions/Send_SMS_Twilio.php:66
+#: includes/Actions/Send_SMS_Twilio.php:61
 msgid "Empty message body"
 msgstr ""
 
-#: includes/Actions/Send_SMS_Twilio.php:103
-#: includes/Workflow_Email.php:338
+#: includes/Actions/Send_SMS_Twilio.php:76
+msgid "No valid recipients"
+msgstr ""
+
+#: includes/Actions/Send_SMS_Twilio.php:105
+#: includes/Workflow_Email.php:385
 msgid "The recipient is not opted-in to this workflow."
 msgstr ""
 
-#: includes/Actions/Send_SMS_Twilio.php:118
+#: includes/Actions/Send_SMS_Twilio.php:120
 msgid "SMS successfully sent."
 msgstr ""
 
@@ -2790,7 +2784,6 @@ msgid "Reach out to your customers and automate your work easily with these new 
 msgstr ""
 
 #: includes/ActivityPanelInbox/UpdateNote.php:85
-#: includes/AdminNotices/UpdateNoticeManager.php:67
 #: includes/AdminNotices/WelcomeNoticeManager.php:41
 #: admin/assets/build/index.js:11
 msgid "Browse presets"
@@ -2809,20 +2802,40 @@ msgstr ""
 msgid "Create workflow"
 msgstr ""
 
+#: includes/AdminNotices.php:171
+msgid "AutomateWoo %1$s will require WordPress version %2$s or newer and WooCommerce version %3$s or newer."
+msgstr ""
+
+#: includes/AdminNotices.php:178
+msgid "AutomateWoo %1$s will require WordPress version %2$s or newer."
+msgstr ""
+
+#: includes/AdminNotices.php:184
+msgid "AutomateWoo %1$s will require WooCommerce version %2$s or newer."
+msgstr ""
+
+#: includes/AdminNotices.php:195
+msgid "Update required soon:"
+msgstr ""
+
+#: includes/AdminNotices/AddonWelcome.php:60
+msgid "Welcome to the %s add-on!"
+msgstr ""
+
 #: includes/AdminNotices/NewWorkflowHelperManager.php:50
 msgid "Need help? Try out one of our <%1$s>preset workflows<%2$s> or check out the <%3$s>help center<%4$s>."
 msgstr ""
 
-#: includes/AdminNotices/UpdateNoticeManager.php:56
-msgid "Check out these new preset workflows"
+#: includes/AdminNotices/UpdateNoticeManager.php:55
+msgid "Thanks for updating to AutomateWoo 5.2!"
 msgstr ""
 
-#: includes/AdminNotices/UpdateNoticeManager.php:58
-msgid "Reach out to your customers and automate your work easily with these presets. Learn more about <%1$s>preset workflows<%2$s>."
+#: includes/AdminNotices/UpdateNoticeManager.php:57
+msgid "In this release we have introduced some minor new features, added support for PHP 8 and finished converting all background processing to the <%1$s>Action Scheduler<%2$s> library which is used in WooCommerce core."
 msgstr ""
 
-#: includes/AdminNotices/UpdateNoticeManager.php:74
-msgid "What else is new in 5.1"
+#: includes/AdminNotices/UpdateNoticeManager.php:66
+msgid "View changelog"
 msgstr ""
 
 #: includes/AdminNotices/WcAdminDisabled.php:58
@@ -2841,7 +2854,7 @@ msgstr ""
 msgid "Create your first workflow easily with our presets, or build your own from scratch."
 msgstr ""
 
-#: includes/AdminNotices/WelcomeNoticeManager.php:47
+#: includes/AdminNotices/WelcomeNoticeManager.php:48
 #: admin/assets/build/index.js:10
 msgid "Learn more"
 msgstr ""
@@ -2900,7 +2913,7 @@ msgid "Once weekly"
 msgstr ""
 
 #. translators: %1$s is the final class name accessing an unavailable property
-#: includes/Database_Table.php:40
+#: includes/Database_Table.php:41
 msgid "%1$s::$name is no longer directly accessible. Ensure you have the latest version of AutomateWoo and all Add-ons."
 msgstr ""
 
@@ -2925,13 +2938,14 @@ msgstr ""
 
 #: includes/Data_Types/Order.php:71
 #: includes/Triggers/Abstract_Order_Base.php:31
-#: includes/Triggers/Order_Note_Added.php:37
 #: includes/Triggers/User_Purchases_Product_Variation_With_Attribute.php:27
+#: includes/Triggers/Utilities/OrderGroup.php:18
 msgid "Orders"
 msgstr ""
 
 #: includes/Data_Types/Subscription.php:72
 #: includes/Subscription_Workflow_Helper.php:22
+#: includes/Triggers/Utilities/SubscriptionGroup.php:18
 msgid "Subscriptions"
 msgstr ""
 
@@ -3160,6 +3174,16 @@ msgstr ""
 msgid "Saved successfully! You won't receive marketing communications from us."
 msgstr ""
 
+#. translators: 1: Deprecated class name, 2: Version number, 3: Replacement class name.
+#: includes/helpers.php:765
+msgid "%1$s is deprecated since version %2$s! Use %3$s instead."
+msgstr ""
+
+#. translators: 1: Deprecated class name, 2: Version number.
+#: includes/helpers.php:773
+msgid "%1$s is deprecated since version %2$s with no alternative available."
+msgstr ""
+
 #: includes/Installer.php:269
 msgid "View AutomateWoo Settings"
 msgstr ""
@@ -3174,11 +3198,11 @@ msgctxt "Page title"
 msgid "Communication preferences"
 msgstr ""
 
-#: includes/Jobs/BatchException.php:23
-msgid "Item not found."
+#: includes/Jobs/JobException.php:34
+msgid "Job item not found."
 msgstr ""
 
-#: includes/Jobs/BatchException.php:36
+#: includes/Jobs/JobException.php:47
 msgid "The \"%s\" job was stopped because it's failure rate is above the allowed threshold."
 msgstr ""
 
@@ -3187,7 +3211,7 @@ msgid "Queued workflow is already marked as failed."
 msgstr ""
 
 #. translators: %1$s is the deprecated class, and %2$s is the new class to replace it
-#: includes/LegacyClassLoader.php:112
+#: includes/LegacyClassLoader.php:113
 msgid "The class %1$s has been deprecated and replaced with %2$s. It will be removed in a future version of AutomateWoo."
 msgstr ""
 
@@ -3259,117 +3283,117 @@ msgstr ""
 msgid " (Workflow ID: <a href=\"%1$s\">%2$s</a>)"
 msgstr ""
 
-#: includes/Post_Types.php:27
+#: includes/Post_Types.php:29
 msgctxt "Admin menu name"
 msgid "Workflows"
 msgstr ""
 
-#: includes/Post_Types.php:28
+#: includes/Post_Types.php:30
 msgid "Add Workflow"
 msgstr ""
 
-#: includes/Post_Types.php:32
+#: includes/Post_Types.php:34
 msgid "New Workflow"
 msgstr ""
 
-#: includes/Post_Types.php:33
-#: includes/Post_Types.php:34
+#: includes/Post_Types.php:35
+#: includes/Post_Types.php:36
 msgid "View Workflow"
 msgstr ""
 
-#: includes/Post_Types.php:35
+#: includes/Post_Types.php:37
 msgid "Search Workflows"
 msgstr ""
 
-#: includes/Post_Types.php:36
+#: includes/Post_Types.php:38
 msgid "No Workflows found"
 msgstr ""
 
-#: includes/Post_Types.php:37
+#: includes/Post_Types.php:39
 msgid "No Workflows found in trash"
 msgstr ""
 
-#: includes/Post_Types.php:70
+#: includes/Post_Types.php:76
 msgid "Disabled <span class=\"count\">(%s)</span>"
 msgid_plural "Disabled <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: placeholder is previous workflow title
-#: includes/Post_Types.php:85
-#: includes/Post_Types.php:88
 #: includes/Post_Types.php:91
+#: includes/Post_Types.php:94
+#: includes/Post_Types.php:97
 msgid "Workflow updated."
 msgstr ""
 
-#: includes/Post_Types.php:86
+#: includes/Post_Types.php:92
 msgid "Custom field updated."
 msgstr ""
 
-#: includes/Post_Types.php:87
+#: includes/Post_Types.php:93
 msgid "Custom field deleted."
 msgstr ""
 
 #. translators: placeholder is previous workflow title
-#: includes/Post_Types.php:90
+#: includes/Post_Types.php:96
 msgctxt "used in workflow updated messages"
 msgid "Workflow restored to revision from %s"
 msgstr ""
 
-#: includes/Post_Types.php:92
+#: includes/Post_Types.php:98
 msgid "Workflow saved."
 msgstr ""
 
-#: includes/Post_Types.php:93
+#: includes/Post_Types.php:99
 msgid "Workflow submitted."
 msgstr ""
 
 #. translators: php date string, see http://php.net/date
-#: includes/Post_Types.php:95
+#: includes/Post_Types.php:101
 msgid "Workflow scheduled for: %1$s."
 msgstr ""
 
 #. translators: php date string, see http://php.net/date
-#: includes/Post_Types.php:95
+#: includes/Post_Types.php:101
 msgctxt "used in \"Workflow scheduled for <date>\""
 msgid "M j, Y @ G:i"
 msgstr ""
 
 #. translators: php date string, see http://php.net/date
-#: includes/Post_Types.php:96
+#: includes/Post_Types.php:102
 msgid "Workflow draft updated."
 msgstr ""
 
 #. translators: %s: workflow count
-#: includes/Post_Types.php:112
+#: includes/Post_Types.php:118
 msgid "%s workflow updated."
 msgid_plural "%s workflows updated."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: workflow count
-#: includes/Post_Types.php:114
+#: includes/Post_Types.php:120
 msgid "%s workflow not updated, somebody is editing it."
 msgid_plural "%s workflows not updated, somebody is editing them."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: workflow count
-#: includes/Post_Types.php:116
+#: includes/Post_Types.php:122
 msgid "%s workflow permanently deleted."
 msgid_plural "%s workflows permanently deleted."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: workflow count
-#: includes/Post_Types.php:118
+#: includes/Post_Types.php:124
 msgid "%s workflow moved to the Trash."
 msgid_plural "%s workflows moved to the Trash."
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: workflow count
-#: includes/Post_Types.php:120
+#: includes/Post_Types.php:126
 msgid "%s workflow restored from the Trash."
 msgid_plural "%s workflows restored from the Trash."
 msgstr[0] ""
@@ -3884,7 +3908,7 @@ msgstr ""
 msgid "Is set"
 msgstr ""
 
-#: includes/Rules/Abstract_Object.php:32
+#: includes/Rules/Abstract_Object.php:34
 #: includes/Rules/Searchable_Select_Rule_Abstract.php:51
 msgid "Search..."
 msgstr ""
@@ -4460,8 +4484,12 @@ msgstr ""
 msgid "<a href=\"%s\">View details</a>"
 msgstr ""
 
-#: includes/Tools/Background_Processed_Abstract.php:20
+#: includes/Tools/Background_Processed_Abstract.php:23
 msgid "If you are processing a large number of items they will be processed in the background."
+msgstr ""
+
+#: includes/Tools/Background_Processed_Abstract.php:51
+msgid "An error occurred. Please check the 'automatewoo-tools' logs for more info."
 msgstr ""
 
 #: includes/Tools/Guest_Eraser.php:19
@@ -4568,7 +4596,7 @@ msgstr ""
 msgid "This is useful for workflows that are not run immediately as it ensures the status of the %s hasn't changed since initial trigger."
 msgstr ""
 
-#: includes/Trigger.php:587
+#: includes/Trigger.php:589
 msgid "THIS TRIGGER IS DEPRECATED AND SHOULD NOT BE USED."
 msgstr ""
 
@@ -4697,18 +4725,6 @@ msgstr ""
 msgid "If checked this trigger will repeatedly fire after the minimum last purchase date passes and the customer has not made a purchase. E.g. if the minimum is set to 30 days the trigger will fire 30 days after the customers last purchase and every 30 days from then until the maximum is reached or the customer makes another purchase. If unchecked the trigger will not repeat until the customer makes a new purchase."
 msgstr ""
 
-#: includes/Triggers/CustomTimeOfDay.php:31
-msgid "Time of day"
-msgstr ""
-
-#: includes/Triggers/CustomTimeOfDay.php:32
-msgid "Set the time in your site's timezone that the workflow will be triggered. If no time is set the workflow will run at midnight. If you set a time that has already passed for today the workflow will not run until tomorrow. The workflow will never be run twice in the same day. It's not possible to set a time after 23:00 which gives the background processor at least 1 hour to run any tasks."
-msgstr ""
-
-#: includes/Triggers/CustomTimeOfDay.php:47
-msgid "This workflow will not run immediately after it is saved. It will run daily in the background at the time set in the <strong>Time of day</strong> field. If no time is set it will run at midnight."
-msgstr ""
-
 #: includes/Triggers/Guest_Created.php:18
 msgid "New Guest Captured"
 msgstr ""
@@ -4737,7 +4753,7 @@ msgstr ""
 msgid "Choose which MailChimp for WordPress form this workflow should trigger for."
 msgstr ""
 
-#: includes/Triggers/Membership_Created.php:19
+#: includes/Triggers/Membership_Created.php:29
 msgid "Membership Created"
 msgstr ""
 
@@ -4765,11 +4781,11 @@ msgstr ""
 msgid "Manual - Orders"
 msgstr ""
 
-#: includes/Triggers/OrderNoteAddedEachLineItem.php:32
+#: includes/Triggers/OrderNoteAddedEachLineItem.php:31
 msgid "Order Note Added - Each Line Item"
 msgstr ""
 
-#: includes/Triggers/OrderNoteAddedEachLineItem.php:33
+#: includes/Triggers/OrderNoteAddedEachLineItem.php:32
 msgid "Fires when a note is added to an order for each line item in the order. This can include both private notes and notes to the customer. These notes appear on the right of the order edit screen."
 msgstr ""
 
@@ -4797,23 +4813,23 @@ msgstr ""
 msgid "Triggers for each order line item after an order is created in the database. At checkout this happens before payment is confirmed."
 msgstr ""
 
-#: includes/Triggers/Order_Note_Added.php:35
+#: includes/Triggers/Order_Note_Added.php:31
 msgid "Order Note Added"
 msgstr ""
 
-#: includes/Triggers/Order_Note_Added.php:36
+#: includes/Triggers/Order_Note_Added.php:32
 msgid "Fires when any note is added to an order, can include both private notes and notes to the customer. These notes appear on the right of the order edit screen."
 msgstr ""
 
-#: includes/Triggers/Order_Note_Added.php:46
+#: includes/Triggers/Order_Note_Added.php:41
 msgid "Note contains text"
 msgstr ""
 
-#: includes/Triggers/Order_Note_Added.php:47
+#: includes/Triggers/Order_Note_Added.php:42
 msgid "Only trigger this workflow if the order note contains the certain text. This field is optional."
 msgstr ""
 
-#: includes/Triggers/Order_Note_Added.php:50
+#: includes/Triggers/Order_Note_Added.php:45
 msgid "[All]"
 msgstr ""
 
@@ -4925,11 +4941,11 @@ msgstr ""
 msgid "This trigger fires after a subscription is created which happens before payment is confirmed. Using this trigger allows access to the product data of each subscription line item."
 msgstr ""
 
-#: includes/Triggers/Subscription_Note_Added.php:25
+#: includes/Triggers/Subscription_Note_Added.php:30
 msgid "Subscription Note Added"
 msgstr ""
 
-#: includes/Triggers/Subscription_Note_Added.php:26
+#: includes/Triggers/Subscription_Note_Added.php:31
 msgid "Fires when a note is added to a subscription. This includes private notes and notes to the customer. These notes appear on the right of the subscription edit screen."
 msgstr ""
 
@@ -5003,6 +5019,18 @@ msgstr ""
 
 #: includes/Triggers/User_Purchases_Product_Variation_With_Attribute.php:28
 msgid "This trigger will look at the selected variations for each order item for the selected attribute terms. For example if you have an attribute for 'size' and you select 'SML' and 'MED' in the Terms field then this trigger will fire if an order is placed that contains a product in 'SML' or a product in 'MED'."
+msgstr ""
+
+#: includes/Triggers/Utilities/CustomTimeOfDay.php:31
+msgid "Time of day"
+msgstr ""
+
+#: includes/Triggers/Utilities/CustomTimeOfDay.php:32
+msgid "Set the time in your site's timezone that the workflow will be triggered. If no time is set the workflow will run at midnight. If you set a time that has already passed for today the workflow will not run until tomorrow. The workflow will never be run twice in the same day. It's not possible to set a time after 23:00 which gives the background processor at least 1 hour to run any tasks."
+msgstr ""
+
+#: includes/Triggers/Utilities/CustomTimeOfDay.php:47
+msgid "This workflow will not run immediately after it is saved. It will run daily in the background at the time set in the <strong>Time of day</strong> field. If no time is set it will run at midnight."
 msgstr ""
 
 #: includes/Triggers/Wishlist_Item_Added.php:18
@@ -5299,6 +5327,10 @@ msgstr ""
 
 #: includes/Variables/Card_Type.php:15
 msgid "Displays the type of the card e.g. Visa, MasterCard."
+msgstr ""
+
+#: includes/Variables/CartId.php:21
+msgid "Displays the unique ID of the cart."
 msgstr ""
 
 #: includes/Variables/Cart_Items.php:18
@@ -5988,7 +6020,7 @@ msgstr ""
 msgid "There were problems retrieving the preset. Please check the logs for more info."
 msgstr ""
 
-#: includes/Workflow_Email.php:325
+#: includes/Workflow_Email.php:372
 msgid "Workflow was not defined for email."
 msgstr ""
 
@@ -6154,11 +6186,6 @@ msgstr ""
 
 #: admin/assets/build/index.js:10
 msgid "Reload"
-msgstr ""
-
-#. translators: %s: The error message.
-#: admin/assets/build/index.js:11
-msgid "Error: %s"
 msgstr ""
 
 #. translators: %s: The error message.

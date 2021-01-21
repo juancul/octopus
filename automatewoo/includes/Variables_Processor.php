@@ -119,7 +119,7 @@ class Variables_Processor {
 
 		$value = '';
 
-		if ( method_exists( $variable, 'get_value' ) ) {
+		if ( $variable && method_exists( $variable, 'get_value' ) ) {
 
 			if ( Data_Types::is_non_stored_data_type( $data_type ) ) {
 				$value = $variable->get_value( $parameters, $this->workflow );

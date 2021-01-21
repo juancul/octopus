@@ -184,6 +184,7 @@ abstract class Addon {
 	 */
 	function activate() {
 		flush_rewrite_rules();
+		AdminNotices::add_notice( 'addon_welcome_' . $this->id );
 	}
 
 

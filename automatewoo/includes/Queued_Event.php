@@ -410,6 +410,8 @@ class Queued_Event extends Abstract_Model_With_Meta_Table {
 	 * @param $date DateTime
 	 */
 	function set_date( $date ) {
+		wc_deprecated_function( __METHOD__, '5.2.0', 'set_date_due' );
+
 		$this->set_date_due( $date );
 	}
 

@@ -207,6 +207,8 @@ class Integrations {
 	 * @return bool
 	 */
 	static function subscriptions_enabled() {
+		wc_deprecated_function( __METHOD__, '5.2.0', 'is_subscriptions_active' );
+
 		return self::is_subscriptions_active();
 	}
 

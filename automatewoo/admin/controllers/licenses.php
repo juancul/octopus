@@ -79,17 +79,12 @@ class Licenses_Controller extends Base {
 			}
 			else {
 				$addon = Addons::get( $product_id );
-				$notice_extra = '';
-
-				if ( $start_url = $addon->get_getting_started_url() ) {
-					$notice_extra .= ' <a href="' . esc_url( $start_url ) . '" target="_blank">'. __( 'View getting started guide', 'automatewoo' ) .'</a>';
-				}
 
 				if ( is_wp_error( $activate ) ) {
 					$this->add_error( $addon->name . ' - ' . $activate->get_error_message() );
 				}
 				else {
-					$this->add_message( sprintf( __( '%s activated successfully.', 'automatewoo' ), $addon->name ), $notice_extra );
+					$this->add_message( sprintf( __( '%s activated successfully.', 'automatewoo' ), $addon->name ) );
 				}
 
 				if ( isset( $addon ) ) {

@@ -3,6 +3,8 @@
 
 namespace AutomateWoo;
 
+use AutomateWoo\Actions\PreviewableInterface;
+use AutomateWoo\Actions\TestableInterface;
 use AutomateWoo\Exceptions\InvalidPreviewData;
 use AutomateWoo\Workflows\Factory;
 use WC_Order;
@@ -207,13 +209,15 @@ class Preview_Data {
 
 
 	/**
-	 * Generate an previewable action object filled with preview data.
+	 * Generate a previewable or testable action object filled with preview data.
 	 *
 	 * @param int    $workflow_id
 	 * @param int    $action_number
 	 * @param string $mode test|preview
 	 *
-	 * @return Action
+	 * @return Action|PreviewableInterface|TestableInterface
+	 *
+	 * TODO Remove Action return type when code-hinting isn't required for public Action props
 	 *
 	 * @throws InvalidPreviewData When there's an error with the preview data.
 	 */
@@ -236,7 +240,7 @@ class Preview_Data {
 			throw InvalidPreviewData::generic();
 		}
 
-		if ( ! $action || ! $action->can_be_previewed() ) {
+		if ( ! $action instanceof PreviewableInterface && ! $action instanceof TestableInterface ) {
 			throw InvalidPreviewData::invalid_action();
 		}
 

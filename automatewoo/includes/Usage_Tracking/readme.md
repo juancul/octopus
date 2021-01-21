@@ -90,6 +90,9 @@ All event names are prefixed by `wcadmin_aw_`.
 * `notice_dismissed` &ndash; triggered when an admin notice is dismissed by the user (includes `notice_identifier` property)
 * `workflow_tab_view` &ndash; triggered when each "AutomateWoo > Workflows" tab is viewed by the user 
 * `preset_list_button_clicked` &ndash; fires when a button in the workflow presets list is clicked
+* `preset_activation_alert_rendered` &ndash; triggered when a message to confirm preset activation is rendered (includes `is_active` property)
+* `preset_activation_alert_closed` &ndash; triggered when a preset activation alert is closed 
+		(includes properties `is_active`, and `action: 'confirm' | 'cancel' | 'dismiss'` )
 
 
 ## Available hooks

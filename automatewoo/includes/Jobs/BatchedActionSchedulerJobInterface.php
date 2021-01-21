@@ -7,11 +7,11 @@ use Exception;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Interface BatchedJobInterface.
+ * Interface BatchedActionSchedulerJobInterface.
  *
- * @since 5.1.0
+ * @since 5.2.0
  */
-interface BatchedJobInterface extends JobInterface {
+interface BatchedActionSchedulerJobInterface extends ActionSchedulerJobInterface {
 
 	/**
 	 * Start the job.
@@ -19,13 +19,6 @@ interface BatchedJobInterface extends JobInterface {
 	 * @param array $args Optionally set args to be available during this instance of the job.
 	 */
 	public function start( array $args = [] );
-
-	/**
-	 * Get the hook name for the "process item" action.
-	 *
-	 * @return string
-	 */
-	public function get_process_item_hook();
 
 	/**
 	 * Handles batch creation action hook.

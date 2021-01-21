@@ -411,7 +411,7 @@ class Cart extends Model {
 		if ( ! $this->get_guest_id() ) {
 			return false;
 		}
-		return AW()->get_guest( $this->get_guest_id() );
+		return Guest_Factory::get( $this->get_guest_id() );
 	}
 
 
@@ -538,6 +538,8 @@ class Cart extends Model {
 	 * @return Cart_Item[]
 	 */
 	public function get_language_adjusted_items( $items ) {
+		wc_deprecated_function( __METHOD__, '4.6.0', 'translate_items' );
+
 		return $this->translate_items( $items, $this->get_language() );
 	}
 

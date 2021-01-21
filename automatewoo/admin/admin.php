@@ -5,6 +5,8 @@ namespace AutomateWoo;
 
 use AutomateWoo\Admin\AssetData;
 use AutomateWoo\Admin\WCAdminConnectPages;
+use Automattic\WooCommerce\Admin\Features\Navigation\Menu;
+use Automattic\WooCommerce\Admin\Features\Navigation\Screen;
 use Automattic\WooCommerce\Blocks\Assets\AssetDataRegistry;
 use Automattic\WooCommerce\Blocks\Package as BlocksPackage;
 
@@ -126,6 +128,17 @@ class Admin {
 
 		add_menu_page( __( 'AutomateWoo', 'automatewoo' ), __( 'AutomateWoo', 'automatewoo' ), 'manage_woocommerce', 'automatewoo', [ 'AutomateWoo\Admin', 'load_controller' ], 'none', $position );
 
+		if ( class_exists( 'Automattic\WooCommerce\Admin\Features\Navigation\Menu' ) ) {
+			Menu::add_plugin_category(
+				array(
+					'id'         => 'automatewoo',
+					'title'      => __( 'AutomateWoo', 'automatewoo' ),
+					'capability' => 'manage_woocommerce',
+					'url'        => 'automatewoo',
+				)
+			);
+		}
+
 		$sub_menu['dashboard'] = [
 			'title' => __( 'Dashboard', 'automatewoo' ),
 			'function' => [ __CLASS__, 'load_controller' ]
@@ -180,12 +193,14 @@ class Admin {
 
 		$sub_menu['events'] = [
 		   'title' => __( 'Events', 'automatewoo' ),
-		   'function' => [ __CLASS__, 'load_controller' ]
+		   'function' => [ __CLASS__, 'load_controller' ],
+		   'display'  => WCAdminConnectPages::PAGE_DISPLAY_HIDDEN,
 		];
 
 		$sub_menu['preview'] = [
 			'title' => __( 'Preview', 'automatewoo' ),
-			'function' => [ __CLASS__, 'load_controller' ]
+			'function' => [ __CLASS__, 'load_controller' ],
+			'display'  => WCAdminConnectPages::PAGE_DISPLAY_STANDALONE,
 		];
 
 		if ( Licenses::is_legacy() ) {
@@ -196,18 +211,38 @@ class Admin {
 		}
 
 		$sub_menu['data-upgrade'] = [
-			'title' => __( 'AutomateWoo Data Update', 'automatewoo' ),
-			'function' => [ __CLASS__, 'page_data_upgrade' ]
+			'title'    => __( 'AutomateWoo Data Update', 'automatewoo' ),
+			'function' => [ __CLASS__, 'page_data_upgrade' ],
+			'display'  => WCAdminConnectPages::PAGE_DISPLAY_HIDDEN,
 		];
 
+		$index = 0;
 		foreach ( $sub_menu as $key => $item ) {
 
+			$index++;
 			if ( empty( $item['function'] ) ) $item['function'] = '';
 			if ( empty( $item['capability'] ) ) $item['capability'] = 'manage_woocommerce';
 			if ( empty( $item['slug'] ) ) $item['slug'] = 'automatewoo-'.$key;
 			if ( empty( $item['page_title'] ) ) $item['page_title'] = $item['title'];
 
 			add_submenu_page( 'automatewoo', $item['page_title'], $item['title'], $item['capability'], $item['slug'], $item['function'] );
+
+			if ( class_exists( 'Automattic\WooCommerce\Admin\Features\Navigation\Menu' ) ) {
+				if ( ! isset( $item['display'] ) || WCAdminConnectPages::PAGE_DISPLAY_FULL === $item['display'] ) {
+					Menu::add_plugin_item(
+						array(
+							'id'         => 'automatewoo-' . $key,
+							'parent'     => 'automatewoo',
+							'title'      => $item['title'],
+							'capability' => $item['capability'],
+							'url'        => $item['slug'],
+							'order'      => $index,
+						)
+					);
+				} elseif ( WCAdminConnectPages::PAGE_DISPLAY_HIDDEN === $item['display'] ) {
+					Screen::add_screen( $item['slug'] );
+				}
+			}
 
 			if ( $key === 'workflows' ) {
 				do_action( 'automatewoo/admin/submenu_pages', 'automatewoo' );
@@ -255,7 +290,8 @@ class Admin {
 
 		wp_register_script( 'automatewoo', $url."/automatewoo$suffix.js", [ 'jquery', 'jquery-ui-datepicker', 'jquery-tiptip', 'backbone', 'underscore' ], AW()->version );
 		wp_register_script( 'automatewoo-validate', $url."/validate$suffix.js", [ 'automatewoo' ], AW()->version );
-		wp_register_script( 'automatewoo-workflows', $url."/workflows$suffix.js", [ 'automatewoo', 'automatewoo-validate', 'automatewoo-modal', 'wp-util' ], AW()->version );
+		wp_register_script( 'automatewoo-tracks', $url."/tracks$suffix.js", [ 'automatewoo' ], AW()->version );
+		wp_register_script( 'automatewoo-workflows', $url."/workflows$suffix.js", [ 'automatewoo', 'automatewoo-validate', 'automatewoo-modal', 'automatewoo-tracks', 'wp-util' ], AW()->version );
 		wp_register_script( 'automatewoo-variables', $url."/variables$suffix.js", [ 'automatewoo-modal', 'clipboard' ], AW()->version );
 		wp_register_script( 'automatewoo-tools', $url."/tools$suffix.js", [ 'automatewoo' ], AW()->version );
 		wp_register_script( 'automatewoo-sms-test', $url."/sms-test$suffix.js", [ 'automatewoo' ], AW()->version );

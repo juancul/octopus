@@ -38,7 +38,7 @@ class Data_Type_Cart extends Data_Type {
 			return false;
 		}
 
-		if ( $cart = AW()->get_cart( $compressed_item ) ) {
+		if ( $cart = Cart_Factory::get( $compressed_item ) ) {
 			return $cart;
 		}
 

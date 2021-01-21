@@ -3,6 +3,7 @@
 namespace AutomateWoo;
 
 use AutomateWoo\Async_Events\Abstract_Async_Event;
+use AutomateWoo\Async_Events\MembershipCreated;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -52,6 +53,7 @@ final class Async_Events extends Registry {
 
 		if ( Integrations::is_memberships_enabled() ) {
 			$includes['membership_status_changed'] = 'AutomateWoo\Async_Events\Membership_Status_Changed';
+			$includes[ MembershipCreated::NAME ]   = MembershipCreated::class;
 		}
 
 		if ( Integrations::is_mc4wp() ) {

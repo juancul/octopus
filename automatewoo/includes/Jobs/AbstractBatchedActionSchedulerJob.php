@@ -10,7 +10,7 @@ use Exception;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * AbstractBatchedJob class.
+ * AbstractBatchedActionSchedulerJob class.
  *
  * Enables a job to be processed in recurring scheduled batches with queued events.
  *
@@ -21,19 +21,9 @@ defined( 'ABSPATH' ) || exit;
  *
  * @since 5.1.0
  */
-abstract class AbstractBatchedJob implements BatchedJobInterface {
+abstract class AbstractBatchedActionSchedulerJob extends AbstractActionSchedulerJob implements BatchedActionSchedulerJobInterface {
 
 	use ArrayValidator;
-
-	/**
-	 * @var ActionSchedulerInterface
-	 */
-	protected $action_scheduler;
-
-	/**
-	 * @var BatchedJobMonitor
-	 */
-	protected $monitor;
 
 	/**
 	 * Whether multiple instances of the job should be allowed to run concurrently.
@@ -93,17 +83,6 @@ abstract class AbstractBatchedJob implements BatchedJobInterface {
 	}
 
 	/**
-	 * AbstractBatchedJob constructor.
-	 *
-	 * @param ActionSchedulerInterface $action_scheduler
-	 * @param BatchedJobMonitor        $monitor
-	 */
-	public function __construct( ActionSchedulerInterface $action_scheduler, BatchedJobMonitor $monitor ) {
-		$this->action_scheduler = $action_scheduler;
-		$this->monitor          = $monitor;
-	}
-
-	/**
 	 * Init the batch schedule for the job.
 	 *
 	 * The job name is used to generate the schedule event name.
@@ -114,30 +93,12 @@ abstract class AbstractBatchedJob implements BatchedJobInterface {
 	}
 
 	/**
-	 * Get the base name for the job's action hooks.
-	 *
-	 * @return string
-	 */
-	protected function get_hook_base_name() {
-		return 'automatewoo/jobs/' . $this->get_name() . '/';
-	}
-
-	/**
 	 * Get the hook name for the "create batch" action.
 	 *
 	 * @return string
 	 */
 	protected function get_create_batch_hook() {
 		return $this->get_hook_base_name() . 'create_batch';
-	}
-
-	/**
-	 * Get the hook name for the "process item" action.
-	 *
-	 * @return string
-	 */
-	public function get_process_item_hook() {
-		return $this->get_hook_base_name() . 'process_item';
 	}
 
 	/**
@@ -169,7 +130,7 @@ abstract class AbstractBatchedJob implements BatchedJobInterface {
 	 * @param array $args         The args for this instance of the job.
 	 *
 	 * @throws Exception If an error occurs.
-	 * @throws BatchException If the job failure rate is too high.
+	 * @throws JobException If the job failure rate is too high.
 	 * @throws InvalidArgument If args or an item is invalid.
 	 */
 	public function handle_create_batch_action( int $batch_number, array $args ) {
@@ -180,7 +141,7 @@ abstract class AbstractBatchedJob implements BatchedJobInterface {
 
 		foreach ( $items as $item ) {
 			$this->validate_item( $item );
-			$this->schedule_immediate_action( $this->get_process_item_hook(), [ $item, $args ] );
+			$this->action_scheduler->schedule_immediate( $this->get_process_item_hook(), [ $item, $args ] );
 		}
 
 		if ( empty( $items ) ) {
@@ -230,30 +191,13 @@ abstract class AbstractBatchedJob implements BatchedJobInterface {
 	}
 
 	/**
-	 * Schedule an action to run immediately.
-	 *
-	 * @param string $hook The hook to trigger.
-	 * @param array  $args Arguments to pass when the hook triggers.
-	 *
-	 * @return string The action ID.
-	 */
-	protected function schedule_immediate_action( $hook, $args = [] ) {
-		// Schedule actions for 1 second ago so they will be immediately run
-		// We could use an async action instead but they can't be viewed easily in the admin area
-		// because the table is sorted by schedule date
-		$schedule_time = gmdate( 'U' ) - 1;
-
-		return $this->action_scheduler->schedule_single( $schedule_time, $hook, $args );
-	}
-
-	/**
 	 * Schedule a new "create batch" action to run immediately.
 	 *
 	 * @param int   $batch_number The batch number for the new batch.
 	 * @param array $args         The args for this instance of the job.
 	 */
 	protected function schedule_create_batch_action( int $batch_number, array $args ) {
-		$this->schedule_immediate_action( $this->get_create_batch_hook(), [ $batch_number, $args ] );
+		$this->action_scheduler->schedule_immediate( $this->get_create_batch_hook(), [ $batch_number, $args ] );
 	}
 
 	/**

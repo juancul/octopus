@@ -71,10 +71,17 @@ jQuery(function($) {
             this.position();
         },
 
-
+        /**
+         * Closes modal, by changin classes on `document.body` and removing modal content and overlay elements.
+         * @fires awmodal-close on the `document.body`.
+         */
         close: function() {
             $(document.body).removeClass('automatewoo-modal-open automatewoo-modal-loading');
             $('.automatewoo-modal, .automatewoo-modal-overlay').remove();
+
+            // Fallback to Event in the browser does not support CustomEvent, like IE.
+            const eventCtor = typeof CustomEvent === 'undefined' ? Event : CustomEvent;
+            document.body.dispatchEvent( new eventCtor( 'awmodal-close' ) );
         },
 
 

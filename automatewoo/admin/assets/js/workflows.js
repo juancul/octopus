@@ -1,9 +1,7 @@
 /**
  * AutomateWoo Workflows Admin
  */
-
 (function( $, data ) {
-
 	AW.Workflow = Backbone.Model.extend({
 
 		getAction: function( action_name ) {
@@ -225,12 +223,18 @@
 
 			this.$el.on('click', '.js-confirm', function(){
 				modalView.disableButtons();
+				
+				// Close with applicable tracking action set up.
+				data.action = 'confirm';
+				AutomateWoo.Modal.close();
+
 				// submit
 				$(AW.workflowView.el).data( 'aw-preset-workflow-confirmed', true ).submit();
-				AutomateWoo.Modal.close();
 			});
 
 			this.$el.on('click', '.js-close-automatewoo-modal', function(){
+				data.action = 'cancel';
+
 				modalView.disableButtons();
 			});
 		},
@@ -242,6 +246,31 @@
 		render: function() {
 			this.$el.html( this.template( this.data ));
 			return this;
+		},
+
+		/**
+		 * Opens `AutomateWoo.Modal`, fills it with rendered message.
+		 * Record Tracking events `preset_activation_alert_rendered` when executed, 
+		 * and 'preset_activation_alert_closed' with applicable `action` and `is_active` once eventually closed. 
+		 */
+		open: function() {
+			// Once the modal is open, the default close action for built-in Modal close features is 'dismiss'.
+			this.data.action = 'dismiss';
+
+			AutomateWoo.Modal.open();
+			AutomateWoo.Modal.contents( this.render().el );
+
+			AW.tracks.recordEvent( 'preset_activation_alert_rendered', { is_active: this.data.isActive } );
+			
+			// If the modal is dismissed by AutomateWoo.Modal features.
+			document.body.addEventListener(
+				'awmodal-close',
+				() => AW.tracks.recordEvent( 'preset_activation_alert_closed', {
+					is_active: this.data.isActive,
+					action: this.data.action
+				} ),
+				{ once: true }
+			);
 		}
 
 	});
@@ -762,7 +791,7 @@ jQuery(function($) {
 			var action_number = $action.data('action-number');
 			var name_selector;
 			var trigger = AW.workflow.get('trigger');
-			var action_fields = {};
+			var fields = {};
 
 			if ( AutomateWoo.isEmailPreviewOpen() ) {
 				AutomateWoo.Workflows.$actions_box.addClass('aw-loading');
@@ -777,19 +806,32 @@ jQuery(function($) {
 			// get fields to preview
 			$action.find('[name*="' + name_selector + '"]').each(function( i, el ){
 
-				var name, val;
+				var field_name, element_name, val, is_grouped;
+
+				element_name = $(el).attr('name')
+				is_grouped = /\[]$/.test( element_name );
+
+				if ( is_grouped ) {
+					element_name = element_name.replace( '[]', '' );
+				}
 
 				// get the name
-				name = $(el).attr('name').replace(name_selector, '').replace('[', '').replace(']', '');
+				field_name = element_name.replace(name_selector, '').replace('[', '').replace(']', '');
 
 				if ( $(el).attr('type') === 'checkbox' ) {
                     val = el.checked ? '1' : '';
-				}
-				else {
+				} else {
 					val = $(el).val();
-
 				}
-				action_fields[name] = val;
+
+				if ( is_grouped ) {
+					if ( ! fields.hasOwnProperty( field_name ) ) {
+						fields[ field_name ] = [];
+					}
+					fields[field_name].push( val );
+				} else {
+					fields[field_name] = val;
+				}
 			});
 
 			AutomateWoo.openLoadingEmailPreview(); // open the preview window before saving so that the popup is not blocked
@@ -801,7 +843,7 @@ jQuery(function($) {
 					action: 'aw_save_preview_data',
 					workflow_id: AW.workflow.get('id'),
 					trigger_name: trigger ? trigger.name : '',
-					action_fields: action_fields,
+					action_fields: fields,
 				},
 				success: function(response) {
 					AutomateWoo.open_email_preview( 'workflow_action', {
@@ -996,9 +1038,9 @@ jQuery(function($) {
 		let isFirstPresetSave = /workflow-origin=preset/.test( window.location.href );
 
 		if ( isFirstPresetSave && ! isConfirmed ) {
-			let modalView = new AW.TriggerPresetActivationModalView( { isActive: isActive } );
-			AutomateWoo.Modal.open();
-			AutomateWoo.Modal.contents( modalView.render().el );
+			const activationModalView = new AW.TriggerPresetActivationModalView( { isActive } );
+			activationModalView.open();
+			
 			return false;
 		}
 

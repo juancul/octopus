@@ -1,6 +1,6 @@
 <?php
 
-namespace AutomateWoo\Triggers;
+namespace AutomateWoo\Triggers\Utilities;
 
 use AutomateWoo\Fields\Time as TimeField;
 

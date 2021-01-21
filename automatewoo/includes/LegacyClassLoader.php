@@ -50,6 +50,7 @@ class LegacyClassLoader {
 		\AutomateWoo\Database_Update::class              => \AutomateWoo\DatabaseUpdates\AbstractDatabaseUpdate::class,
 		\AutomateWoo\Admin_Notices::class                => \AutomateWoo\AdminNotices::class,
 		\AutomateWoo\Workflow_Factory::class             => \AutomateWoo\Workflows\Factory::class,
+		\AutomateWoo\Query_Custom_Table::class           => \AutomateWoo\Query_Abstract::class,
 	];
 
 	/**
@@ -125,8 +126,11 @@ class LegacyClassLoader {
 	 * @param string $new_class    The replacement class.
 	 */
 	private function trigger_class_warning( $legacy_class, $new_class ) {
-		// phpcs:disable WordPress.PHP.DevelopmentFunctions,WordPress.Security.EscapeOutput
+		if ( ! WP_DEBUG ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions,WordPress.Security.EscapeOutput
 		trigger_error( $this->get_deprecation_message( $legacy_class, $new_class ), E_USER_DEPRECATED );
-		// phpcs:enable
 	}
 }

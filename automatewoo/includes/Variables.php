@@ -126,6 +126,7 @@ class Variables {
 			'itemscount' => Variable_Wishlist_Itemscount::class,
 		],
 		'cart'              => [
+			'id'         => Variables\CartId::class,
 			'link'       => Variable_Cart_Link::class,
 			'items'      => Variable_Cart_Items::class,
 			'item_count' => Variable_Cart_Item_Count::class,

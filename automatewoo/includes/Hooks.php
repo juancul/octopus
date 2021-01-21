@@ -34,9 +34,6 @@ class Hooks {
 		// conversions
 		add_action( 'automatewoo/async/order_created', [ 'AutomateWoo\Conversions', 'check_order_for_conversion' ], 20 );
 
-		// tools
-		add_action( 'automatewoo/tools/background_process', [ 'AutomateWoo\Tools', 'handle_background_process' ], 10, 2 );
-
 		add_action( 'get_header', [ 'AutomateWoo\Language', 'make_language_persistent' ] );
 
 		// object caching

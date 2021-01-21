@@ -7,11 +7,11 @@ use AutomateWoo\ActionScheduler\ActionSchedulerInterface;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Class BatchedJobMonitor
+ * Class ActionSchedulerJobMonitor
  *
  * @since 5.1.0
  */
-class BatchedJobMonitor {
+class ActionSchedulerJobMonitor {
 
 	/**
 	 * @var ActionSchedulerInterface
@@ -19,7 +19,7 @@ class BatchedJobMonitor {
 	protected $action_scheduler;
 
 	/**
-	 * BatchedJobMonitor constructor.
+	 * ActionSchedulerInterface constructor.
 	 *
 	 * @param ActionSchedulerInterface $action_scheduler
 	 */
@@ -33,11 +33,11 @@ class BatchedJobMonitor {
 	 * To protect against failing jobs running forever the job's failure rate is checked before creating a new batch.
 	 * By default, a job is stopped if it has 5 failures in the last hour.
 	 *
-	 * @param BatchedJobInterface $job
+	 * @param ActionSchedulerJobInterface $job
 	 *
-	 * @throws BatchException If the job's error rate is above the threshold.
+	 * @throws JobException If the job's error rate is above the threshold.
 	 */
-	public function validate_failure_rate( BatchedJobInterface $job ) {
+	public function validate_failure_rate( ActionSchedulerJobInterface $job ) {
 		$failed_actions = $this->action_scheduler->search(
 			[
 				'hook'         => $job->get_process_item_hook(),
@@ -50,7 +50,7 @@ class BatchedJobMonitor {
 		);
 
 		if ( count( $failed_actions ) === $this->get_failure_rate_threshold() ) {
-			throw BatchException::stopped_due_to_high_failure_rate( $job->get_name() );
+			throw JobException::stopped_due_to_high_failure_rate( $job->get_name() );
 		}
 	}
 
