@@ -5,7 +5,7 @@ if(!function_exists('add_action')){
 	exit;
 }
 
-define('LOGINIZER_VERSION', '1.6.5');
+define('LOGINIZER_VERSION', '1.6.6');
 define('LOGINIZER_DIR', dirname(LOGINIZER_FILE));
 define('LOGINIZER_URL', plugins_url('', LOGINIZER_FILE));
 define('LOGINIZER_PRO_URL', 'https://loginizer.com/features#compare');
@@ -34,7 +34,7 @@ function loginizer_activation(){
 				`ip` varchar(255) NOT NULL DEFAULT '',
 				`url` varchar(255) NOT NULL DEFAULT '',
 				UNIQUE KEY `ip` (`ip`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+			) DEFAULT CHARSET=utf8;";
 
 	foreach($sql as $sk => $sv){
 		$wpdb->query($sv);
@@ -598,6 +598,10 @@ function loginizer_wp_authenticate($user, $username, $password){
 	// Are you blacklisted ?
 	if(loginizer_is_blacklisted()){
 		$lz_cannot_login = 1;
+		
+		// This is used by WP Activity Log
+		apply_filters( 'wp_login_blocked', $username );
+		
 		return new WP_Error('ip_blacklisted', implode('', $lz_error), 'loginizer');
 	}
 	
@@ -605,6 +609,10 @@ function loginizer_wp_authenticate($user, $username, $password){
 	if(function_exists('loginizer_user_blacklisted')){
 		if(loginizer_user_blacklisted($username)){
 			$lz_cannot_login = 1;
+		
+			// This is used by WP Activity Log
+			apply_filters( 'wp_login_blocked', $username );
+			
 			return new WP_Error('user_blacklisted', implode('', $lz_error), 'loginizer');
 		}
 	}
@@ -614,6 +622,9 @@ function loginizer_wp_authenticate($user, $username, $password){
 	}
 	
 	$lz_cannot_login = 1;
+		
+	// This is used by WP Activity Log
+	apply_filters( 'wp_login_blocked', $username );
 	
 	return new WP_Error('ip_blocked', implode('', $lz_error), 'loginizer');
 	
@@ -745,6 +756,11 @@ function loginizer_is_whitelisted(){
 function loginizer_login_failed($username, $is_2fa = ''){
 	
 	global $wpdb, $loginizer, $lz_cannot_login;
+	
+	// Some plugins are changing the value for username as null so we need to handle it before using it for the INSERT OR UPDATE query
+	if(empty($username) || is_null($username)){
+		$username = '';
+	}
 	
 	$fail_type = 'Login';
 	

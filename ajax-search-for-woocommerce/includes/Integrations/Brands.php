@@ -14,10 +14,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package DgoraWcas\Integrations
  *
  * Support for plugins:
- * 1. WooCommerce Brands 1.6.9 by WooCommerce
- * 2. YITH WooCommerce Brands Add-on 1.3.3 by YITH
- * 3. Perfect WooCommerce Brands 1.8.3 by Alberto de Vera Sevilla
- * 4. Martfury Addons 2.2.2 by drfuri.com
+ * 1. WooCommerce Brands since v1.6.9 by WooCommerce
+ * 2. YITH WooCommerce Brands Add-on since v1.3.3 by YITH
+ * 3. Perfect WooCommerce Brands since v1.8.3 by Alberto de Vera Sevilla
+ * 4. Martfury Addons since v2.2.2 by drfuri.com
+ * 5. Brands for WooCommerce since v3.5.2 by BeRocket
+ * 6. WP Bingo by wpbingo
  */
 class Brands {
 	/**
@@ -91,6 +93,12 @@ class Brands {
 				case 'perfect-woocommerce-brands/perfect-woocommerce-brands.php':
 					$brandTaxonomy = 'pwb-brand';
 					break;
+				case 'brands-for-woocommerce/woocommerce-brand.php':
+					$brandTaxonomy = 'berocket_brand';
+					break;
+				case 'wpbingo/wpbingo.php':
+					$brandTaxonomy = 'product_brand';
+					break;
 			}
 		}
 
@@ -111,7 +119,9 @@ class Brands {
 			'yith-woocommerce-brands-add-on-premium/init.php',
 			'perfect-woocommerce-brands/main.php',
 			'perfect-woocommerce-brands/perfect-woocommerce-brands.php',
-			'martfury-addons/martfury-addons.php'
+			'martfury-addons/martfury-addons.php',
+			'brands-for-woocommerce/woocommerce-brand.php',
+			'wpbingo/wpbingo.php',
 		);
 	}
 
@@ -121,7 +131,7 @@ class Brands {
 	 * @return bool
 	 */
 	public function hasBrands() {
-		return ! empty( $this->pluginInfo );
+		return apply_filters( 'dgwt/wcas/brands/has_brands', ! empty( $this->pluginInfo ) );
 	}
 
 	/**
@@ -160,7 +170,14 @@ class Brands {
 		if ( $this->hasBrands() ) {
 			add_filter( 'dgwt/wcas/settings/section=search', function ( $settingsScope ) {
 
-				$pluginInfo = $this->getPluginName() . ' v' . $this->getPluginVersion();
+				$desc = '';
+
+				$pluginName = $this->getPluginName();
+
+				if(!empty($pluginName)){
+					$pluginInfo = $pluginName . ' v' . $this->getPluginVersion();
+					$desc = sprintf( __( 'based on the plugin %s', 'ajax-search-for-woocommerce' ), $pluginInfo );
+				}
 
 				$settingsScope[220] = array(
 					'name'    => 'search_in_brands',
@@ -168,7 +185,7 @@ class Brands {
 					'class'   => 'dgwt-wcas-premium-only',
 					'type'    => 'checkbox',
 					'default' => 'off',
-					'desc'    => sprintf( __( 'based on the plugin %s', 'ajax-search-for-woocommerce' ), $pluginInfo )
+					'desc'    => $desc
 				);
 
 				return $settingsScope;
@@ -176,7 +193,14 @@ class Brands {
 
 			add_filter( 'dgwt/wcas/settings/section=autocomplete', function ( $settingsScope ) {
 
-				$pluginInfo = $this->getPluginName() . ' v' . $this->getPluginVersion();
+				$desc = '';
+
+				$pluginName = $this->getPluginName();
+
+				if(!empty($pluginName)){
+					$pluginInfo = $pluginName . ' v' . $this->getPluginVersion();
+					$desc = sprintf( __( 'based on the plugin %s', 'ajax-search-for-woocommerce' ), $pluginInfo );
+				}
 
 				$settingsScope[1260] = array(
 					'name'    => 'show_matching_brands',
@@ -184,7 +208,7 @@ class Brands {
 					'class'   => 'dgwt-wcas-premium-only',
 					'type'    => 'checkbox',
 					'default' => 'off',
-					'desc'    => sprintf( __( 'based on the plugin %s', 'ajax-search-for-woocommerce' ), $pluginInfo )
+					'desc'    => $desc
 				);
 
 				return $settingsScope;

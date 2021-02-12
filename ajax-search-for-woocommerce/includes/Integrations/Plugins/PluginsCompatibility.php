@@ -2,6 +2,11 @@
 
 namespace DgoraWcas\Integrations\Plugins;
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class PluginsCompatibility {
 
 	public function __construct() {

@@ -3,6 +3,10 @@
 namespace DgoraWcas\Integrations\Plugins\JetSmartFilters;
 
 use  DgoraWcas\Helpers ;
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Integration with JetSmartFilters
  *

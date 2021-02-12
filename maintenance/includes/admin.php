@@ -269,14 +269,15 @@ function mtnc_generate_plugin_page()
 echo '<div id="accessibe-upsell-dialog" style="display: none;" title="accessiBe"><span class="ui-helper-hidden-accessible"><input type="text"/></span>';
 echo '<div style="padding: 0 20px; font-size: 15px;">';
 echo '<ul class="mtnc-list">';
-echo '<li>Fully automated WordPress accessibility plugin</li>';
+echo '<li>Make your site user-friendly for people with disabilities</li>';
+echo '<li>Fully automated WordPress accessibility service</li>';
 echo '<li>Protect your site from lawsuits and increase the audience</li>';
-echo '<li>Simple 5-minute set-up. No coding required</li>';
+echo '<li>The free accessiBe plugin sets up in 5 minutes. No coding required</li>';
 echo '<li>Compatible with all WordPress themes and plugins</li>';
 echo '<li>AI-powered</li>';
 echo '<li>7-day free trial available</li>';
 echo '</ul>';
-echo '<p class="textcenter upsell-footer"><br><a class="button button-primary" id="install-accessibe">Install &amp; activate accessiBe to make your website accessible</a></p>';
+echo '<p class="textcenter upsell-footer"><br><a class="button button-primary" id="install-accessibe">Install &amp; activate accessiBe to make your website more user-friendly</a></p>';
 echo '</div>';
 echo '</div>';
 // accessibe install dialog

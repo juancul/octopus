@@ -9,13 +9,13 @@
 // TODO implement CCM https://wordpress.org/plugins/auto-terms-of-service-and-privacy-policy/ (100k)
 // TODO implement CCM https://wordpress.org/plugins/complianz-gdpr/ (100k)
 // TODO implement CCM https://wordpress.org/plugins/eu-cookie-law/ (100k) -> doesn't set a non tracking cookie. bad programming overall
-// TODO implement CCM https://wordpress.org/plugins/gdpr-cookie-compliance/ (100k)
-// TODO implement CCM https://wordpress.org/plugins/cookiebot/ (60k) -> no cookie or filter based third party tracking opt out
-// TODO implement CCM https://wordpress.org/plugins/gdpr/ (30k) -> not possible to implement since users can choose their own cookie names
-// TODO implement CCM https://wordpress.org/plugins/wf-cookie-consent/ (20k)
-// TODO implement CCM https://wordpress.org/plugins/responsive-cookie-consent/ (3k)
-// TODO implement CCM https://wordpress.org/plugins/surbma-gdpr-proof-google-analytics/ (1k)
-
+// TODO https://wordpress.org/plugins/gdpr-cookie-compliance/ (100k)
+// TODO https://wordpress.org/plugins/cookiebot/ (60k) -> no cookie or filter based third party tracking opt out
+// TODO https://wordpress.org/plugins/gdpr/ (30k) -> not possible to implement since users can choose their own cookie names
+// TODO https://wordpress.org/plugins/gdpr-framework/ (30k)
+// TODO https://wordpress.org/plugins/wf-cookie-consent/ (20k)
+// TODO https://wordpress.org/plugins/responsive-cookie-consent/ (3k)
+// TODO https://wordpress.org/plugins/surbma-gdpr-proof-google-analytics/ (1k)
 
 namespace WGACT\Classes\Pixels;
 
@@ -30,34 +30,34 @@ class Cookie_Consent_Management {
 	// check if third party cookie prevention is active
 	public function is_cookie_prevention_active() {
 
-		$cookiePrevention = false;
+		$cookie_prevention = false;
 
 		// use filter to set default to activate prevention
 		// add_filter( 'wgact_cookie_prevention', '__return_true' );
 		// later, turn it off in order to allow cookies in case they have been actively approved
-		$cookiePrevention = apply_filters( $this->pluginPrefix . 'cookie_prevention', $cookiePrevention );
+		$cookie_prevention = apply_filters( $this->pluginPrefix . 'cookie_prevention', $cookie_prevention );
 
 		// check if the Moove third party cookie prevention is on
 		if ( $this->is_moove_cookie_prevention_active() ) {
-			$cookiePrevention = true;
+			$cookie_prevention = true;
 		}
 
 		// check if the Cooke Notice Plugin third party cookie prevention is on
 		if ( $this->is_cookie_notice_plugin_cookie_prevention_active() ) {
-			$cookiePrevention = true;
+			$cookie_prevention = true;
 		}
 
 		// check if the Cooke Law Info third party cookie prevention is on
 		if ( $this->is_cookie_law_info_cookie_prevention_active() ) {
-			$cookiePrevention = true;
+			$cookie_prevention = true;
 		}
 
 		// check if marketing cookies have been approved by Borlabs
 		if ( $this->checkBorlabsGaveMarketingConsent() ){
-			$cookiePrevention = false;
+			$cookie_prevention = false;
 		}
 
-		return $cookiePrevention;
+		return $cookie_prevention;
 	}
 
 	public function checkBorlabsGaveMarketingConsent(){
@@ -73,7 +73,7 @@ class Cookie_Consent_Management {
 			// the minimum version I know of that supports gaveConsent('marketing') is 2.2.4
 			if(version_compare('2.1.0', $borlabs_info['Version'], '<=')){
 
-				if (BorlabsCookieHelper()->gaveConsent('google-ads')){
+				if (BorlabsCookieHelper()->gaveConsent('google-ads') || BorlabsCookieHelper()->gaveConsent('woopt-pixel-manager')){
 					return true;
 				}
 			}
@@ -100,9 +100,9 @@ class Cookie_Consent_Management {
 	// https://wordpress.org/plugins/cookie-law-info/
 	public function is_cookie_law_info_cookie_prevention_active() {
 
-		$cookieConsentManagementcookie = $this->getCookie( 'cookielawinfo-checkbox-non-necessary' );
+		$cookie_consent_management_cookie = $this->getCookie( 'cookielawinfo-checkbox-non-necessary' );
 
-		if ( $cookieConsentManagementcookie == 'no' ) {
+		if ( $cookie_consent_management_cookie == 'no' ) {
 			return true;
 		} else {
 			return false;
@@ -113,9 +113,9 @@ class Cookie_Consent_Management {
 	// https://wordpress.org/plugins/cookie-notice/
 	public function is_cookie_notice_plugin_cookie_prevention_active() {
 
-		$cookieConsentManagementcookie = $this->getCookie( 'cookie_notice_accepted' );
+		$cookie_consent_management_cookie = $this->getCookie( 'cookie_notice_accepted' );
 
-		if ( $cookieConsentManagementcookie == 'false' ) {
+		if ( $cookie_consent_management_cookie == 'false' ) {
 			return true;
 		} else {
 			return false;
@@ -127,11 +127,11 @@ class Cookie_Consent_Management {
 	public function is_moove_cookie_prevention_active() {
 		if ( isset( $_COOKIE['moove_gdpr_popup'] ) ) {
 
-			$cookieConsentManagementcookie = $_COOKIE['moove_gdpr_popup'];
-			$cookieConsentManagementcookie = json_decode( stripslashes( $cookieConsentManagementcookie ), true );
+			$cookie_consent_management_cookie = $_COOKIE['moove_gdpr_popup'];
+			$cookie_consent_management_cookie = json_decode( stripslashes( $cookie_consent_management_cookie ), true );
 
-			if ( $cookieConsentManagementcookie['thirdparty'] == 0 ) {
-				// print_r( $cookieConsentManagementcookie );
+			if ( $cookie_consent_management_cookie['thirdparty'] == 0 ) {
+				// print_r( $cookie_consent_management_cookie );
 				return true;
 			} else {
 				return false;

@@ -148,6 +148,18 @@ class ThemesCompatibility {
 				'slug' => 'supro',
 				'name' => 'Supro',
 			),
+			'open-shop' => array(
+				'slug' => 'open-shop',
+				'name' => 'OpenShop',
+			),
+			'ciyashop' => array(
+				'slug' => 'ciyashop',
+				'name' => 'CiyaShop',
+			),
+			'bigcart' => array(
+				'slug' => 'bigcart',
+				'name' => 'BigCart',
+			),
 		);
 	}
 

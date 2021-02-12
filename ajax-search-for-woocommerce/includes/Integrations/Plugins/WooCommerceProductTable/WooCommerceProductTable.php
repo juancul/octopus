@@ -4,6 +4,11 @@ namespace DgoraWcas\Integrations\Plugins\WooCommerceProductTable;
 
 use \DgoraWcas\Helpers;
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Integration with WooCommerce Product Table
  *
@@ -31,7 +36,7 @@ class WooCommerceProductTable {
 		if ( ! Helpers::isProductSearchPage() ) {
 			return;
 		}
-		if ( ! Helpers::is_running_inside_class( 'WC_Product_Table_Query' ) ) {
+		if ( ! Helpers::is_running_inside_class( 'Barn2\Plugin\WC_Product_Table\Table_Query', 10 ) && ! Helpers::is_running_inside_class( 'WC_Product_Table_Query' ) ) {
 			return;
 		}
 		$post_ids = apply_filters( 'dgwt/wcas/search_page/result_post_ids', array() );

@@ -51,7 +51,7 @@ function getAdvancedMatchingParams() {
 		 * Add purchase WooCommerce Advanced Matching params
 		 */
 
-		if ( is_order_received_page() && isset( $_REQUEST['key'] ) ) {
+		if ( is_order_received_page() && isset( $_REQUEST['key'] ) && $_REQUEST['key'] != "" ) {
             $key = sanitize_key($_REQUEST['key']);
 			$order_id = wc_get_order_id_by_order_key($key );
 			$order    = wc_get_order( $order_id );
@@ -276,18 +276,28 @@ function getWooCustomAudiencesOptimizationParams( $post_id ) {
 
 }
 
-function getWooSingleAddToCartParams( $product_id, $qty = 1 ) {
+function getWooSingleAddToCartParams( $_product_id, $qty = 1 ) {
 
 	$params = array();
+    $product = wc_get_product($_product_id);
+    if(!$product) return array();
+    $product_ids = array();
+    $isGrouped = $product->get_type() == "grouped";
+    if($isGrouped) {
+        $product_ids = $product->get_children();
+    } else {
+        $product_ids[] = $_product_id;
+    }
+    $params['content_type'] = 'product';
+    $params['content_ids']  = array();
+    $params['contents'] = array();
 
-	$content_id = getFacebookWooProductContentId( $product_id );
 
-	$params['content_type'] = 'product';
-	$params['content_ids']  = json_encode( $content_id );
+
 
 	// content_name, category_name, tags
-	$params['tags'] = implode( ', ', PixelYourSite\getObjectTerms( 'product_tag', $product_id ) );
-	$params = array_merge( $params, getWooCustomAudiencesOptimizationParams( $product_id ) );
+	$params['tags'] = implode( ', ', PixelYourSite\getObjectTerms( 'product_tag', $_product_id ) );
+	$params = array_merge( $params, getWooCustomAudiencesOptimizationParams( $_product_id ) );
 	
 	// currency, value
 	if ( PixelYourSite\PYS()->getOption( 'woo_add_to_cart_value_enabled' ) ) {
@@ -295,25 +305,29 @@ function getWooSingleAddToCartParams( $product_id, $qty = 1 ) {
 		$value_option = PixelYourSite\PYS()->getOption( 'woo_add_to_cart_value_option' );
 		$global_value = PixelYourSite\PYS()->getOption( 'woo_add_to_cart_value_global', 0 );
 
-		$params['value']    = PixelYourSite\getWooEventValue( $value_option, $global_value,100, $product_id,$qty );
+		$params['value']    = PixelYourSite\getWooEventValue( $value_option, $global_value,100, $_product_id,$qty );
         $params['currency'] = get_woocommerce_currency();
 
 	}
 
+    foreach ($product_ids as $product_id) {
+        $product = wc_get_product($product_id);
+        if($product->get_type() == "variable" && $isGrouped) {
+            continue;
+        }
+        $content_id = getFacebookWooProductContentId( $product_id );
+        $params['content_ids'] = array_merge($params['content_ids'],$content_id);
+        // contents
+        if ( isDefaultWooContentIdLogic() ) {
 
-	// contents
-	if ( isDefaultWooContentIdLogic() ) {
-
-		// Facebook for WooCommerce plugin does not support new Dynamic Ads parameters
-		$params['contents'] = array(
-			array(
-				'id'         => (string) reset( $content_id ),
-				'quantity'   => 1,
-				//'item_price' => PixelYourSite\getWooProductPriceToDisplay( $product_id ),
-			)
-		);
-
-	}
+            // Facebook for WooCommerce plugin does not support new Dynamic Ads parameters
+            $params['contents'][] = array(
+                'id'         => (string) reset( $content_id ),
+                'quantity'   => 1,
+                //'item_price' => PixelYourSite\getWooProductPriceToDisplay( $product_id ),// remove because price need send only with currency
+            );
+        }
+    }
 
 	return $params;
 
@@ -357,7 +371,7 @@ function getWooCartParams( $context = 'cart' ) {
 
 	}
 
-	$params['content_ids']   = json_encode( $content_ids );
+	$params['content_ids']   = ( $content_ids );
 	$params['content_name']  = implode( ', ', $content_names );
 	$params['category_name'] = implode( ', ', $content_categories );
 
@@ -365,7 +379,7 @@ function getWooCartParams( $context = 'cart' ) {
 	if ( isDefaultWooContentIdLogic() ) {
 
 		// Facebook for WooCommerce plugin does not support new Dynamic Ads parameters
-		$params['contents'] = json_encode( $contents );
+		$params['contents'] = ( $contents );
 
 	}
 
@@ -492,7 +506,7 @@ function getFDPViewCategoryEventParams() {
 
     $params = array(
         'content_name'     => single_term_title('', 0),
-        'content_ids'      => json_encode($ids)
+        'content_ids'      => ($ids)
     );
 
     return $params;

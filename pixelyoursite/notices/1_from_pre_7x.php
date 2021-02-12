@@ -17,7 +17,8 @@ function adminGetPromoNoticesContent() {
         'no_woo_no_edd' => [
 
         ],
-        'next' => '7_1_8'
+
+        'next' => '8_0_3'
 
     ];
 }

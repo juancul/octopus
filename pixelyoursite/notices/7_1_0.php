@@ -18,7 +18,7 @@ function adminGetPromoNoticesContent() {
 
         ],
 
-        'next' => '7_1_8'
+        'next' => '8_0_3'
 
     ];
 }

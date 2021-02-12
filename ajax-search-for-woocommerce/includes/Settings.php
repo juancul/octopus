@@ -534,6 +534,24 @@ class Settings
             'desc'  => __( 'Synonyms should be separated by a comma. Each new synonyms group in the new line. You can use a phrase instead of a single word. <br /> <br />Sample list:<br /> <br /><span class="dgwt-wcas-synonyms-sample">sofa, couch, davenport, divan, settee<br />big, grand, great, large, outsize</span>', 'ajax-search-for-woocommerce' ),
             'class' => 'dgwt-wcas-settings-synonyms js-dgwt-wcas-adv-settings dgwt-wcas-premium-only',
         ),
+            600 => array(
+            'name'  => 'filter_products_head',
+            'label' => __( 'Exclude products', 'ajax-search-for-woocommerce' ),
+            'type'  => 'head',
+            'class' => 'dgwt-wcas-sgs-header js-dgwt-wcas-adv-settings',
+        ),
+            650 => array(
+            'name'    => 'filter_products_rules',
+            'label'   => __( 'Filters', 'ajax-search-for-woocommerce' ) . ' ' . Helpers::createQuestionMark(
+            'filter_products_head',
+            __( 'Exclude from search all products that match conditions', 'ajax-search-for-woocommerce' ),
+            '',
+            'right'
+        ),
+            'type'    => 'filters_rules_plug',
+            'class'   => 'js-dgwt-wcas-adv-settings dgwt-wcas-premium-only',
+            'default' => array(),
+        ),
         ) ),
             'dgwt_wcas_performance'  => apply_filters( 'dgwt/wcas/settings/section=performance', array(
             0   => array(
@@ -587,29 +605,8 @@ class Settings
         $fuzzinesText2 = __( 'Returns suggestions based on likely relevance even though a search keyword may not exactly match. E.g if you type "ipho<b>m</b>e" you get the same results as for "iphone"', 'ajax-search-for-woocommerce' );
         
         if ( dgoraAsfwFs()->is_premium() ) {
-            $settingsFields['dgwt_wcas_search'][300] = array(
-                'name'    => 'search_in_custom_fields',
-                'label'   => __( 'Search in custom fields', 'ajax-search-for-woocommerce' ),
-                'type'    => 'selectize',
-                'options' => ( Helpers::isSettingsPage() ? Helpers::getSearchableCustomFields() : array() ),
-                'desc'    => __( 'Select the custom fields you want to add to the search scope', 'ajax-search-for-woocommerce' ),
-            );
-            $settingsFields['dgwt_wcas_search'][450] = array(
-                'name'    => 'fuzziness_enabled',
-                'label'   => __( 'Fuzzy matching', 'ajax-search-for-woocommerce' ),
-                'desc'    => $fuzzinesText2,
-                'class'   => 'dgwt-wcas-premium-only',
-                'type'    => 'select',
-                'options' => array(
-                'off'    => __( '-- Disabled', 'ajax-search-for-woocommerce' ),
-                'soft'   => __( 'Soft', 'ajax-search-for-woocommerce' ),
-                'normal' => __( 'Normal', 'ajax-search-for-woocommerce' ),
-                'hard'   => __( 'Hard', 'ajax-search-for-woocommerce' ),
-            ),
-                'default' => 'normal',
-            );
-            unset( $settingsFields['dgwt_wcas_performance'][0] );
         } else {
+            // Fuzzy search feature preview
             $settingsFields['dgwt_wcas_search'][450] = array(
                 'name'    => 'fuzziness_enabled_demo',
                 'label'   => __( 'Fuzzy matching', 'ajax-search-for-woocommerce' ),
@@ -624,19 +621,7 @@ class Settings
             ),
                 'default' => 'off',
             );
-        }
-        
-        
-        if ( dgoraAsfwFs()->is_premium() ) {
-            $settingsFields['dgwt_wcas_performance'][11] = array(
-                'name'  => 'search_engine_build',
-                'label' => __( 'Index status', 'ajax-search-for-woocommerce' ),
-                'type'  => 'desc',
-                'desc'  => ( Helpers::isSettingsPage() ? Builder::renderIndexingStatus() : '' ),
-                'class' => 'dgwt-wcas-premium-only wcas-opt-tntsearch',
-            );
-            $settingsFields['dgwt_wcas_performance'][110]['desc'] = Scheduler::nextTaskDescription();
-        } else {
+            // Indexer feature preview
             $settingsFields['dgwt_wcas_performance'][11] = array(
                 'name'  => 'search_engine_build',
                 'label' => __( 'Index status', 'ajax-search-for-woocommerce' ),
@@ -710,7 +695,7 @@ class Settings
         
         }
         
-        if ( empty($value) && !empty($default) ) {
+        if ( $value === '' && !empty($default) ) {
             $value = $default;
         }
         $value = apply_filters( 'dgwt/wcas/settings/load_value', $value, $option_key );

@@ -1,15 +1,14 @@
 === HandL UTM Grabber / Tracker===
 Contributors: haktansuren
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SS93TW4NEHHNG
 Tags: utm,tracker,gclid,tracking,utm tracking,grabber,shortcodes,contact form 7,leads,collect,collect leads
 Requires at least: 3.6.0
 Tested up to: 5.6
-Stable tag: 2.7.17
+Stable tag: 2.7.18
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The easiest (we mean it!) way to capture UTMs on your (optin) forms. Supports: Contact Form 7, Gravity Forms, Ninja Forms, Salesforce, ActiveCampaign.
+The easiest (we mean it!) way to capture UTMs on your (optin) forms. Supports: Contact Form 7, Gravity Forms, Ninja Forms, Salesforce, ActiveCampaign and many more.
 
 == Description ==
 = WordPress UTM Tracker Plugin =
@@ -89,7 +88,7 @@ We integrate with most of the marketing tools using our Zapier integration
 * Drip
 * MailerLite
 
-[Check out the documentation](https://www.haktansuren.com/handl-utm-grabber/?utm_medium=referral&utm_source=wordpress.org&utm_campaign=HandL+UTM+Grabber+Readme&utm_content=Documentation)
+[Check out the documentation](https://handldigital.com/utm-grabber/documentation/public/?utm_medium=referral&utm_source=wordpress.org&utm_campaign=HandL+UTM+Grabber+Readme&utm_content=Documentation)
 
 Please [review](https://wordpress.org/support/view/plugin-reviews/handl-utm-grabber#postform) if you like the plugin!
 
@@ -139,6 +138,9 @@ Community version tracks your leads/users for 30 days. However you can define yo
 1. Zapier Integration
 
 == Changelog ==
+
+= 2.7.18 =
+* Plugin maintenance and cleanups
 
 = 2.7.17 =
 * GCLID Reporter apps released.

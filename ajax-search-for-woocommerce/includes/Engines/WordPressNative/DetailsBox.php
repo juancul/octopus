@@ -216,7 +216,7 @@ class DetailsBox
             }
             
             $title .= '</span>';
-            $title .= $termName;
+            $title .= esc_html( wp_unslash( $termName ) );
             $title .= '</span>';
             $title = apply_filters(
                 'dgwt/wcas/suggestion_details/taxonomy/headline',

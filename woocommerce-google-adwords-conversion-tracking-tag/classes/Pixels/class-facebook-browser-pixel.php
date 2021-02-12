@@ -10,11 +10,9 @@ class Facebook_Browser_Pixel extends Pixel
 {
     public function inject_everywhere()
     {
-
         // @formatter:off
         ?>
 
-        <!-- Facebook Pixel Code -->
         <script>
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -30,10 +28,8 @@ class Facebook_Browser_Pixel extends Pixel
         <noscript><img height="1" width="1" style="display:none"
                        src="https://www.facebook.com/tr?id=<?php echo $this->options_obj->facebook->pixel_id ?>&ev=PageView&noscript=1"
             /></noscript>
-        <!-- End Facebook Pixel Code -->
         <?php
         // @formatter:on
-
     }
 
     public function inject_search()
@@ -76,7 +72,6 @@ class Facebook_Browser_Pixel extends Pixel
             });
         </script>
         <?php
-
     }
 
     public function inject_order_received_page($order, $order_total, $order_item_ids)
@@ -84,15 +79,16 @@ class Facebook_Browser_Pixel extends Pixel
         ?>
 
         <script>
-            fbq('track', 'Purchase', {
-                'content_type': 'product',
-                'content_ids' : <?php echo json_encode($order_item_ids) ?>,
-                'currency'    : '<?php echo $this->options_obj->shop->currency ?>',
-                'value'       : <?php echo $order_total . PHP_EOL ?>
-            });
+            if ((typeof wgact !== "undefined") && !wgact.isOrderIdStored(<?php echo $order->get_id() ?>)) {
+                fbq('track', 'Purchase', {
+                    'content_type': 'product',
+                    'content_ids' : <?php echo json_encode($order_item_ids) ?>,
+                    'currency'    : '<?php echo $this->options_obj->shop->currency ?>',
+                    'value'       : <?php echo $order_total . PHP_EOL ?>
+                });
+            }
         </script>
 
         <?php
     }
-
 }

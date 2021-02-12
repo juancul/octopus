@@ -4,7 +4,7 @@ Tags: Facebook Pixel, New Facebook Pixel, Facebook Conversion Pixel, Facebook Pi
 Requires at least: 3.0.1
 Requires PHP: 5.4
 Tested up to: 5.6
-Stable tag: 7.2.1.1
+Stable tag: 8.0.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,6 +25,10 @@ Take a look at this video to see the plugin in action:
 
 NEW: Facebook Pixel Conversion API: [Learn how to configure Conversion API events](https://www.pixelyoursite.com/documentation/configure-server-side-events)
 
+Learn how to [verify your domain on Facebook](https://www.pixelyoursite.com/verify-domain-facebook)
+
+Learn about [the Signal Event and Aggregated Event Measurement](https://www.pixelyoursite.com/signal-custom-conversions-aem)
+
 TRACK EVERYTHING WITH A SINGLE PLUGIN:
 
 The Facebook Pixel: one click install
@@ -35,11 +39,11 @@ The Pinterest Tag: via [free add-on](https://www.pixelyoursite.com/pinterest-tag
 Google Ads (formerly AdWords) [pro feature](https://www.pixelyoursite.com/google-ads-tag)
 Microsoft (BING) UET tag [paid add-on](https://www.pixelyoursite.com/bing-tag)
 
-**Want to learn about your Facebook Pixel? We've put toghether [this help page](https://www.pixelyoursite.com/how-to-use-facebook-pixel)**
+**Want to learn about your Facebook Pixel? We've put together [this help page](https://www.pixelyoursite.com/how-to-use-facebook-pixel)**
 
 FANTASTIC WOOCOMMERCE INTEGRATION:
 
-Facebook Pixe: every e-commerce related event is fired automatically. Conversion value is tracked for each event. All the events are Dynamic Product Ads ready (content_ids and content_type parameters always present).
+Facebook Pixel: every e-commerce related event is fired automatically. Conversion value is tracked for each event. All the events are Dynamic Product Ads ready (content_ids and content_type parameters always present).
 Google Analytics: Enhanced Ecommerce implementation.
 Head & Footer scripts: you can insert scripts on the WooCommerce “order-received” page.
 Pinterest e-commerce events.
@@ -111,7 +115,7 @@ The AdSense event: fired when an AdSense ad is clicked, it lets you optimize you
 
 EVEN MORE EVENTS’ TRIGGERS:
 
-On top of the free triggers (URL equals and URL contains), the pro version will let you fire more complexe events:
+On top of the free triggers (URL equals and URL contains), the pro version will let you fire more complex events:
 
 Clicks on CSS Selector: you can target virtually any clicks, like buttons, images etc.
 Mouse over CSS Selector
@@ -392,6 +396,76 @@ NO, absolutely not! We don't track any type of data about your website. We simpl
 == Changelog ==
 
 
+= PixelYourSite 8.0.6 =
+
+* Fix: missing AddToCart IDs when "treat variable products like simple products" is enabled.
+
+
+= PixelYourSite 8.0.5 =
+
+* Fix for a potential JS error.
+
+* Fix for an error that could lead to duplicated AddToCart events.
+
+* Tweaks to Facebook Conversion API that might help fix issues we noticed with some hostings.
+
+
+
+= PixelYourSite 8.0.4 =
+
+* FIX: Warning: Invalid argument supplied for foreach() .... wp-content/plugins/pixelyoursite/includes/functions-common.php on line 688
+
+* FIX: WooCommerce group products possible value issue.
+
+* FIX: Possible problem with Easy Digital Downloads add to cart.
+
+
+
+= PixelYourSite 8.0.3 =
+
+* FIX: some encoding problems with parameter values.
+
+* FIX: Greek language issue.
+
+
+= PixelYourSite 8.0.2 =
+
+* Fix for a potential fatal error: PHP Fatal error: Cannot use FacebookAds\Object\ServerSide\Event as Event because the name is already in use 
+
+
+= PixelYourSite 8.0.1 =
+
+
+* Fixing a mismatch with version numbers.
+
+
+= PixelYourSite 8.0.0 =
+
+This is a major update. Please [visit this page](https://www.pixelyoursite.com/pixelyoursite-v8) for more info about what's new with V8.
+
+* New section showing how many active events you have.
+
+* A new set of common parameters added to all events from all installed tags. You can find a list of the common parameters on the plugin’s main page.
+
+* A new Signal event that replaces most Global Events. You can find its settings on the plugin’s main page.
+
+* We removed the GeneralEvent. If you have audiences or conversions based on it, you need to replace them. It’s a good idea to use the default Page View event instead.
+
+* All events fired automatically (Signal, Search, WooCommerce events, Easy Digital Download events) have a new ON/OFF button visible before you open the event’s settings.
+
+* We turned off some of the less popular WooCommerce and EDD events. You can turn them back on if you need to.
+
+* Update for Facebook API.
+
+* Update for some mandatory CAPI events parameters.
+
+* Fix: issue with Oxygen builder.
+
+* Fix: Uncaught Error: Class ‘PYS_PRO_GLOBAL
+
+* Other small code changes.
+
+
 = PixelYourSite 7.2.1.1 =
 
 * Simple update to remove some unwanted files from v7.2.1
@@ -422,7 +496,7 @@ NO, absolutely not! We don't track any type of data about your website. We simpl
 
 * ViewContent, AddToCart, InitiateCheckout events related to WooCommerce have value turned ON by default. The reasons are explained in [this video](https://www.youtube.com/watch?v=neH2Hc6xXUU)
 
-* Samll change to the contents parameter for some Facebook Pixel events that had the potential to trigger a warning related to currency or value. 
+* Small change to the contents parameter for some Facebook Pixel events that had the potential to trigger a warning related to currency or value. 
 
 
 = PixelYourSite 7.1.14 =

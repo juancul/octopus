@@ -35,8 +35,19 @@ class Search
      * @var null
      */
     private  $postsIDsBuffer = null ;
+    /**
+     * List of fields in which the phrase is searched
+     * @var array
+     */
+    private  $searchIn = array() ;
     public function __construct()
     {
+        $this->searchIn = apply_filters( 'dgwt/wcas/native/search_in', array(
+            'title',
+            'content',
+            'excerpt',
+            'sku'
+        ) );
         add_filter(
             'posts_search',
             array( $this, 'searchFilters' ),
@@ -507,17 +518,19 @@ class Search
                     $term = esc_sql( $wpdb->esc_like( $term ) );
                     $search .= "{$searchand} (";
                     // Search in title
-                    $search .= "({$wpdb->posts}.post_title LIKE '{$n}{$term}{$n}')";
+                    if ( in_array( 'title', $this->searchIn ) ) {
+                        $search .= "({$wpdb->posts}.post_title LIKE '{$n}{$term}{$n}')";
+                    }
                     // Search in content
-                    if ( DGWT_WCAS()->settings->getOption( 'search_in_product_content' ) === 'on' ) {
+                    if ( DGWT_WCAS()->settings->getOption( 'search_in_product_content' ) === 'on' && in_array( 'content', $this->searchIn ) ) {
                         $search .= " OR ({$wpdb->posts}.post_content LIKE '{$n}{$term}{$n}')";
                     }
                     // Search in excerpt
-                    if ( DGWT_WCAS()->settings->getOption( 'search_in_product_excerpt' ) === 'on' ) {
+                    if ( DGWT_WCAS()->settings->getOption( 'search_in_product_excerpt' ) === 'on' && in_array( 'excerpt', $this->searchIn ) ) {
                         $search .= " OR ({$wpdb->posts}.post_excerpt LIKE '{$n}{$term}{$n}')";
                     }
                     // Search in SKU
-                    if ( DGWT_WCAS()->settings->getOption( 'search_in_product_sku' ) === 'on' ) {
+                    if ( DGWT_WCAS()->settings->getOption( 'search_in_product_sku' ) === 'on' && in_array( 'sku', $this->searchIn ) ) {
                         $search .= " OR (dgwt_wcasmsku.meta_key='_sku' AND dgwt_wcasmsku.meta_value LIKE '{$n}{$term}{$n}')";
                     }
                     $search .= ")";
@@ -563,7 +576,7 @@ class Search
         }
         
         if ( $this->isAjaxSearch() && !is_admin() ) {
-            if ( DGWT_WCAS()->settings->getOption( 'search_in_product_sku' ) === 'on' ) {
+            if ( DGWT_WCAS()->settings->getOption( 'search_in_product_sku' ) === 'on' && in_array( 'sku', $this->searchIn ) ) {
                 $join .= " INNER JOIN {$wpdb->postmeta} AS dgwt_wcasmsku ON ( {$wpdb->posts}.ID = dgwt_wcasmsku.post_id )";
             }
         }
@@ -587,7 +600,7 @@ class Search
         if ( empty($wp_the_query->query_vars['wc_query']) || empty($wp_the_query->query_vars['s']) ) {
             return $where;
         }
-        if ( DGWT_WCAS()->settings->getOption( 'search_in_product_excerpt' ) !== 'on' ) {
+        if ( DGWT_WCAS()->settings->getOption( 'search_in_product_excerpt' ) !== 'on' && in_array( 'excerpt', $this->searchIn ) ) {
             $where = preg_replace( "/OR \\(post_excerpt\\s+LIKE\\s*(\\'\\%[^\\%]+\\%\\')\\)/", "", $where );
         }
         return $where;

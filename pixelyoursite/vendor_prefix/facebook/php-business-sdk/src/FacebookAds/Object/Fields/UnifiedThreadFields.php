@@ -40,7 +40,6 @@ class UnifiedThreadFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const ID = 'id';
     const IS_SUBSCRIBED = 'is_subscribed';
     const LINK = 'link';
-    const LINKED_GROUP = 'linked_group';
     const MESSAGE_COUNT = 'message_count';
     const NAME = 'name';
     const PARTICIPANTS = 'participants';
@@ -53,6 +52,6 @@ class UnifiedThreadFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const WALLPAPER = 'wallpaper';
     public function getFieldTypes()
     {
-        return array('can_reply' => 'bool', 'former_participants' => 'Object', 'id' => 'string', 'is_subscribed' => 'bool', 'link' => 'string', 'linked_group' => 'Group', 'message_count' => 'int', 'name' => 'string', 'participants' => 'Object', 'scoped_thread_key' => 'string', 'senders' => 'Object', 'snippet' => 'string', 'subject' => 'string', 'unread_count' => 'int', 'updated_time' => 'datetime', 'wallpaper' => 'string');
+        return array('can_reply' => 'bool', 'former_participants' => 'Object', 'id' => 'string', 'is_subscribed' => 'bool', 'link' => 'string', 'message_count' => 'int', 'name' => 'string', 'participants' => 'Object', 'scoped_thread_key' => 'string', 'senders' => 'Object', 'snippet' => 'string', 'subject' => 'string', 'unread_count' => 'int', 'updated_time' => 'datetime', 'wallpaper' => 'string');
     }
 }

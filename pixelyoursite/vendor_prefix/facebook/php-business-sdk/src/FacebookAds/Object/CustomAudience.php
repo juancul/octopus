@@ -162,6 +162,16 @@ class CustomAudience extends \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObje
         $request->addFields($fields);
         return $pending ? $request : $request->execute();
     }
+    public function createUsersReplace(array $fields = array(), array $params = array(), $pending = \false)
+    {
+        $this->assureId();
+        $param_types = array('namespace' => 'string', 'payload' => 'Object', 'session' => 'Object');
+        $enums = array();
+        $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_POST, '/usersreplace', new \PYS_PRO_GLOBAL\FacebookAds\Object\CustomAudience(), 'EDGE', \PYS_PRO_GLOBAL\FacebookAds\Object\CustomAudience::getFieldsEnum()->getValues(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
+        $request->addParams($params);
+        $request->addFields($fields);
+        return $pending ? $request : $request->execute();
+    }
     public function deleteSelf(array $fields = array(), array $params = array(), $pending = \false)
     {
         $this->assureId();

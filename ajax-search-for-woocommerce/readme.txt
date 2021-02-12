@@ -1,10 +1,10 @@
 === Ajax Search for WooCommerce  ===
-Contributors: damian-gora
+Contributors: damian-gora, matczar
 Tags: woocommerce search, ajax search, search by sku, product search, woocommerce
 Requires at least: 5.0
 Tested up to: 5.6
 Requires PHP: 5.5
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,22 @@ You can read more and compare Pro and Free features here: [feature comparison](h
 5. Search config
 
 == Changelog ==
+
+= 1.8.2, February 06, 2021 =
+* ADD: Support for Astra theme
+* ADD: Support for Avada theme - replacing a fusion search form
+* ADD: Support for Open Shop theme
+* ADD: Support for Divi - menu in custom header and hiding search results when opening a search overlay
+* ADD: Support for CiyaShop theme
+* ADD: Support for BigCart theme
+* FIX: Increase the clickable area of the 'back button' in the overlay mobile mode
+* FIX: Disappearing search bar especially on Firefox
+* FIX: Hide new aggressive admin notices added by other plugins
+* FIX: Hide shortcodes in the Details Panel
+* FIX: Divi theme integration - Prevent to focus input if it isn't empty. Fix case with more search bars in #main-header selector
+* FIX: Adaptation to the new class name convention of WooCommerce Product Table plugin
+* FIX: Fixed display of category names and tags in the Details Panel when the name contains an apostrophe
+
 
 = 1.8.1, December 04, 2020 =
 * ADD: Support for Rehub theme

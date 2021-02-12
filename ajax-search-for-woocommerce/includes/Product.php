@@ -2,9 +2,6 @@
 
 namespace DgoraWcas;
 
-
-use DgoraWcas\Engines\TNTSearchMySQL\Indexer\Utils;
-
 class Product {
 	protected $productID = 0;
 	protected $wcProduct = null;

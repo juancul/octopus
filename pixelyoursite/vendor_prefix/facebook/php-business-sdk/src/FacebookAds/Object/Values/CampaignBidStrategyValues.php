@@ -39,5 +39,4 @@ class CampaignBidStrategyValues extends \PYS_PRO_GLOBAL\FacebookAds\Enum\Abstrac
     const COST_CAP = 'COST_CAP';
     const LOWEST_COST_WITHOUT_CAP = 'LOWEST_COST_WITHOUT_CAP';
     const LOWEST_COST_WITH_BID_CAP = 'LOWEST_COST_WITH_BID_CAP';
-    const TARGET_COST = 'TARGET_COST';
 }

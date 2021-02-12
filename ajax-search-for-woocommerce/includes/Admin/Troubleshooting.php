@@ -4,6 +4,7 @@ namespace DgoraWcas\Admin;
 
 use  DgoraWcas\Helpers ;
 use  DgoraWcas\Engines\TNTSearchMySQL\Indexer\Builder ;
+use  DgoraWcas\Multilingual ;
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) {
     exit;
@@ -486,6 +487,52 @@ class Troubleshooting
             }
         }
         return false;
+    }
+    
+    /**
+     * Get table with server environment
+     *
+     * @return string
+     */
+    private function getDebugData()
+    {
+        if ( !class_exists( 'WP_Debug_Data' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
+        }
+        $result = '';
+        $info = \WP_Debug_Data::debug_data();
+        
+        if ( isset( $info['wp-server']['fields'] ) ) {
+            ob_start();
+            ?>
+			<p><b><?php 
+            _e( 'Server environment', 'ajax-search-for-woocommerce' );
+            ?></b></p>
+			<table class="widefat striped" role="presentation">
+				<tbody>
+				<?php 
+            foreach ( $info['wp-server']['fields'] as $field_name => $field ) {
+                
+                if ( is_array( $field['value'] ) ) {
+                    $values = '<ul>';
+                    foreach ( $field['value'] as $name => $value ) {
+                        $values .= sprintf( '<li>%s: %s</li>', esc_html( $name ), esc_html( $value ) );
+                    }
+                    $values .= '</ul>';
+                } else {
+                    $values = esc_html( $field['value'] );
+                }
+                
+                printf( '<tr><td>%s</td><td>%s</td></tr>', esc_html( $field['label'] ), $values );
+            }
+            ?>
+				</tbody>
+			</table>
+			<?php 
+            $result = ob_get_clean();
+        }
+        
+        return $result;
     }
     
     /**

@@ -38,5 +38,6 @@ class AdAccountTasksValues extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
 {
     const ADVERTISE = 'ADVERTISE';
     const ANALYZE = 'ANALYZE';
+    const DRAFT = 'DRAFT';
     const MANAGE = 'MANAGE';
 }

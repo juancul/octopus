@@ -36,7 +36,6 @@ use PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum;
  */
 class TargetingDevicePlatformsValues extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
 {
-    const CONNECTED_TV = 'connected_tv';
     const DESKTOP = 'desktop';
     const MOBILE = 'mobile';
 }

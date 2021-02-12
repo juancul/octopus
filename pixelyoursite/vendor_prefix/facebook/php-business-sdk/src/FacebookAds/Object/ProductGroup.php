@@ -63,6 +63,16 @@ class ProductGroup extends \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject
         $ref_enums = array();
         return $ref_enums;
     }
+    public function createArDatum(array $fields = array(), array $params = array(), $pending = \false)
+    {
+        $this->assureId();
+        $param_types = array('effect_icon' => 'file', 'state' => 'state_enum', 'surfaces' => 'list<surfaces_enum>');
+        $enums = array('state_enum' => array('DISABLED', 'ENABLED', 'TEST'), 'surfaces_enum' => array('SHOPS', 'TEST_CAPABILITY', 'UNIVERSAL_CHECKOUT', 'US_MARKETPLACE'));
+        $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_POST, '/ar_data', new \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject(), 'EDGE', array(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
+        $request->addParams($params);
+        $request->addFields($fields);
+        return $pending ? $request : $request->execute();
+    }
     public function getProducts(array $fields = array(), array $params = array(), $pending = \false)
     {
         $this->assureId();

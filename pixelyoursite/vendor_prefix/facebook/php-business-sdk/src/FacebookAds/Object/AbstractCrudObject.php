@@ -371,7 +371,7 @@ class AbstractCrudObject extends \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractObje
      * @param string|null $endpoint
      * @return ResponseInterface
      */
-    protected function fetchConnection(array $fields = array(), array $params = array(), $prototype_class, $endpoint = null)
+    protected function fetchConnection(array $fields = array(), array $params = array(), $prototype_class = '', $endpoint = null)
     {
         $fields = \implode(',', $fields ?: static::getDefaultReadFields());
         if ($fields) {

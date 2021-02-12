@@ -19,6 +19,24 @@ class Divi {
 		$this->maybeOverwriteSearch();
 
 		add_filter( 'dgwt/wcas/settings', array( $this, 'registerSettings' ) );
+
+		add_filter( 'et_builder_load_requests', array( $this, 'loadDiviInAjaxRequests' ) );
+	}
+
+	/**
+	 * Force to load Divi builder during AJAX queries for objects details
+	 *
+	 * @param array $requests
+	 *
+	 * @return array
+	 */
+	public function loadDiviInAjaxRequests( $requests ) {
+		if ( ! isset( $requests['wc-ajax'] ) ) {
+			$requests['wc-ajax'] = array();
+		}
+		$requests['wc-ajax'][] = 'dgwt_wcas_result_details';
+
+		return $requests;
 	}
 
 	/**

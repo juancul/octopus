@@ -38,5 +38,6 @@ class BusinessPermittedTasksValues extends \PYS_PRO_GLOBAL\FacebookAds\Enum\Abst
 {
     const ADVERTISE = 'ADVERTISE';
     const ANALYZE = 'ANALYZE';
+    const DRAFT = 'DRAFT';
     const MANAGE = 'MANAGE';
 }

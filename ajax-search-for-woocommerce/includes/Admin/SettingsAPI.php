@@ -596,6 +596,29 @@ class SettingsAPI
     }
     
     /**
+     * Displays filters rules in settings
+     *
+     * @param array $args settings field args
+     */
+    function callback_filters_rules_plug( $args )
+    {
+        ob_start();
+        ?>
+		<div id="dgwt-wcas-settings-filters-rules">
+			<div>
+				<p><?php 
+        _e( 'No rules', 'ajax-search-for-woocommerce' );
+        ?></p><br>
+			</div>
+			<button class="button button-secondary"><?php 
+        _e( 'Add new rule', 'ajax-search-for-woocommerce' );
+        ?></button>
+		</div>
+		<?php 
+        echo  ob_get_clean() ;
+    }
+    
+    /**
      * Sanitize callback for Settings API
      */
     function sanitize_options( $options )

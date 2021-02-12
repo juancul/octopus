@@ -55,6 +55,8 @@
   "edd_view_category_non_interactive": true,
 
   "disable_advertising_features": false,
-  "disable_advertising_personalization": false
+  "disable_advertising_personalization": false,
+
+  "signal_events_enabled": true
 
 }

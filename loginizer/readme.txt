@@ -2,9 +2,9 @@
 Contributors: loginizer, pagelayer, softaculous
 Tags: access, admin, Loginizer, login, logs, ban ip, failed login, ip, whitelist ip, blacklist ip, failed attempts, lockouts, hack, authentication, login, security, rename login url, rename login, rename wp-admin, secure wp-admin, rename admin url, secure admin, brute force protection
 Requires at least: 3.0
-Tested up to: 5.5.1
+Tested up to: 5.6
 Requires PHP: 5.5
-Stable tag: 1.6.5
+Stable tag: 1.6.6
 License: LGPLv2.1
 License URI: http://www.gnu.org/licenses/lgpl-2.1.html
 
@@ -76,6 +76,11 @@ That's it. You're done!
 3. Loginizer Brute Force Settings page
 
 == Changelog ==
+
+= 1.6.6 =
+* [Improvement] For new installs, the loginizer_logs table will now use the server default MySQL Engine.
+* [Improvement] For the login attempts blocked by Loginizer, some other Activity Logs plugin still reported such blocked attempt as a failed login attempt. 
+* [Bug Fix] In rare cases when the username received in failed login attempt was blank, Loginizer failed to save such requests in the failed login logs table. This is fixed now. 
 
 = 1.6.5 =
 * [Bug Fix] After Interim Login due to session timeout, the popup for login was not closed. This is fixed now.

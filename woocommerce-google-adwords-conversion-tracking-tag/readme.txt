@@ -4,7 +4,7 @@ Tags: woocommerce, google ads, conversion tracking, dynamic retargeting, remarke
 Requires at least: 3.7
 Tested up to: 5.6
 Requires PHP: 7.2
-Stable tag: 1.8.1
+Stable tag: 1.8.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,7 @@ With this data you can optimize all your Google Ads campaigns to achieve maximum
 
 <strong>Documentation</strong>
 
-Link to the full documentation of the plugin: [Open the documentation](https://docs.wolfundbaer.ch/wgact/#/)
+Link to the full documentation of the plugin: [Open the documentation](https://docs.woopt.com/wgact/?utm_source=wp-org&utm_medium=documentation-link&utm_campaign=wp-org-documentation-link#/)
 
 <strong>Cookie Consent Management</strong>
 
@@ -37,15 +37,11 @@ It works with the following Cookie Consent Management plugins out of the box:
 * [Cookie Law Info](https://wordpress.org/plugins/cookie-law-info/)
 * [GDPR Cookie Compliance](https://wordpress.org/plugins/gdpr-cookie-compliance/)
 * [Borlabs Cookie](https://borlabs.io/borlabs-cookie/) (from version 2.1.0)
-  [Borlabs Cookie Setup](https://wolfundbaer.ch/en/blog/our-marketing-plugins-now-support-borlabs-cookie/)
-
-It is also possible for developers of Cookie Consent Management plugins to deactivate the pixel injection with a filter:
-
-`add_filter( 'wgact_cookie_prevention', '__return_true' );`
+  [Borlabs Cookie Setup](https://docs.woopt.com/wgact/?utm_source=wp-org&utm_medium=documentation-link&utm_campaign=wp-org-documentation-link&utm_content=borlabs-cookie#/consent-mgmt/borlabs-cookie)
 
 <strong>Requirements</strong>
 
-[List of requirements](https://docs.wolfundbaer.ch/wgact/#/requirements)
+[List of requirements](https://docs.woopt.com/wgact/?utm_source=wp-org&utm_medium=documentation-link&utm_campaign=wp-org-documentation-link&utm_content=requirements#/requirements)
 
 == Installation ==
 
@@ -58,7 +54,7 @@ It is also possible for developers of Cookie Consent Management plugins to deact
 
 = Is there detailed documentation for the plugin? =
 
-Yes. Head over to this link: [Documentation](https://docs.wolfundbaer.ch/wgact/#/)
+Yes. Head over to this link: [Documentation](https://docs.woopt.com/wgact/?utm_source=wp-org&utm_medium=documentation-link&utm_campaign=wp-org-documentation-link#/)
 
 = How do I check if the plugin is working properly? =
 
@@ -106,6 +102,78 @@ You can send the link to the front page of your shop too if you think it would b
 1. Settings page
 
 == Changelog ==
+
+= 1.8.13 =
+
+* New: Filter to prevent conversion pixels to fire on purchase confirmation page
+* Tweak: Replaced _e() with echo where necessary
+* Tweak: Syntax cleanup
+
+= 1.8.12 =
+
+* Tweak: Calculate filtered order total for all pixels
+
+= 1.8.11 =
+
+
+* Fix: Removed a function call where the function was missing
+
+= 1.8.10 =
+
+
+* New: Added basic order deduper
+* New: Google Shopping new_customer parameter
+* New: Added switch to enable transaction deduping (default enabled)
+* Tweak: Product identifier output now for all the same
+* Tweak: Adjusted the HTML comment output
+* Tweak: Added new cookie for Borlabs Cookie
+* Tweak: Made some input elements clickable
+* Tweak: Moved check for failed payments and admin and shop manager up to the pixel manager
+
+= 1.8.9 =
+
+* Tweak: readme.txt links
+* Tweak: fallback to post ID in case the SKU is not set
+* Tweak: Adjusted the HTML comments
+* Tweak: Don't inject cart scripts on cart page if cart is empty
+
+= 1.8.8 =
+
+
+* Tweak: Bumped up version
+* Tweak: Changed regex for GMC IDs to allow 7 digit IDs
+* Tweak: Improved speed to hide script blocker warning
+* Tweak: Adjusted documentation links
+
+= 1.8.7 =
+
+* Fix: Added new classes to SVN
+
+= 1.8.6 =
+
+* Tweak: Code cleanup
+* Tweak: Adjusted doc links
+
+= 1.8.5 =
+
+
+* New: Hotjar pixel
+
+= 1.8.4 =
+
+
+* Tweak: Renamed subsection 'Order Logic' to 'Shop'
+* Tweak: Refactored debug info
+* Tweak: Added WP Rocket JavaScript concatenation to debug info
+
+= 1.8.3 =
+
+
+
+= 1.8.2 =
+
+* New: Check for WP Rocket JavaScript concatenation
+* New: Added filter which helps adding multiple additional conversion IDs and labels
 
 = 1.8.1 =
 

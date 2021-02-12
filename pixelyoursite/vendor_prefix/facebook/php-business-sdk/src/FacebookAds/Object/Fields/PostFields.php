@@ -47,22 +47,17 @@ class PostFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const COMMENTS_MIRRORING_DOMAIN = 'comments_mirroring_domain';
     const COORDINATES = 'coordinates';
     const CREATED_TIME = 'created_time';
-    const DELIVERY_GROWTH_OPTIMIZATIONS = 'delivery_growth_optimizations';
     const DESCRIPTION = 'description';
-    const ENTITIES = 'entities';
     const EVENT = 'event';
     const EXPANDED_HEIGHT = 'expanded_height';
     const EXPANDED_WIDTH = 'expanded_width';
     const FEED_TARGETING = 'feed_targeting';
-    const FORMATTING = 'formatting';
     const FROM = 'from';
     const FULL_PICTURE = 'full_picture';
     const HEIGHT = 'height';
     const ICON = 'icon';
     const ID = 'id';
-    const IMPLICIT_PLACE = 'implicit_place';
     const INSTAGRAM_ELIGIBILITY = 'instagram_eligibility';
-    const INSTREAM_ELIGIBILITY = 'instream_eligibility';
     const IS_APP_SHARE = 'is_app_share';
     const IS_ELIGIBLE_FOR_PROMOTION = 'is_eligible_for_promotion';
     const IS_EXPIRED = 'is_expired';
@@ -73,7 +68,6 @@ class PostFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const IS_PUBLISHED = 'is_published';
     const IS_SPHERICAL = 'is_spherical';
     const LINK = 'link';
-    const LIVE_VIDEO_ELIGIBILITY = 'live_video_eligibility';
     const MESSAGE = 'message';
     const MESSAGE_TAGS = 'message_tags';
     const MULTI_SHARE_END_CARD = 'multi_share_end_card';
@@ -84,12 +78,10 @@ class PostFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const PERMALINK_URL = 'permalink_url';
     const PICTURE = 'picture';
     const PLACE = 'place';
-    const POLL = 'poll';
     const PRIVACY = 'privacy';
     const PROMOTABLE_ID = 'promotable_id';
     const PROMOTION_STATUS = 'promotion_status';
     const PROPERTIES = 'properties';
-    const PUBLISHING_STATS = 'publishing_stats';
     const SCHEDULED_PUBLISH_TIME = 'scheduled_publish_time';
     const SHARES = 'shares';
     const SOURCE = 'source';
@@ -100,15 +92,13 @@ class PostFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const TARGET = 'target';
     const TARGETING = 'targeting';
     const TIMELINE_VISIBILITY = 'timeline_visibility';
-    const TRANSLATIONS = 'translations';
     const TYPE = 'type';
     const UPDATED_TIME = 'updated_time';
     const VIA = 'via';
     const VIDEO_BUYING_ELIGIBILITY = 'video_buying_eligibility';
     const WIDTH = 'width';
-    const WILL_BE_AUTOCROPPED_WHEN_DELIVER_TO_INSTAGRAM = 'will_be_autocropped_when_deliver_to_instagram';
     public function getFieldTypes()
     {
-        return array('actions' => 'list', 'admin_creator' => 'Object', 'allowed_advertising_objectives' => 'list<string>', 'application' => 'Application', 'backdated_time' => 'datetime', 'call_to_action' => 'Object', 'can_reply_privately' => 'bool', 'caption' => 'string', 'child_attachments' => 'list', 'comments_mirroring_domain' => 'string', 'coordinates' => 'Object', 'created_time' => 'datetime', 'delivery_growth_optimizations' => 'list<string>', 'description' => 'string', 'entities' => 'Object', 'event' => 'Event', 'expanded_height' => 'unsigned int', 'expanded_width' => 'unsigned int', 'feed_targeting' => 'Object', 'formatting' => 'string', 'from' => 'Object', 'full_picture' => 'string', 'height' => 'unsigned int', 'icon' => 'string', 'id' => 'string', 'implicit_place' => 'Place', 'instagram_eligibility' => 'string', 'instream_eligibility' => 'string', 'is_app_share' => 'bool', 'is_eligible_for_promotion' => 'bool', 'is_expired' => 'bool', 'is_hidden' => 'bool', 'is_inline_created' => 'bool', 'is_instagram_eligible' => 'bool', 'is_popular' => 'bool', 'is_published' => 'bool', 'is_spherical' => 'bool', 'link' => 'string', 'live_video_eligibility' => 'list<string>', 'message' => 'string', 'message_tags' => 'list', 'multi_share_end_card' => 'bool', 'multi_share_optimized' => 'bool', 'name' => 'string', 'object_id' => 'string', 'parent_id' => 'string', 'permalink_url' => 'Object', 'picture' => 'string', 'place' => 'Place', 'poll' => 'Object', 'privacy' => 'Privacy', 'promotable_id' => 'string', 'promotion_status' => 'string', 'properties' => 'list', 'publishing_stats' => 'unsigned int', 'scheduled_publish_time' => 'float', 'shares' => 'Object', 'source' => 'string', 'status_type' => 'string', 'story' => 'string', 'story_tags' => 'list', 'subscribed' => 'bool', 'target' => 'Profile', 'targeting' => 'Object', 'timeline_visibility' => 'string', 'translations' => 'map<string, string>', 'type' => 'string', 'updated_time' => 'datetime', 'via' => 'Object', 'video_buying_eligibility' => 'list<string>', 'width' => 'unsigned int', 'will_be_autocropped_when_deliver_to_instagram' => 'bool');
+        return array('actions' => 'list', 'admin_creator' => 'Object', 'allowed_advertising_objectives' => 'list<string>', 'application' => 'Application', 'backdated_time' => 'datetime', 'call_to_action' => 'Object', 'can_reply_privately' => 'bool', 'caption' => 'string', 'child_attachments' => 'list', 'comments_mirroring_domain' => 'string', 'coordinates' => 'Object', 'created_time' => 'datetime', 'description' => 'string', 'event' => 'Event', 'expanded_height' => 'unsigned int', 'expanded_width' => 'unsigned int', 'feed_targeting' => 'Object', 'from' => 'Object', 'full_picture' => 'string', 'height' => 'unsigned int', 'icon' => 'string', 'id' => 'string', 'instagram_eligibility' => 'string', 'is_app_share' => 'bool', 'is_eligible_for_promotion' => 'bool', 'is_expired' => 'bool', 'is_hidden' => 'bool', 'is_inline_created' => 'bool', 'is_instagram_eligible' => 'bool', 'is_popular' => 'bool', 'is_published' => 'bool', 'is_spherical' => 'bool', 'link' => 'Object', 'message' => 'string', 'message_tags' => 'list', 'multi_share_end_card' => 'bool', 'multi_share_optimized' => 'bool', 'name' => 'string', 'object_id' => 'string', 'parent_id' => 'string', 'permalink_url' => 'Object', 'picture' => 'string', 'place' => 'Place', 'privacy' => 'Privacy', 'promotable_id' => 'string', 'promotion_status' => 'string', 'properties' => 'list', 'scheduled_publish_time' => 'float', 'shares' => 'Object', 'source' => 'string', 'status_type' => 'string', 'story' => 'string', 'story_tags' => 'list', 'subscribed' => 'bool', 'target' => 'Profile', 'targeting' => 'Object', 'timeline_visibility' => 'string', 'type' => 'string', 'updated_time' => 'datetime', 'via' => 'Object', 'video_buying_eligibility' => 'list<string>', 'width' => 'unsigned int');
     }
 }

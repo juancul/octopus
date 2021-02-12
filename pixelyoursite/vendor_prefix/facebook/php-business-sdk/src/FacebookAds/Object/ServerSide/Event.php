@@ -37,22 +37,22 @@ class Event implements \ArrayAccess
      * Array of property to type mappings. Used for (de)serialization
      * @var string[]
      */
-    protected static $param_types = array('event_name' => 'string', 'event_time' => 'int', 'event_source_url' => 'string', 'opt_out' => 'bool', 'event_id' => 'string', 'user_data' => 'PYS_PRO_GLOBAL\\FacebookAds\\Object\\ServerSide\\UserData', 'custom_data' => 'PYS_PRO_GLOBAL\\FacebookAds\\Object\\ServerSide\\CustomData', 'data_processing_options' => 'string[]', 'data_processing_options_country' => 'int', 'data_processing_options_state' => 'int');
+    protected static $param_types = array('event_name' => 'string', 'event_time' => 'int', 'event_source_url' => 'string', 'opt_out' => 'bool', 'event_id' => 'string', 'user_data' => 'PYS_PRO_GLOBAL\\FacebookAds\\Object\\ServerSide\\UserData', 'custom_data' => 'PYS_PRO_GLOBAL\\FacebookAds\\Object\\ServerSide\\CustomData', 'data_processing_options' => 'string[]', 'data_processing_options_country' => 'int', 'data_processing_options_state' => 'int', 'action_source' => 'string');
     /**
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = array('event_name' => 'event_name', 'event_time' => 'event_time', 'event_source_url' => 'event_source_url', 'opt_out' => 'opt_out', 'event_id' => 'event_id', 'user_data' => 'user_data', 'custom_data' => 'custom_data', 'data_processing_options' => 'data_processing_options', 'data_processing_options_country' => 'data_processing_options_country', 'data_processing_options_state' => 'data_processing_options_state');
+    protected static $attributeMap = array('event_name' => 'event_name', 'event_time' => 'event_time', 'event_source_url' => 'event_source_url', 'opt_out' => 'opt_out', 'event_id' => 'event_id', 'user_data' => 'user_data', 'custom_data' => 'custom_data', 'data_processing_options' => 'data_processing_options', 'data_processing_options_country' => 'data_processing_options_country', 'data_processing_options_state' => 'data_processing_options_state', 'action_source' => 'action_source');
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = array('event_name' => 'setEventName', 'event_time' => 'setEventTime', 'event_source_url' => 'setEventSourceUrl', 'opt_out' => 'setOptOut', 'event_id' => 'setEventId', 'user_data' => 'setUserData', 'custom_data' => 'setCustomData', 'data_processing_options' => 'setDataProcessingOptions', 'data_processing_options_country' => 'setDataProcessingOptionsCountry', 'data_processing_options_state' => 'setDataProcessingOptionsState');
+    protected static $setters = array('event_name' => 'setEventName', 'event_time' => 'setEventTime', 'event_source_url' => 'setEventSourceUrl', 'opt_out' => 'setOptOut', 'event_id' => 'setEventId', 'user_data' => 'setUserData', 'custom_data' => 'setCustomData', 'data_processing_options' => 'setDataProcessingOptions', 'data_processing_options_country' => 'setDataProcessingOptionsCountry', 'data_processing_options_state' => 'setDataProcessingOptionsState', 'action_source' => 'setActionSource');
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = array('event_name' => 'getEventName', 'event_time' => 'getEventTime', 'event_source_url' => 'getEventSourceUrl', 'opt_out' => 'getOptOut', 'event_id' => 'getEventId', 'user_data' => 'getUserData', 'custom_data' => 'getCustomData', 'data_processing_options' => 'getDataProcessingOptions', 'data_processing_options_country' => 'getDataProcessingOptionsCountry', 'data_processing_options_state' => 'getDataProcessingOptionsState');
+    protected static $getters = array('event_name' => 'getEventName', 'event_time' => 'getEventTime', 'event_source_url' => 'getEventSourceUrl', 'opt_out' => 'getOptOut', 'event_id' => 'getEventId', 'user_data' => 'getUserData', 'custom_data' => 'getCustomData', 'data_processing_options' => 'getDataProcessingOptions', 'data_processing_options_country' => 'getDataProcessingOptionsCountry', 'data_processing_options_state' => 'getDataProcessingOptionsState', 'action_source' => 'getActionSource');
     /**
      * Associative array for storing property values
      * @var mixed[]
@@ -74,6 +74,7 @@ class Event implements \ArrayAccess
         $this->container['data_processing_options'] = isset($data['data_processing_options']) ? $data['data_processing_options'] : null;
         $this->container['data_processing_options_country'] = isset($data['data_processing_options_country']) ? $data['data_processing_options_country'] : null;
         $this->container['data_processing_options_state'] = isset($data['data_processing_options_state']) ? $data['data_processing_options_state'] : null;
+        $this->container['action_source'] = isset($data['action_source']) ? $data['action_source'] : null;
     }
     public static function paramTypes()
     {
@@ -240,6 +241,23 @@ class Event implements \ArrayAccess
         return $this;
     }
     /**
+     * Gets action_source, this is where the Conversion occurred.
+     * @return string
+     */
+    public function getActionSource()
+    {
+        return $this->container['action_source'];
+    }
+    /**
+     * Sets action_source, this is where the Conversion occurred.
+     * @return $this
+     */
+    public function setActionSource($action_source)
+    {
+        $this->container['action_source'] = $action_source;
+        return $this;
+    }
+    /**
      * Returns true if offset exists. False otherwise.
      * @param integer $offset Offset
      * @return boolean
@@ -297,6 +315,7 @@ class Event implements \ArrayAccess
         $normalized_payload['data_processing_options'] = $this->getDataProcessingOptions();
         $normalized_payload['data_processing_options_country'] = $this->getDataProcessingOptionsCountry();
         $normalized_payload['data_processing_options_state'] = $this->getDataProcessingOptionsState();
+        $normalized_payload['action_source'] = \PYS_PRO_GLOBAL\FacebookAds\Object\ServerSide\Normalizer::normalize('action_source', $this->container['action_source']);
         $normalized_payload = \array_filter($normalized_payload, function ($val) {
             if (\is_array($val)) {
                 return \true;
@@ -304,6 +323,10 @@ class Event implements \ArrayAccess
                 return \strlen($val);
             }
         });
+        // Add the opt_out value back in if it was filtered out
+        if ($this->getOptOut() === \false) {
+            $normalized_payload['opt_out'] = $this->getOptOut();
+        }
         return $normalized_payload;
     }
     /**

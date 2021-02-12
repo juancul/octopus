@@ -3,6 +3,10 @@
 namespace DgoraWcas\Integrations\Plugins\XforWooCommerceFilter;
 
 use  DgoraWcas\Helpers ;
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) {
+    exit;
+}
 /**
  * Integration with Product Filter for WooCommerce
  *

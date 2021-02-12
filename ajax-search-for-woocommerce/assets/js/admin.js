@@ -468,11 +468,12 @@
                 $tooltips.each(function () {
                     var element = $(this)[0];
                     var contentEl = $(this).data('tooltip-html-el');
+                    var placement = $(this).data('tooltip-placement');
 
                     if (contentEl) {
                         const instance = new DgwtWcasTooltip(element, {
                             title: $('.' + contentEl + ' > .dgwt-wcas-tooltip-wrapper')[0],
-                            placement: 'top',
+                            placement: placement,
                             trigger: "hover",
                             html: true
                         });
@@ -1484,6 +1485,143 @@
 		},
 	}
 
+	var SETTINGS_FILTERS_RULES = {
+		init: function () {
+
+			if (typeof Vue == 'undefined') {
+				return;
+			}
+
+			var productSearchSettings = function ({nonce, options, type}) {
+				return {
+					persist: false,
+					maxItems: null,
+					valueField: 'key',
+					labelField: 'label',
+					searchField: ['label'],
+					options: options,
+					preload: true,
+					create: function (input) {
+						return {
+							value: input.key,
+							label: input.label
+						}
+					},
+					load: function (query, callback) {
+						$.ajax({
+							url: ajaxurl,
+							method: 'POST',
+							data: {
+								action: 'dgwt_wcas_settings_search_terms',
+								query: query,
+								type: type,
+								_wpnonce: nonce
+							},
+							error: function () {
+								callback();
+							},
+							success: function (res) {
+								callback(res.data);
+							}
+						});
+					}
+				};
+			};
+
+			Vue.component('dgwt-wcas-rule', {
+				template: '#dgwt-wcas-settings-filters-rules-rule',
+				components: {
+					Selectize
+				},
+				props: ['nonce', 'rule', 'rules', 'index'],
+				data() {
+					return {
+						isSelectActive: true,
+					}
+				},
+				computed: {
+					ruleValue(value) {
+						return this.rule.group;
+					},
+				},
+				watch: {
+					rule: {
+						handler: function () {
+							this.$emit('update:rule', this.index);
+						},
+						deep: true,
+					},
+					ruleValue() {
+						// Reset values on group change
+						var vm = this;
+						this.$emit('change:group', this.index);
+						this.isSelectActive = false;
+						setTimeout(function () {
+							vm.isSelectActive = true;
+						}, 0);
+					},
+				},
+				methods: {
+					deleteRule() {
+						this.$emit('delete:rule', this.index)
+					},
+					getSelectizeSettings(type) {
+						var options = (typeof dgwt_wcas_filters_rules_selected_options[type] === 'undefined') ? [] : dgwt_wcas_filters_rules_selected_options[type];
+						return productSearchSettings({nonce: this.nonce, type: type, options: options});
+					},
+				},
+			});
+
+			var FiltersRules = new Vue({
+				el: '#dgwt-wcas-settings-filters-rules',
+				components: {
+					Selectize
+				},
+				data() {
+					return {
+						rules: []
+					}
+				},
+				mounted() {
+					try {
+						const rules = JSON.parse(this.$refs['dgwt-wcas-settings-filters-rules-ref'].value);
+						$.each(rules, function (index, rule) {
+							rules[index].key = Math.random();
+						});
+						this.rules = rules;
+					} catch (e) {
+					}
+					this.updateInput();
+				},
+				methods: {
+					addRule() {
+						this.rules.push({group: '', values: [], key: Math.random()});
+						this.updateInput();
+					},
+					changeGroup(index) {
+						this.rules[index].values = [];
+						this.updateInput();
+					},
+					deleteRule(index) {
+						this.rules = this.rules.filter(function (item, itemIndex) {
+							return itemIndex !== index;
+						});
+						this.updateInput();
+					},
+					updateInput() {
+						const rules = JSON.parse(JSON.stringify(this.rules));
+						this.$refs['dgwt-wcas-settings-filters-rules-ref'].value = JSON.stringify(rules.map(function (rule) {
+							if (typeof (rule['key'] !== 'undefined')) {
+								delete (rule['key']);
+							}
+							return rule;
+						}));
+					}
+				},
+			});
+		}
+	};
+
     function automateSettingsColspan() {
         var $el = $('.js-dgwt-wcas-sgs-autocolspan');
         if ($el.length > 0) {
@@ -1542,6 +1680,8 @@
         TOOLTIP.init();
         ADVANCED_SETTINGS.init();
 		TROUBLESHOOTING.init();
+
+		SETTINGS_FILTERS_RULES.init();
         window.DGWT_WCAS_SEARCH_PREVIEW.init();
 
     });

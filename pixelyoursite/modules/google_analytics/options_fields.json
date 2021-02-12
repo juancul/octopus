@@ -55,5 +55,7 @@
   "edd_view_category_non_interactive": "checkbox",
 
   "disable_advertising_features": "checkbox",
-  "disable_advertising_personalization": "checkbox"
+  "disable_advertising_personalization": "checkbox",
+
+  "signal_events_enabled": "checkbox"
 }

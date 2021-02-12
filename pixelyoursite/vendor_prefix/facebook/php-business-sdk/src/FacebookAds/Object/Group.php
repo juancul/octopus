@@ -51,6 +51,14 @@ use PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoStereoscopicModeValues;
 use PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoStreamTypeValues;
 use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PhotoBackdatedTimeGranularityValues;
 use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PhotoUnpublishedContentTypeValues;
+use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostBackdatedTimeGranularityValues;
+use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostCheckinEntryPointValues;
+use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostFormattingValues;
+use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostPlaceAttachmentSettingValues;
+use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostPostSurfacesBlacklistValues;
+use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostPostingToRedspaceValues;
+use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostTargetSurfaceValues;
+use PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostUnpublishedContentTypeValues;
 use PYS_PRO_GLOBAL\FacebookAds\Object\Values\ProfilePictureSourceBreakingChangeValues;
 use PYS_PRO_GLOBAL\FacebookAds\Object\Values\ProfilePictureSourceTypeValues;
 /**
@@ -140,12 +148,32 @@ class Group extends \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject
         $request->addFields($fields);
         return $pending ? $request : $request->execute();
     }
+    public function getFeed(array $fields = array(), array $params = array(), $pending = \false)
+    {
+        $this->assureId();
+        $param_types = array('include_hidden' => 'bool', 'q' => 'string', 'show_expired' => 'bool', 'since' => 'datetime', 'until' => 'datetime', 'with' => 'string');
+        $enums = array();
+        $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_GET, '/feed', new \PYS_PRO_GLOBAL\FacebookAds\Object\Post(), 'EDGE', \PYS_PRO_GLOBAL\FacebookAds\Object\Post::getFieldsEnum()->getValues(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
+        $request->addParams($params);
+        $request->addFields($fields);
+        return $pending ? $request : $request->execute();
+    }
     public function createFeed(array $fields = array(), array $params = array(), $pending = \false)
     {
         $this->assureId();
         $param_types = array('actions' => 'Object', 'adaptive_type' => 'string', 'album_id' => 'string', 'android_key_hash' => 'string', 'animated_effect_id' => 'unsigned int', 'application_id' => 'string', 'asked_fun_fact_prompt_id' => 'unsigned int', 'asset3d_id' => 'unsigned int', 'associated_id' => 'string', 'attach_place_suggestion' => 'bool', 'attached_media' => 'list<Object>', 'audience_exp' => 'bool', 'backdated_time' => 'datetime', 'backdated_time_granularity' => 'backdated_time_granularity_enum', 'call_to_action' => 'Object', 'caption' => 'string', 'checkin_entry_point' => 'checkin_entry_point_enum', 'child_attachments' => 'list<Object>', 'client_mutation_id' => 'string', 'composer_entry_picker' => 'string', 'composer_entry_point' => 'string', 'composer_entry_time' => 'unsigned int', 'composer_session_events_log' => 'string', 'composer_session_id' => 'string', 'composer_source_surface' => 'string', 'composer_type' => 'string', 'connection_class' => 'string', 'content_attachment' => 'string', 'coordinates' => 'Object', 'cta_link' => 'string', 'cta_type' => 'string', 'description' => 'string', 'direct_share_status' => 'unsigned int', 'expanded_height' => 'unsigned int', 'expanded_width' => 'unsigned int', 'feed_targeting' => 'Object', 'formatting' => 'formatting_enum', 'fun_fact_prompt_id' => 'unsigned int', 'fun_fact_toastee_id' => 'unsigned int', 'has_nickname' => 'bool', 'height' => 'unsigned int', 'holiday_card' => 'string', 'home_checkin_city_id' => 'Object', 'image_crops' => 'map', 'implicit_with_tags' => 'list<int>', 'instant_game_entry_point_data' => 'string', 'ios_bundle_id' => 'string', 'is_backout_draft' => 'bool', 'is_boost_intended' => 'bool', 'is_explicit_location' => 'bool', 'is_explicit_share' => 'bool', 'is_group_linking_post' => 'bool', 'is_photo_container' => 'bool', 'link' => 'string', 'location_source_id' => 'string', 'manual_privacy' => 'bool', 'message' => 'string', 'multi_share_end_card' => 'bool', 'multi_share_optimized' => 'bool', 'name' => 'string', 'nectar_module' => 'string', 'object_attachment' => 'string', 'offer_like_post_id' => 'unsigned int', 'og_action_type_id' => 'string', 'og_hide_object_attachment' => 'bool', 'og_icon_id' => 'string', 'og_object_id' => 'string', 'og_phrase' => 'string', 'og_set_profile_badge' => 'bool', 'og_suggestion_mechanism' => 'string', 'page_recommendation' => 'string', 'picture' => 'string', 'place' => 'Object', 'place_attachment_setting' => 'place_attachment_setting_enum', 'place_list' => 'string', 'place_list_data' => 'list', 'post_surfaces_blacklist' => 'list<post_surfaces_blacklist_enum>', 'posting_to_redspace' => 'posting_to_redspace_enum', 'privacy' => 'string', 'prompt_id' => 'string', 'prompt_tracking_string' => 'string', 'properties' => 'Object', 'proxied_app_id' => 'string', 'publish_event_id' => 'unsigned int', 'published' => 'bool', 'quote' => 'string', 'react_mode_metadata' => 'string', 'ref' => 'list<string>', 'referenceable_image_ids' => 'list<string>', 'referral_id' => 'string', 'sales_promo_id' => 'unsigned int', 'scheduled_publish_time' => 'datetime', 'source' => 'string', 'sponsor_id' => 'string', 'sponsor_relationship' => 'unsigned int', 'suggested_place_id' => 'Object', 'tags' => 'list<int>', 'target_surface' => 'target_surface_enum', 'targeting' => 'Object', 'text_format_metadata' => 'string', 'text_format_preset_id' => 'string', 'text_only_place' => 'string', 'throwback_camera_roll_media' => 'string', 'thumbnail' => 'file', 'time_since_original_post' => 'unsigned int', 'title' => 'string', 'tracking_info' => 'string', 'unpublished_content_type' => 'unpublished_content_type_enum', 'user_selected_tags' => 'bool', 'video_start_time_ms' => 'unsigned int', 'viewer_coordinates' => 'Object', 'width' => 'unsigned int');
-        $enums = array('backdated_time_granularity_enum' => array('day', 'hour', 'min', 'month', 'none', 'year'), 'checkin_entry_point_enum' => array('BRANDING_CHECKIN', 'BRANDING_OTHER', 'BRANDING_PHOTO', 'BRANDING_STATUS'), 'formatting_enum' => array('MARKDOWN', 'PLAINTEXT'), 'place_attachment_setting_enum' => array('1', '2'), 'post_surfaces_blacklist_enum' => array('1', '2', '3', '4', '5'), 'posting_to_redspace_enum' => array('disabled', 'enabled'), 'target_surface_enum' => array('STORY', 'TIMELINE'), 'unpublished_content_type_enum' => array('ADS_POST', 'DRAFT', 'INLINE_CREATED', 'PUBLISHED', 'REVIEWABLE_BRANDED_CONTENT', 'SCHEDULED', 'SCHEDULED_RECURRING'));
-        $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_POST, '/feed', new \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject(), 'EDGE', array(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
+        $enums = array('backdated_time_granularity_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostBackdatedTimeGranularityValues::getInstance()->getValues(), 'checkin_entry_point_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostCheckinEntryPointValues::getInstance()->getValues(), 'formatting_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostFormattingValues::getInstance()->getValues(), 'place_attachment_setting_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostPlaceAttachmentSettingValues::getInstance()->getValues(), 'post_surfaces_blacklist_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostPostSurfacesBlacklistValues::getInstance()->getValues(), 'posting_to_redspace_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostPostingToRedspaceValues::getInstance()->getValues(), 'target_surface_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostTargetSurfaceValues::getInstance()->getValues(), 'unpublished_content_type_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PostUnpublishedContentTypeValues::getInstance()->getValues());
+        $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_POST, '/feed', new \PYS_PRO_GLOBAL\FacebookAds\Object\Post(), 'EDGE', \PYS_PRO_GLOBAL\FacebookAds\Object\Post::getFieldsEnum()->getValues(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
+        $request->addParams($params);
+        $request->addFields($fields);
+        return $pending ? $request : $request->execute();
+    }
+    public function getFiles(array $fields = array(), array $params = array(), $pending = \false)
+    {
+        $this->assureId();
+        $param_types = array();
+        $enums = array();
+        $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_GET, '/files', new \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject(), 'EDGE', array(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
         $request->addParams($params);
         $request->addFields($fields);
         return $pending ? $request : $request->execute();

@@ -41,6 +41,8 @@
 .dgwt-wcas-settings > .warning:not(.dgwt-wcas-notice),
 .dgwt-wcas-settings > .updated:not(.dgwt-wcas-notice),
 .woocommerce_page_dgwt_wcas_settings .update-nag,
+.woocommerce_page_dgwt_wcas_settings .dup-updated,
+.woocommerce_page_dgwt_wcas_settings .sbi_notice,
 .dgwt-wcas-settings > .updated:not(.fs-slug-ajax-search-for-woocommerce) {
     display: none!important;
 }
@@ -1112,6 +1114,12 @@ td.dgwt-wcas-indexing-details-row a {
     display: inline-block;
     border-bottom: 1px solid #444;
 }
+.dgwt_wcas_settings-group .selectize-dropdown-content .optgroup .optgroup-header {
+    font-weight: bold;
+}
+.dgwt_wcas_settings-group .selectize-dropdown-content .optgroup .option {
+    padding-left: 20px;
+}
 
 .dgwt_wcas_settings-group .wp-picker-clear {
     display: none;
@@ -1420,6 +1428,10 @@ td.dgwt-wcas-indexing-details-row a {
     color: #000;
 }
 
+.dgwt-wcas-sgs-market-label label img {
+	max-width: 64px;
+}
+
 /**
  * Troubleshooting
  */
@@ -1484,4 +1496,60 @@ h3.dgwt-wcas-troubleshooting-issue-title {
 
 .dgwt-wcas-troubleshooting-wrapper input[name="dgwt-wcas-reset-async-tests"] {
 	margin-top: 30px;
+}
+
+/* Settings - Filters rules */
+#dgwt-wcas-settings-filters-rules .dgwt-wcas-select-group {
+	margin-right: 10px;
+}
+
+#dgwt-wcas-settings-filters-rules .dgwt-wcas-delete-rule {
+	height: 24px;
+	width: 24px;
+	cursor: pointer;
+	display: block;
+}
+
+.dgwt-wcas-settings-filters-rules-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: start;
+	align-content: start;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.dgwt-wcas-settings-filters-rules-item {
+	flex: 0 0 auto;
+}
+
+.dgwt-wcas-settings-filters-rules-container .selectize-control {
+	margin-right: 10px;
+}
+
+.dgwt-wcas-settings-filters-rules-container .selectize-control.loading::before {
+	opacity: 1;
+}
+
+.dgwt-wcas-settings-filters-rules-container .selectize-control::before {
+	-moz-transition: opacity 0.2s;
+	-webkit-transition: opacity 0.2s;
+	transition: opacity 0.2s;
+	content: ' ';
+	z-index: 2;
+	position: absolute;
+	display: block;
+	top: 50%;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	margin: -12px 0 0 0;
+	background: url(../img/preloader.gif);
+	background-size: 20px 20px;
+	opacity: 0;
+}
+
+.dgwt-wcas-settings-filters-rules-container .selectize-control.single::before {
+	right: 34px;
 }

@@ -35,7 +35,6 @@ use PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum;
  */
 class IGMediaFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
 {
-    const ALT_TEXT = 'alt_text';
     const CAPTION = 'caption';
     const COMMENTS_COUNT = 'comments_count';
     const ID = 'id';
@@ -52,6 +51,6 @@ class IGMediaFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const USERNAME = 'username';
     public function getFieldTypes()
     {
-        return array('alt_text' => 'string', 'caption' => 'string', 'comments_count' => 'int', 'id' => 'string', 'ig_id' => 'string', 'is_comment_enabled' => 'bool', 'like_count' => 'int', 'media_type' => 'string', 'media_url' => 'string', 'owner' => 'IGUser', 'permalink' => 'string', 'shortcode' => 'string', 'thumbnail_url' => 'string', 'timestamp' => 'datetime', 'username' => 'string');
+        return array('caption' => 'string', 'comments_count' => 'int', 'id' => 'string', 'ig_id' => 'string', 'is_comment_enabled' => 'bool', 'like_count' => 'int', 'media_type' => 'string', 'media_url' => 'string', 'owner' => 'IGUser', 'permalink' => 'string', 'shortcode' => 'string', 'thumbnail_url' => 'string', 'timestamp' => 'datetime', 'username' => 'string');
     }
 }

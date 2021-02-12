@@ -2,6 +2,8 @@
 /**
  
  STOP SENDING NOTIFICATION MAILS TO THE USERS 
+ version 1.5.3
+ fixed: Email automatic plugin update notification to admin option
  version 1.5.2
  added: Email automatic plugin update notification to admin option
  added: Email automatic theme update notification to admin option
@@ -340,11 +342,10 @@ if (empty($famne_options['auto_plugin_update_send_email']) ) :
     //echo "auto_plugin_update_send_email off";
     function fa_auto_plugin_update_send_email($notifications_enabled,$update_results_plugins)
     {
-        if ( $notifications_enabled ) {
-            foreach ( $update_results_plugins as $update_result ) {
-                // do we have a failed update?
-                if ( true !== $update_result->result ) $notifications_enabled = false;
-            }
+        $notifications_enabled = false;
+        foreach ( $update_results_plugins as $update_result ) {
+            // do we have a failed update?
+            if ( true !== $update_result->result ) $notifications_enabled = true;
         }
         return $notifications_enabled;
     }

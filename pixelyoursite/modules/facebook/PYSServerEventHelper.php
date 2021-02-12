@@ -55,7 +55,7 @@ class ServerEventHelper {
             }
         }
 
-        return null;
+        return "127.0.0.1";
     }
 
     private static function isValidIpAddress($ip_address) {
@@ -116,9 +116,9 @@ class ServerEventHelper {
          * Add purchase WooCommerce Advanced Matching params
          */
         if ( PixelYourSite\isWooCommerceActive() && isEventEnabled( 'woo_purchase_enabled' ) &&
-            ($wooOrder || (is_order_received_page() && isset( $_REQUEST['key']))) ) {
+            ($wooOrder || (is_order_received_page() && isset( $_REQUEST['key']) && $_REQUEST['key'] != "" )) ) {
 
-            if(isset( $_REQUEST['key'])) {
+            if(isset( $_REQUEST['key']) && $_REQUEST['key'] != "") {
                 $order_key = sanitize_key($_REQUEST['key']);
                 $order_id = wc_get_order_id_by_order_key( $order_key );
             } else {

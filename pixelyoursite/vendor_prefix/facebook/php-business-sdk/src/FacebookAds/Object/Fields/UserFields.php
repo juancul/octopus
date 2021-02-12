@@ -36,14 +36,10 @@ use PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum;
 class UserFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
 {
     const ABOUT = 'about';
-    const ADDRESS = 'address';
-    const ADMIN_NOTES = 'admin_notes';
     const AGE_RANGE = 'age_range';
-    const AUTH_METHOD = 'auth_method';
     const BIRTHDAY = 'birthday';
     const COVER = 'cover';
     const CURRENCY = 'currency';
-    const DEVICES = 'devices';
     const EDUCATION = 'education';
     const EMAIL = 'email';
     const FAVORITE_ATHLETES = 'favorite_athletes';
@@ -66,15 +62,12 @@ class UserFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const LOCALE = 'locale';
     const LOCATION = 'location';
     const MEETING_FOR = 'meeting_for';
-    const MESSENGER_JOIN_NOTIFICATIONS_ENABLED = 'messenger_join_notifications_enabled';
     const MIDDLE_NAME = 'middle_name';
     const NAME = 'name';
     const NAME_FORMAT = 'name_format';
     const PAYMENT_PRICEPOINTS = 'payment_pricepoints';
     const POLITICAL = 'political';
     const PROFILE_PIC = 'profile_pic';
-    const PUBLIC_KEY = 'public_key';
-    const PUBLISHED_TIMELINE = 'published_timeline';
     const QUOTES = 'quotes';
     const RELATIONSHIP_STATUS = 'relationship_status';
     const RELIGION = 'religion';
@@ -87,14 +80,11 @@ class UserFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const TIMEZONE = 'timezone';
     const TOKEN_FOR_BUSINESS = 'token_for_business';
     const UPDATED_TIME = 'updated_time';
-    const USER_STORAGE_KEY = 'user_storage_key';
-    const USERNAME = 'username';
     const VERIFIED = 'verified';
     const VIDEO_UPLOAD_LIMITS = 'video_upload_limits';
     const WEBSITE = 'website';
-    const WORK = 'work';
     public function getFieldTypes()
     {
-        return array('about' => 'string', 'address' => 'Location', 'admin_notes' => 'list<PageAdminNote>', 'age_range' => 'AgeRange', 'auth_method' => 'string', 'birthday' => 'string', 'cover' => 'UserCoverPhoto', 'currency' => 'Currency', 'devices' => 'list<UserDevice>', 'education' => 'list<Object>', 'email' => 'string', 'favorite_athletes' => 'list<Experience>', 'favorite_teams' => 'list<Experience>', 'first_name' => 'string', 'gender' => 'string', 'hometown' => 'Page', 'id' => 'string', 'inspirational_people' => 'list<Experience>', 'install_type' => 'string', 'installed' => 'bool', 'interested_in' => 'list<string>', 'is_guest_user' => 'bool', 'is_verified' => 'bool', 'languages' => 'list<Experience>', 'last_name' => 'string', 'link' => 'string', 'local_news_megaphone_dismiss_status' => 'bool', 'local_news_subscription_status' => 'bool', 'locale' => 'string', 'location' => 'Page', 'meeting_for' => 'list<string>', 'messenger_join_notifications_enabled' => 'bool', 'middle_name' => 'string', 'name' => 'string', 'name_format' => 'string', 'payment_pricepoints' => 'PaymentPricepoints', 'political' => 'string', 'profile_pic' => 'string', 'public_key' => 'string', 'published_timeline' => 'bool', 'quotes' => 'string', 'relationship_status' => 'string', 'religion' => 'string', 'shared_login_upgrade_required_by' => 'datetime', 'short_name' => 'string', 'significant_other' => 'User', 'sports' => 'list<Experience>', 'supports_donate_button_in_live_video' => 'bool', 'third_party_id' => 'string', 'timezone' => 'float', 'token_for_business' => 'string', 'updated_time' => 'datetime', 'user_storage_key' => 'string', 'username' => 'string', 'verified' => 'bool', 'video_upload_limits' => 'VideoUploadLimits', 'website' => 'string', 'work' => 'list<Object>');
+        return array('about' => 'string', 'age_range' => 'AgeRange', 'birthday' => 'string', 'cover' => 'UserCoverPhoto', 'currency' => 'Currency', 'education' => 'list<Object>', 'email' => 'string', 'favorite_athletes' => 'list<Experience>', 'favorite_teams' => 'list<Experience>', 'first_name' => 'string', 'gender' => 'string', 'hometown' => 'Page', 'id' => 'string', 'inspirational_people' => 'list<Experience>', 'install_type' => 'string', 'installed' => 'bool', 'interested_in' => 'list<string>', 'is_guest_user' => 'bool', 'is_verified' => 'bool', 'languages' => 'list<Experience>', 'last_name' => 'string', 'link' => 'string', 'local_news_megaphone_dismiss_status' => 'bool', 'local_news_subscription_status' => 'bool', 'locale' => 'string', 'location' => 'Page', 'meeting_for' => 'list<string>', 'middle_name' => 'string', 'name' => 'string', 'name_format' => 'string', 'payment_pricepoints' => 'PaymentPricepoints', 'political' => 'string', 'profile_pic' => 'string', 'quotes' => 'string', 'relationship_status' => 'string', 'religion' => 'string', 'shared_login_upgrade_required_by' => 'datetime', 'short_name' => 'string', 'significant_other' => 'User', 'sports' => 'list<Experience>', 'supports_donate_button_in_live_video' => 'bool', 'third_party_id' => 'string', 'timezone' => 'float', 'token_for_business' => 'string', 'updated_time' => 'datetime', 'verified' => 'bool', 'video_upload_limits' => 'VideoUploadLimits', 'website' => 'string');
     }
 }

@@ -283,6 +283,17 @@ a.dgwt-wcas-product-details-readmore:hover {
     font-size: 0.8em;
 }
 
+.dgwt-wcas-vendor-city{
+	margin-left:5px;
+	font-size: 0.8em;;
+}
+
+.dgwt-wcas-st > .dgwt-wcas-product-vendor{
+	font-size:12px;
+	margin-top:5px;
+	display: block;
+}
+
 .dgwt-wcas-suggestion-selected {
     background-color: #eeeeee;
 }
@@ -1215,13 +1226,23 @@ body:not(.dgwt-wcas-is-details) .dgwt-wcas-suggestion:last-child {
     width: 100%;
 }
 
-.dgwt-wcas-om-bar .dgwt-wcas-om-return {
-    width: 45px;
-    height: 100%;
-    display: block;
-    background: #ccc;
-    cursor: pointer;
-    position: relative;
+.dgwt-wcas-om-bar button.dgwt-wcas-om-return,
+.dgwt-wcas-om-bar button.dgwt-wcas-om-return:hover,
+.dgwt-wcas-om-bar button.dgwt-wcas-om-return:focus,
+.dgwt-wcas-om-bar button.dgwt-wcas-om-return:active {
+	width: 45px;
+	height: 100%;
+	display: block;
+	background: #ccc;
+	cursor: pointer;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	outline: none;
+	border: medium none;
+	border-spacing: 0;
+	border-radius: 0;
 }
 
 .dgwt-wcas-om-bar .dgwt-wcas-om-return svg {

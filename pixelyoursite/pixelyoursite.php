@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-define( 'PYS_FREE_VERSION', '7.2.1.1' );
-define( 'PYS_FREE_PINTEREST_MIN_VERSION', '2.0.6' );
-define( 'PYS_FREE_BING_MIN_VERSION', '1.0.0' );
+define( 'PYS_FREE_VERSION', '8.0.6' );
+define( 'PYS_FREE_PINTEREST_MIN_VERSION', '3.0.0' );
+define( 'PYS_FREE_BING_MIN_VERSION', '2.0.0' );
 define( 'PYS_FREE_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'PYS_FREE_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 
@@ -21,6 +21,16 @@ require_once PYS_FREE_PATH.'/vendor/autoload.php';
 require_once PYS_FREE_PATH.'/includes/class-event-id-generator.php';
 require_once PYS_FREE_PATH.'/includes/functions-common.php';
 require_once PYS_FREE_PATH.'/includes/functions-admin.php';
+require_once PYS_FREE_PATH.'/includes/events/class-event.php';
+require_once PYS_FREE_PATH.'/includes/events/interface-events.php';
+require_once PYS_FREE_PATH.'/includes/events/class-event-single.php';
+require_once PYS_FREE_PATH.'/includes/events/class-event-grouped.php';
+require_once PYS_FREE_PATH.'/includes/events/class-events-signal.php';
+require_once PYS_FREE_PATH.'/includes/events/class-events-woo.php';
+require_once PYS_FREE_PATH.'/includes/events/class-events-edd.php';
+require_once PYS_FREE_PATH.'/includes/events/class-events-fdp.php';
+require_once PYS_FREE_PATH.'/includes/events/class-events-custom.php';
+
 require_once PYS_FREE_PATH.'/includes/functions-custom-event.php';
 require_once PYS_FREE_PATH.'/includes/functions-woo.php';
 require_once PYS_FREE_PATH.'/includes/functions-edd.php';

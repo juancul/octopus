@@ -45,6 +45,7 @@ class ApplicationSupportedPlatformsValues extends \PYS_PRO_GLOBAL\FacebookAds\En
     const IPHONE = 'IPHONE';
     const MOBILE_WEB = 'MOBILE_WEB';
     const OCULUS = 'OCULUS';
+    const SAMSUNG = 'SAMSUNG';
     const SUPPLEMENTARY_IMAGES = 'SUPPLEMENTARY_IMAGES';
     const WEB = 'WEB';
     const WINDOWS = 'WINDOWS';

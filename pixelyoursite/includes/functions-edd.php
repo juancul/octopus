@@ -13,9 +13,9 @@ function getEddPaymentKey() {
 
 	if ( isset( $_GET['payment_key'] ) ) {
 		return urldecode( $_GET['payment_key'] );
-	} else if ( $session ) {
+	} else if ( $session && isset($session['purchase_key']) ) {
 		return $session['purchase_key'];
-	} elseif ( $edd_receipt_args['payment_key'] ) {
+	} elseif (  $edd_receipt_args && isset($edd_receipt_args['payment_key']) && $edd_receipt_args['payment_key'] ) {
 		return $edd_receipt_args['payment_key'];
 	} else {
 		return false;

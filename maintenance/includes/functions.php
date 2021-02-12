@@ -301,7 +301,7 @@ function mtnc_add_review_top() {
 function mtnc_accessibe_side() {
   $promo_text  = '';
 
-  $promo_text .= '<p><b>20% of people who visit your site can\'t use it properly</b> because they have a disability. Making your site accessible is required by law and you can face heavy fines for not doing it.</p><p>By using the <a href="#" class="open-accessibe-upsell">accessiBe plugin</a> you can make your site accessible. This will not only save you from fines but instantly grow your audience.</p>';
+  $promo_text .= '<p><b>20% of people who visit your site have a disability and can\'t use it properly.</b> Making your site accessible is required by law in many countries and you can face heavy fines for not doing it.</p><p>By using the <a href="#" class="open-accessibe-upsell">accessiBe plugin</a> and their accessiBe AI service you can make your site accessible. This will not only save you from fines but instantly grow your audience.</p>';
   $promo_text .= '<p class="textcenter"><a href="#" class="open-accessibe-upsell"><img style="max-width: 80%;" src="' . MTNC_URI . 'images/accessibe-logo.png" alt="Install the accessiBe plugin" title="Install the accessiBe plugin"></a></p>';
 
   echo $promo_text;
@@ -457,7 +457,7 @@ function mtnc_accessibe_option() {
     echo '<tr>';
     echo '<th><label for="accessibe_support">Web Accessibility</label></th>';
     echo '<td style="line-height: 1.5;">';
-    echo '<input type="checkbox" id="accessibe_support" type="checkbox" value="1" class="skip-save">Your maintenance page is currently <b>not fully accessible for over 20% of visitors</b> with dissabilities.<br> Make your site accessible from day one by installing the <a href="#" class="open-accessibe-upsell">accessiBe plugin.</a>';
+    echo '<input type="checkbox" id="accessibe_support" type="checkbox" value="1" class="skip-save">Your maintenance page is currently <b>not fully accessible for over 20% of visitors who have a disability</b>.<br> Make your site accessible from day one by installing the free <a href="#" class="open-accessibe-upsell">accessiBe plugin.</a>';
     echo '</td>';
     echo '</tr>';
   }
@@ -2845,7 +2845,8 @@ function mtnc_load_maintenance_page($original_template)
     return MTNC_LOAD . 'index.php';
   }
 
-  if (!is_user_logged_in()) {
+  $not_logged_in = !is_user_logged_in();
+  if (apply_filters('mtnc_load_maintenance_page_for_this_user', $not_logged_in)) {
     if (!empty($mt_options['state'])) {
 
       if (!empty($mt_options['expiry_date_start'])) {

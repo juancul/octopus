@@ -38,5 +38,6 @@ class BusinessAssetGroupAdaccountTasksValues extends \PYS_PRO_GLOBAL\FacebookAds
 {
     const ADVERTISE = 'ADVERTISE';
     const ANALYZE = 'ANALYZE';
+    const DRAFT = 'DRAFT';
     const MANAGE = 'MANAGE';
 }

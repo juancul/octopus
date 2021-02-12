@@ -81,21 +81,6 @@ class FacebookServer {
 
         if($event == "hCR") $event="CompleteRegistration"; // de mask completer registration event if it was hidden
 
-        if(isset($data['content_ids'])) {
-            $content_ids = json_decode(stripslashes($data['content_ids']));
-            $data['content_ids']=$content_ids;
-        }
-
-        if(isset($data['contents'])) {
-            if(is_array($data['contents'])) {
-                $contents = json_decode(json_encode($data['contents']));
-            } else {
-                $contents = json_decode(stripslashes($data['contents']));
-            }
-
-            $data['contents']=$contents;
-        }
-
         $event = $this->createEvent($eventID,$event,$data,$wooOrder,$eddOrder);
         if($event) {
             $this->sendEvent($ids,array($event));
@@ -118,14 +103,16 @@ class FacebookServer {
         $event = ServerEventHelper::newEvent($name,$eventID,$wooOrder,$eddOrder);
 
         $event->setEventTime(time());
+        $event->setEventSourceUrl($data["event_url"]);
+        $event->setActionSource("website");
 
         // prepare data
         if(isset($data['contents']) && is_array($data['contents'])) {
             $contents = array();
             foreach ($data['contents'] as $c) {
                 $content = array();
-                $content['product_id'] = $c->id;
-                $content['quantity'] = $c->quantity;
+                $content['product_id'] = $c['id'];
+                $content['quantity'] = $c['quantity'];
               //  $content['item_price'] = $c->item_price;
                 $contents[] = new Content($content);
             }
@@ -160,10 +147,11 @@ class FacebookServer {
         }
 
 
-        $custom_values = ["post_type",'post_id','categories','tags','video_type',
+        $custom_values = ['event_action','download_type','download_name','download_url','target_url','text','trigger','traffic_source','plugin','user_role','event_url','page_title',"post_type",'post_id','categories','tags','video_type',
             'video_id','video_title','event_trigger','link_type','tag_text',"URL",
             'form_id','form_class','form_submit_label','transactions_count','average_order',
-            'shipping_cost','tax','total','shipping'];
+            'shipping_cost','tax','total','shipping','coupon_used'];
+
 
         foreach ($custom_values as $val) {
             if(isset($data[$val]))
@@ -193,7 +181,7 @@ class FacebookServer {
 
             if(empty($this->access_token[$pixel_Id])) continue;
 
-            $api = Api::init(null, null, $this->access_token[$pixel_Id]);
+            $api = Api::init(null, null, $this->access_token[$pixel_Id],false);
 
             $request = (new EventRequest($pixel_Id))->setEvents($events);
             $request->setPartnerAgent("dvpixelyoursite");
@@ -206,7 +194,7 @@ class FacebookServer {
             try{
                 $response = $request->execute();
             } catch (\Exception   $e) {
-                error_log("error send Fb API request ".$e->getErrorUserMessage());
+                error_log("error send Fb API request ".$e->getMessage());
             }
 
             if($this->isDebug && isset($response))  error_log("fb api response ".print_r($response,true));

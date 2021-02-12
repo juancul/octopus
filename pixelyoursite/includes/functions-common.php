@@ -688,9 +688,12 @@ function sanitizeParams( $params ) {
 	foreach ( $params as $key => $value ) {
 
 		// skip empty (but not zero)
-		if ( ! isset( $value ) && ! is_numeric( $value ) ) {
-			continue;
-		}
+        if ( ! isset( $value )  ||
+            (is_string($value) && $value == "") ||
+            (is_array($value) && count($value) == 0)
+        ) {
+            continue;
+        }
 
 		$key = sanitizeKey( $key );
 
@@ -701,7 +704,7 @@ function sanitizeParams( $params ) {
 		} elseif ( is_bool( $value ) ) {
 			$sanitized[ $key ] = (bool) $value;
 		} else {
-			$sanitized[ $key ] = html_entity_decode( $value );
+			$sanitized[ $key ] = stripslashes(html_entity_decode( $value ));
 		}
 
 	}
@@ -1014,4 +1017,68 @@ function getPysCurrencySymbols() {
         'ZAR' => '&#82;',
         'ZMW' => 'ZK',
     );
+}
+
+function getStandardParams() {
+    global $post;
+    $cpt = get_post_type();
+    $params = array(
+        'page_title' => "",
+        'post_type' => $cpt,
+        'post_id' => "",
+        'event_url' => getCurrentPageUrl(),
+        'user_role' => getUserRoles(),
+        'plugin' => "PixelYourSite"
+    );
+
+
+    if(is_singular( 'post' )) {
+        $params['page_title'] = $post->post_title;
+        $params['post_id']   = $post->ID;
+
+    } elseif( is_singular( 'page' ) || is_home()) {
+        $params['post_type']    = 'page';
+        $params['post_id']      = is_home() ? null : $post->ID;
+        $params['page_title']   = is_home() == true ? get_bloginfo( 'name' ) : $post->post_title;
+
+    } elseif (isWooCommerceActive() && is_shop()) {
+        $page_id = (int) wc_get_page_id( 'shop' );
+        $params['post_type'] = 'page';
+        $params['post_id']   = $page_id;
+        $params['page_title'] = get_the_title( $page_id );
+
+    } elseif ( is_category() ) {
+        $cat  = get_query_var( 'cat' );
+        $term = get_category( $cat );
+        $params['post_type']    = 'category';
+        $params['post_id']      = $cat;
+        $params['page_title'] = $term->name;
+
+    } elseif ( is_tag() ) {
+        $slug = get_query_var( 'tag' );
+        $term = get_term_by( 'slug', $slug, 'post_tag' );
+        $params['post_type']    = 'tag';
+        $params['post_id']      = $term->term_id;
+        $params['page_title']   = $term->name;
+
+    } elseif (is_tax()) {
+        $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+        $params['post_type'] = get_query_var( 'taxonomy' );
+        if ( $term ) {
+            $params['post_id']      = $term->term_id;
+            $params['page_title'] = $term->name;
+        }
+
+    } elseif ((isWooCommerceActive() && $cpt == 'product') ||
+        (isEddActive() && $cpt == 'download') ) {
+        $params['page_title'] = $post->post_title;
+        $params['post_id']   = $post->ID;
+
+    } else if ($post instanceof \WP_Post) {
+        $params['page_title'] = $post->post_title;
+        $params['post_id']   = $post->ID;
+    }
+
+
+    return $params;
 }

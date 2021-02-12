@@ -315,16 +315,6 @@ class Page extends \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject
         $request->addFields($fields);
         return $pending ? $request : $request->execute();
     }
-    public function deleteClaimedUrls(array $fields = array(), array $params = array(), $pending = \false)
-    {
-        $this->assureId();
-        $param_types = array('url' => 'string');
-        $enums = array();
-        $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_DELETE, '/claimed_urls', new \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject(), 'EDGE', array(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
-        $request->addParams($params);
-        $request->addFields($fields);
-        return $pending ? $request : $request->execute();
-    }
     public function getClaimedUrls(array $fields = array(), array $params = array(), $pending = \false)
     {
         $this->assureId();
@@ -678,7 +668,7 @@ class Page extends \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject
     public function createLocation(array $fields = array(), array $params = array(), $pending = \false)
     {
         $this->assureId();
-        $param_types = array('always_open' => 'bool', 'delivery_and_pickup_option_info' => 'list<string>', 'differently_open_offerings' => 'map', 'hours' => 'map', 'ignore_warnings' => 'bool', 'location' => 'Object', 'location_page_id' => 'string', 'old_store_number' => 'unsigned int', 'page_username' => 'string', 'permanently_closed' => 'bool', 'phone' => 'string', 'pickup_options' => 'list<pickup_options_enum>', 'place_topics' => 'list<string>', 'price_range' => 'string', 'store_code' => 'string', 'store_location_descriptor' => 'string', 'store_name' => 'string', 'store_number' => 'unsigned int', 'temporary_status' => 'temporary_status_enum', 'website' => 'string');
+        $param_types = array('always_open' => 'bool', 'delivery_and_pickup_option_info' => 'list<string>', 'differently_open_offerings' => 'map', 'hours' => 'map', 'ignore_warnings' => 'bool', 'location' => 'Object', 'location_page_id' => 'string', 'old_store_number' => 'unsigned int', 'permanently_closed' => 'bool', 'phone' => 'string', 'pickup_options' => 'list<pickup_options_enum>', 'place_topics' => 'list<string>', 'price_range' => 'string', 'store_code' => 'string', 'store_location_descriptor' => 'string', 'store_name' => 'string', 'store_number' => 'unsigned int', 'temporary_status' => 'temporary_status_enum', 'website' => 'string');
         $enums = array('pickup_options_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PagePickupOptionsValues::getInstance()->getValues(), 'temporary_status_enum' => \PYS_PRO_GLOBAL\FacebookAds\Object\Values\PageTemporaryStatusValues::getInstance()->getValues());
         $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_POST, '/locations', new \PYS_PRO_GLOBAL\FacebookAds\Object\Page(), 'EDGE', \PYS_PRO_GLOBAL\FacebookAds\Object\Page::getFieldsEnum()->getValues(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
         $request->addParams($params);
@@ -739,7 +729,7 @@ class Page extends \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject
     {
         $this->assureId();
         $param_types = array('fields' => 'list<fields_enum>');
-        $enums = array('fields_enum' => array('ACCOUNT_LINKING_URL', 'GET_STARTED', 'GREETING', 'HOME_URL', 'ICE_BREAKERS', 'PAYMENT_SETTINGS', 'PERSISTENT_MENU', 'PLATFORM', 'TARGET_AUDIENCE', 'WHITELISTED_DOMAINS'));
+        $enums = array('fields_enum' => array('ACCOUNT_LINKING_URL', 'GET_STARTED', 'GREETING', 'HOME_URL', 'ICE_BREAKERS', 'PAYMENT_SETTINGS', 'PERSISTENT_MENU', 'PLATFORM', 'SUBJECT_TO_NEW_EU_PRIVACY_RULES', 'TARGET_AUDIENCE', 'WHITELISTED_DOMAINS'));
         $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_DELETE, '/messenger_profile', new \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject(), 'EDGE', array(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
         $request->addParams($params);
         $request->addFields($fields);
@@ -1130,7 +1120,7 @@ class Page extends \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject
         $this->assureId();
         $param_types = array();
         $enums = array();
-        $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_GET, '/tours', new \PYS_PRO_GLOBAL\FacebookAds\Object\EventTour(), 'EDGE', \PYS_PRO_GLOBAL\FacebookAds\Object\EventTour::getFieldsEnum()->getValues(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
+        $request = new \PYS_PRO_GLOBAL\FacebookAds\ApiRequest($this->api, $this->data['id'], \PYS_PRO_GLOBAL\FacebookAds\Http\RequestInterface::METHOD_GET, '/tours', new \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject(), 'EDGE', array(), new \PYS_PRO_GLOBAL\FacebookAds\TypeChecker($param_types, $enums));
         $request->addParams($params);
         $request->addFields($fields);
         return $pending ? $request : $request->execute();

@@ -76,6 +76,8 @@ class Scripts
             'preloader_icon'               => Helpers::getIcon( 'preloader' ),
             'custom_params'                => (object) apply_filters( 'dgwt/wcas/scripts/custom_params', array() ),
             'convert_html'                 => true,
+            'suggestions_wrapper'          => apply_filters( 'dgwt/wcas/scripts/suggestions_wrapper', 'body' ),
+            'show_product_vendor'          => dgoraAsfwFs()->is_premium() && class_exists( 'DgoraWcas\\Integrations\\Marketplace\\Marketplace' ) && DGWT_WCAS()->marketplace->showProductVendor(),
         );
         if ( Multilingual::isMultilingual() ) {
             $localize['current_lang'] = Multilingual::getCurrentLanguage();

@@ -101,7 +101,11 @@ if (!Array.prototype.includes) {
             },
 
             onEddRemoveFromCartEvent: function (item) {
-            }
+            },
+            onPageScroll: function (event) {},
+            onTime: function (event) {
+
+            },
 
         }
 
@@ -164,7 +168,13 @@ if (!Array.prototype.includes) {
             },
 
             onEddRemoveFromCartEvent: function (item) {
-            }
+            },
+
+            onPageScroll: function (event) {
+            },
+
+            onTime: function (event) {
+            },
 
         }
 
@@ -205,6 +215,20 @@ if (!Array.prototype.includes) {
          * PUBLIC API
          */
         return {
+            PRODUCT_SIMPLE : 0,
+            PRODUCT_VARIABLE : 1,
+            PRODUCT_BUNDLE : 2,
+            PRODUCT_GROUPED : 3,
+            fireEventForAllPixel:function(functionName,events){
+                if (events.hasOwnProperty(Facebook.tag()))
+                    Facebook[functionName](events[Facebook.tag()]);
+                if (events.hasOwnProperty(Analytics.tag()))
+                    Analytics[functionName](events[Analytics.tag()]);
+                if (events.hasOwnProperty(Pinterest.tag()))
+                    Pinterest[functionName](events[Pinterest.tag()]);
+                if (events.hasOwnProperty(Bing.tag()))
+                    Bing[functionName](events[Bing.tag()]);
+            },
 
             setupPinterestObject: function () {
                 Pinterest = window.pys.Pinterest || Pinterest;
@@ -222,6 +246,40 @@ if (!Array.prototype.includes) {
                     to[key] = from[key];
                 }
                 return to;
+            },
+            // clone object
+            clone: function(obj) {
+                var copy;
+
+                // Handle the 3 simple types, and null or undefined
+                if (null == obj || "object" != typeof obj) return obj;
+
+                // Handle Date
+                if (obj instanceof Date) {
+                    copy = new Date();
+                    copy.setTime(obj.getTime());
+                    return copy;
+                }
+
+                // Handle Array
+                if (obj instanceof Array) {
+                    copy = [];
+                    for (var i = 0, len = obj.length; i < len; i++) {
+                        copy[i] = Utils.clone(obj[i]);
+                    }
+                    return copy;
+                }
+
+                // Handle Object
+                if (obj instanceof Object) {
+                    copy = {};
+                    for (var attr in obj) {
+                        if (obj.hasOwnProperty(attr)) copy[attr] = Utils.clone(obj[attr]);
+                    }
+                    return copy;
+                }
+
+                return obj;
             },
 
             // Returns array of elements with given tag name
@@ -260,10 +318,9 @@ if (!Array.prototype.includes) {
 
                 // Non-default binding used to avoid situations when some code in external js
                 // stopping events propagation, eg. returns false, and our handler will never called
-                $(document).onFirst('click', triggers.join(','), function () {
-                    Utils.fireDynamicEvent(eventId);
+                $(triggers.join(',')).onFirst('click',  function () {
+                    Utils.fireTriggerEvent(eventId);
                 });
-
             },
 
             setupURLClickEvents: function () {
@@ -277,12 +334,13 @@ if (!Array.prototype.includes) {
                         eventId = parseInt(eventId);
 
                         if (isNaN(eventId) === false) {
-                            Utils.fireDynamicEvent(eventId);
+                            Utils.fireTriggerEvent(eventId);
                         }
 
                     });
 
                 });
+
 
             },
 
@@ -302,7 +360,7 @@ if (!Array.prototype.includes) {
 
                 });
 
-                $(document).scroll(function () {
+                $(document).on("scroll",function () {
 
                     var scrollPos = $(window).scrollTop();
 
@@ -320,39 +378,59 @@ if (!Array.prototype.includes) {
                             scrollPosThresholds[threshold] = null;
                         }
 
-                        Utils.fireDynamicEvent(eventId);
+                        Utils.fireTriggerEvent(eventId);
 
                     });
 
                 });
 
+
             },
             setupCommentEvents : function (eventId,triggers) {
                 $('form.comment-form').on("submit",function () {
-                    Utils.fireDynamicEvent(eventId);
+                    Utils.fireTriggerEvent(eventId);
                 });
             },
 
             /**
              * Events
              */
+            fireTriggerEvent: function (eventId) {
 
-            fireDynamicEvent: function (eventId) {
-
-                if (!options.dynamicEventsParams.hasOwnProperty(eventId)) {
+                if (!options.triggerEvents.hasOwnProperty(eventId)) {
                     return;
                 }
 
                 var event = {};
+                var events = options.triggerEvents[eventId];
 
-                if (options.dynamicEventsParams[eventId].hasOwnProperty('facebook')) {
-
-                    event = Utils.copyProperties(options.dynamicEventsParams[eventId]['facebook'], {});
-                    Facebook.fireEvent(event.name, { params: event.params });
+                if (events.hasOwnProperty('facebook')) {
+                    event = events.facebook;
+                    if(Utils.isEventInTimeWindow(event.name,event,"dyn_facebook_"+eventId)) {
+                        Facebook.fireEvent(event.name, event);
+                    }
                 }
 
+                if (events.hasOwnProperty('ga')) {
+                    event = events.ga;
+                    if(Utils.isEventInTimeWindow(event.name,event,"dyn_ga_"+eventId)) {
+                        Analytics.fireEvent(event.name, event);
+                    }
+                }
 
+                if (events.hasOwnProperty('pinterest')) {
+                    event = events.pinterest;
+                    if(Utils.isEventInTimeWindow(event.name,event,"dyn_pinterest_"+eventId)) {
+                        Pinterest.fireEvent(event.name, event);
+                    }
+                }
 
+                if (events.hasOwnProperty('bing')) {
+                    event = events.bing;
+                    if(Utils.isEventInTimeWindow(event.name,event,"dyn_bing_"+eventId)) {
+                        Bing.fireEvent(event.name, event);
+                    }
+                }
             },
 
             fireStaticEvents: function (pixel) {
@@ -705,23 +783,15 @@ if (!Array.prototype.includes) {
 
         var initialized = false;
 
-        var serverEventsDynamic = ["AddToCart","RemoveFromCart","ClickEvent","AdSense","WatchVideo",'Comment','Form','Download'];
-        // add dynamic events from options
-        Object.keys(options.dynamicEventsParams).forEach(function(k){
-            if(options.dynamicEventsParams[k].hasOwnProperty('facebook')) {
-                serverEventsDynamic.push(options.dynamicEventsParams[k]['facebook']['name']);
-            }
-        });
-        serverEventsDynamic.push(options.woo.affiliateEventName);
-        serverEventsDynamic.push(options.woo.paypalEventName);
 
         function fireEvent(name, allData) {
 
             var actionType = defaultEventTypes.includes(name) ? 'track' : 'trackCustom';
             var data = allData.params;
             var params = {};
+            var arg = {};
             Utils.copyProperties(data, params);
-            Utils.copyProperties(options.commonEventParams, params);
+
 
             if(options.facebook.serverApiEnabled) {
                 // fire server side event gdpr plugin installed
@@ -733,12 +803,12 @@ if (!Array.prototype.includes) {
                     options.gdpr.cookie_law_info_integration_enabled;
 
                 // Update eventID
-                if( options.facebook.ajaxForServerEvent || serverEventsDynamic.includes(name) ) {
+                if( options.facebook.ajaxForServerEvent || allData.type !== "static" ) {
                     allData.eventID = pys_generate_token(36);
                 }
-
+                arg.eventID = allData.eventID;
                 // send event from server if they was bloc by gdpr or need send with delay
-                if(  options.facebook.ajaxForServerEvent || isApiDisabled || allData.delay > 0 || serverEventsDynamic.includes(name))
+                if(  options.facebook.ajaxForServerEvent || isApiDisabled || allData.delay > 0 || allData.type !== "static")
                 {
                     var json = {
                         action: 'pys_api_event',
@@ -761,7 +831,7 @@ if (!Array.prototype.includes) {
                             success: function(){},
                         });
                     } else {
-                        if(name != "AddToCart") { // AddToCart call from hook
+                       // if(name != "AddToCart") { // AddToCart call from hook
                             setTimeout(function (json) {
                                 jQuery.ajax({
                                     type: 'POST',
@@ -773,8 +843,8 @@ if (!Array.prototype.includes) {
                                     success: function () {
                                     },
                                 });
-                            }, 1000, json);
-                        }
+                            }, 500, json);
+                        //}
                     }
                 }
             }
@@ -787,10 +857,6 @@ if (!Array.prototype.includes) {
             if (options.debug) {
                 console.log('[Facebook] ' + name, params,"eventID",allData.eventID);
             }
-            var arg = {};
-            if(allData.hasOwnProperty('eventID')) {
-                arg.eventID = allData.eventID;
-            }
 
             fbq(actionType, name, params,arg);
         }
@@ -799,7 +865,9 @@ if (!Array.prototype.includes) {
          * Public API
          */
         return {
-
+            tag: function() {
+                return "facebook";
+            },
             isEnabled: function () {
                 return options.hasOwnProperty('facebook');
             },
@@ -882,102 +950,119 @@ if (!Array.prototype.includes) {
 
             },
 
-            onCommentEvent: function () {
-
-                if (initialized && this.isEnabled() && options.facebook.commentEventEnabled) {
-                    var param = {};
-                    this.fireEvent('Comment', {
-                        params: Utils.copyProperties(options.facebook.contentParams, param)
-                    });
-
-                }
-
+            onCommentEvent: function (event) {
+                this.fireEvent(event.name, event);
             },
 
-            onDownloadEvent: function (params) {
-
-                if (initialized && this.isEnabled() && options.facebook.downloadEnabled) {
-                    this.fireEvent('Download', {
-                        params: Utils.copyProperties(options.facebook.contentParams, params)
-                    });
-
-                }
-
+            onDownloadEvent: function (event) {
+                this.fireEvent(event.name, event);
             },
 
-            onFormEvent: function (params) {
+            onFormEvent: function (event) {
 
-                if (initialized && this.isEnabled() && options.facebook.formEventEnabled) {
-
-                    this.fireEvent('Form', {
-                        params: Utils.copyProperties(options.facebook.contentParams, params)
-                    });
-
-                }
+                this.fireEvent(event.name, event);
 
             },
 
             onWooAddToCartOnButtonEvent: function (product_id) {
 
+                if(!options.dynamicEvents.woo_add_to_cart_on_button_click.hasOwnProperty(this.tag()))
+                    return;
+                var event = options.dynamicEvents.woo_add_to_cart_on_button_click[this.tag()];
+
                 if (window.pysWooProductData.hasOwnProperty(product_id)) {
                     if (window.pysWooProductData[product_id].hasOwnProperty('facebook')) {
-
-                        this.fireEvent('AddToCart', {
-                            params: Utils.copyProperties(window.pysWooProductData[product_id]['facebook'], {})
-                        });
-
+                        event = Utils.copyProperties(event, {})
+                        Utils.copyProperties(window.pysWooProductData[product_id]['facebook'].params, event.params)
+                        this.fireEvent(event.name, event);
                     }
                 }
-
             },
 
-            onWooAddToCartOnSingleEvent: function (product_id, qty, is_variable, $form) {
+            onWooAddToCartOnSingleEvent: function (product_id, qty, product_type, $form) {
 
                 window.pysWooProductData = window.pysWooProductData || [];
-
+                if(!options.dynamicEvents.woo_add_to_cart_on_button_click.hasOwnProperty(this.tag()))
+                    return;
+                var event = Utils.clone(options.dynamicEvents.woo_add_to_cart_on_button_click[this.tag()]);
                 if (window.pysWooProductData.hasOwnProperty(product_id)) {
                     if (window.pysWooProductData[product_id].hasOwnProperty('facebook')) {
 
-                        if (is_variable && !options.facebook.wooVariableAsSimple) {
+                        if (product_type === Utils.PRODUCT_VARIABLE && !options.facebook.wooVariableAsSimple) {
                             product_id = parseInt($form.find('input[name="variation_id"]').val());
                         }
+                        Utils.copyProperties(window.pysWooProductData[product_id]['facebook'].params, event.params);
 
-                        var params = Utils.copyProperties(window.pysWooProductData[product_id]['facebook'], {});
+                        var groupValue = 0;
+                        if(product_type === Utils.PRODUCT_GROUPED ) {
+                            $form.find(".woocommerce-grouped-product-list .qty").each(function(index){
+                                var childId = $(this).attr('name').replaceAll("quantity[","").replaceAll("]","");
+                                var quantity = parseInt($(this).val());
+                                if(isNaN(quantity)) {
+                                    quantity = 0;
+                                }
+                                var childItem = window.pysWooProductData[product_id]['facebook'].grouped[childId];
+
+                                if(quantity == 0) {
+                                    event.params.content_ids.forEach(function(el,index,array) {
+                                        if(el == childItem.content_id) {
+                                            array.splice(index, 1);
+                                        }
+                                    });
+                                }
+
+                                if(event.params.hasOwnProperty('contents')) {
+                                    event.params.contents.forEach(function(el,index,array) {
+                                        if(el.id == childItem.content_id) {
+                                            if(quantity > 0){
+                                                el.quantity = quantity;
+                                            } else {
+                                                array.splice(index, 1);
+                                            }
+                                        }
+                                    });
+                                }
+
+
+                                groupValue += childItem.price * quantity;
+                            });
+                            if(groupValue == 0) return; // skip if no items selected
+                        }
 
                         // maybe customize value option
                         if (options.woo.addToCartOnButtonValueEnabled && options.woo.addToCartOnButtonValueOption !== 'global') {
-                            params.value = params.value * qty;
+
+                            if(product_type === Utils.PRODUCT_GROUPED) {
+                                event.params.value = groupValue;
+                            } else if(product_type === Utils.PRODUCT_BUNDLE) {
+                                var data = $(".bundle_form .bundle_data").data("bundle_form_data");
+                                var items_sum = getBundlePriceOnSingleProduct(data);
+                                event.params.value = (data.base_price+items_sum )* qty;
+                            } else {
+                                event.params.value = event.params.value * qty;
+                            }
                         }
 
                         // only when non Facebook for WooCommerce logic used
-                        if (params.hasOwnProperty('contents')) {
-                            params.contents[0].quantity = qty;
+                        if (event.params.hasOwnProperty('contents') && product_type !== Utils.PRODUCT_GROUPED) {
+                            event.params.contents[0].quantity = qty;
                         }
 
-                        this.fireEvent('AddToCart', {
-                            params: params
-                        });
+                        this.fireEvent(event.name, event);
 
                     }
                 }
-
             },
 
-            onWooRemoveFromCartEvent: function (cart_item_hash) {
-
-                window.pysWooRemoveFromCartData = window.pysWooRemoveFromCartData || [];
-
-                if (window.pysWooRemoveFromCartData[cart_item_hash].hasOwnProperty('facebook')) {
-
-                    this.fireEvent('RemoveFromCart', {
-                        params: Utils.copyProperties(window.pysWooRemoveFromCartData[cart_item_hash]['facebook'], {})
-                    });
-
-                }
-
+            onWooRemoveFromCartEvent: function (event) {
+                this.fireEvent(event.name, event);
             },
 
             onEddAddToCartOnButtonEvent: function (download_id, price_index, qty) {
+
+                if(!options.dynamicEvents.edd_add_to_cart_on_button_click.hasOwnProperty(this.tag()))
+                    return;
+                var event = Utils.clone(options.dynamicEvents.edd_add_to_cart_on_button_click[this.tag()]);
 
                 if (window.pysEddProductData.hasOwnProperty(download_id)) {
 
@@ -992,21 +1077,20 @@ if (!Array.prototype.includes) {
                     if (window.pysEddProductData[download_id].hasOwnProperty(index)) {
                         if (window.pysEddProductData[download_id][index].hasOwnProperty('facebook')) {
 
-                            var params = Utils.copyProperties(window.pysEddProductData[download_id][index]['facebook'], {});
+
+                            Utils.copyProperties(window.pysEddProductData[download_id][index]['facebook']["params"], event.params)
 
                             // maybe customize value option
                             if (options.edd.addToCartOnButtonValueEnabled && options.edd.addToCartOnButtonValueOption !== 'global') {
-                                params.value = params.value * qty;
+                                event.params.value = event.params.value * qty;
                             }
 
                             // update contents qty param
-                            var contents = JSON.parse(params.contents);
+                            var contents = event.params.contents;
                             contents[0].quantity = qty;
-                            params.contents = JSON.stringify(contents);
+                            event.params.contents = contents;
 
-                            this.fireEvent('AddToCart', {
-                                params: params
-                            });
+                            this.fireEvent(event.name,event);
 
                         }
                     }
@@ -1015,17 +1099,16 @@ if (!Array.prototype.includes) {
 
             },
 
-            onEddRemoveFromCartEvent: function (item) {
+            onEddRemoveFromCartEvent: function (event) {
+                this.fireEvent(event.name, event);
+            },
+            onPageScroll: function (event) {
+                this.fireEvent(event.name, event);
+            },
+            onTime: function (event) {
+                this.fireEvent(event.name, event);
+            },
 
-                if (item.hasOwnProperty('facebook')) {
-
-                    this.fireEvent('RemoveFromCart', {
-                        params: Utils.copyProperties(item['facebook'], {})
-                    });
-
-                }
-
-            }
 
         };
 
@@ -1074,7 +1157,9 @@ if (!Array.prototype.includes) {
          * Public API
          */
         return {
-
+            tag: function() {
+                return "ga";
+            },
             isEnabled: function () {
                 return options.hasOwnProperty('ga');
             },
@@ -1154,155 +1239,178 @@ if (!Array.prototype.includes) {
 
             },
 
-            onCommentEvent: function () {
+            onCommentEvent: function (event) {
 
-                if (initialized && this.isEnabled() && options.ga.commentEventEnabled) {
-
+                if (initialized && this.isEnabled() ) {
                     if(options.ga.isUse4Version) {
-                        this.fireEvent('Comment', {
-                            params: {
-                                post_type: pysOptions.postType,
-                                post_id: pysOptions.postId,
-                                content_name: pysOptions.postTitle,
-                                event_url:window.location.href,
-
-                                user_role:pysOptions.userRoles,
-                                non_interaction: options.ga.commentEventNonInteractive
-                            }
-                        });
+                        this.fireEvent(event.name, event);
                     } else {
-                        this.fireEvent(pysOptions.postType + ' comment', {
+                        this.fireEvent(event.name, {
                             params: {
-                                event_category: 'Comment',
-                                event_label: pysOptions.postTitle,
-                                non_interaction: options.ga.commentEventNonInteractive
+                                event_category: event.name,
+                                event_action: event.params.event_action,
+                                event_label: document.location.href,
+                                non_interaction: event.params.non_interaction,
+                                event_day:event.params.event_day,
+                                event_hour:event.params.event_hour,
+                                event_month:event.params.event_month,
+                                traffic_source:event.params.traffic_source,
                             }
                         });
                     }
-
-
                 }
+
 
             },
 
-            onDownloadEvent: function (params) {
+            onDownloadEvent: function (event) {
 
-                if (initialized && this.isEnabled() && options.ga.downloadEnabled) {
-
+                if (initialized && this.isEnabled() ) {
                     if(options.ga.isUse4Version) {
-                        // remove this event
+                        this.fireEvent(event.name, event);
                     } else {
-                        this.fireEvent(params.download_url, {
-                            params: {
-                                event_category: 'Download',
-                                event_label: params.download_name,
-                                non_interaction: options.ga.downloadEventNonInteractive
-                            }
+                        var params = {
+                            event_category: event.name,
+                            event_action: event.params.event_action,
+                            event_label:event.params.download_name,
+                            non_interaction: event.params.non_interaction,
+                        };
+                        this.fireEvent(event.name, {
+                            params: params
                         });
                     }
                 }
-
             },
 
-            onFormEvent: function (params) {
+            onFormEvent: function (event) {
 
-                var action = {
-                    class: (typeof params.form_class != 'undefined') ? 'class: ' + params.form_class : '',
-                    id: (typeof params.form_id != 'undefined') ? 'id: ' + params.form_id : ''
-                };
-
-                if (initialized && this.isEnabled() && options.ga.formEventEnabled) {
+                if (initialized && this.isEnabled() ) {
 
                     if(options.ga.isUse4Version) {
-                        this.fireEvent("Form", {
-                            params: {
-                                form_class: action.class,
-                                form_id:action.id,
-                                form_submit_label: params.form_submit_label,
-
-                                post_type: pysOptions.postType,
-                                post_id: pysOptions.postId,
-                                content_name: pysOptions.postTitle,
-                                event_url:window.location.href,
-
-                                user_role:pysOptions.userRoles,
-                                non_interaction: options.ga.formEventNonInteractive
-                            }
-                        });
+                        this.fireEvent(event.name, event);
                     } else {
-                        this.fireEvent(action.class + ' ' + action.id, {
-                            params: {
-                                event_category: 'Form',
-                                event_label: params.form_submit_label,
-                                non_interaction: options.ga.formEventNonInteractive
-                            }
+                        var params = {
+                            event_category: event.name,
+                            event_action: event.params.event_action,
+                            non_interaction: event.params.non_interaction,
+                            event_day:event.params.event_day,
+                            event_hour:event.params.event_hour,
+                            event_month:event.params.event_month,
+                            traffic_source:event.params.traffic_source,
+                        };
+                        var formClass = (typeof event.params.form_class != 'undefined') ? 'class: ' + event.params.form_class : '';
+                        if(formClass != "") {
+                            params["event_label"] = formClass;
+                        }
+                        this.fireEvent(event.name, {
+                            params: params
                         });
                     }
-
-
                 }
+
 
             },
 
             onWooAddToCartOnButtonEvent: function (product_id) {
 
+                if(!options.dynamicEvents.woo_add_to_cart_on_button_click.hasOwnProperty(this.tag()))
+                    return;
+                var event = Utils.clone(options.dynamicEvents.woo_add_to_cart_on_button_click[this.tag()]);
+
                 if (window.pysWooProductData.hasOwnProperty(product_id)) {
                     if (window.pysWooProductData[product_id].hasOwnProperty('ga')) {
-
-                        this.fireEvent('add_to_cart', {
-                            params: window.pysWooProductData[product_id]['ga']
-                        });
-
+                        Utils.copyProperties(window.pysWooProductData[product_id]['ga'].params, event.params)
+                        this.fireEvent(event.name, event);
                     }
                 }
 
+
             },
 
-            onWooAddToCartOnSingleEvent: function (product_id, qty, is_variable, $form) {
+            onWooAddToCartOnSingleEvent: function (product_id, qty, product_type, $form) {
 
                 window.pysWooProductData = window.pysWooProductData || [];
 
-                if (is_variable) {
+                if(!options.dynamicEvents.woo_add_to_cart_on_button_click.hasOwnProperty(this.tag()))
+                    return;
+                var event = Utils.clone(options.dynamicEvents.woo_add_to_cart_on_button_click[this.tag()]);
+
+                if (product_type === Utils.PRODUCT_VARIABLE) {
                     product_id = parseInt($form.find('input[name="variation_id"]').val());
                 }
 
                 if (window.pysWooProductData.hasOwnProperty(product_id)) {
                     if (window.pysWooProductData[product_id].hasOwnProperty('ga')) {
 
-                        var params = Utils.copyProperties(window.pysWooProductData[product_id]['ga'], {});
+                        Utils.copyProperties(window.pysWooProductData[product_id]['ga'].params, event.params);
+                        if(product_type === Utils.PRODUCT_GROUPED ) {
+                            var groupValue = 0;
+                            $form.find(".woocommerce-grouped-product-list .qty").each(function(index){
+                                var childId = $(this).attr('name').replaceAll("quantity[","").replaceAll("]","");
+                                var quantity = parseInt($(this).val());
+                                if(isNaN(quantity)) {
+                                    quantity = 0;
+                                }
+                                var childItem = window.pysWooProductData[product_id]['ga'].grouped[childId];
 
-                        // maybe customize value option
-                        if (options.woo.addToCartOnButtonValueEnabled && options.woo.addToCartOnButtonValueOption !== 'global') {
-                            params.items[0].price = params.items[0].price * qty;
+                                if(options.woo.addToCartOnButtonValueEnabled &&
+                                    options.woo.addToCartOnButtonValueOption !== 'global') {
+
+                                    event.params.items.forEach(function(el,index,array) {
+                                        if(el.id == childItem.content_id) {
+                                            if(quantity > 0){
+                                                el.quantity = quantity;
+                                                el.price = childItem.price * quantity;
+                                            } else {
+                                                array.splice(index, 1);
+                                            }
+                                        }
+                                    });
+
+                                }
+                                groupValue += childItem.price * quantity;
+                            });
+
+                            if(groupValue == 0) return; // skip if no items selected
+                        } else {
+                            // update items qty param
+                            event.params.items[0].quantity = qty;
                         }
 
-                        // update items qty param
-                        params.items[0].quantity = qty;
+                        // maybe customize value option
+                        if (options.woo.addToCartOnButtonValueEnabled &&
+                            options.woo.addToCartOnButtonValueOption !== 'global' &&
+                            product_type !== Utils.PRODUCT_GROUPED)
+                        {
+                            if(product_type === Utils.PRODUCT_BUNDLE) {
+                                var data = $(".bundle_form .bundle_data").data("bundle_form_data");
+                                var items_sum = getBundlePriceOnSingleProduct(data);
+                                event.params.items[0].price = (data.base_price+items_sum )* qty;
+                            } else {
+                                event.params.items[0].price = event.params.items[0].price * qty;
+                            }
 
-                        this.fireEvent('add_to_cart', {
-                            params: params
-                        });
+                        }
 
+
+                        this.fireEvent(event.name, event);
                     }
                 }
 
             },
 
-            onWooRemoveFromCartEvent: function (cart_item_hash) {
+            onWooRemoveFromCartEvent: function (event) {
 
-                window.pysWooRemoveFromCartData = window.pysWooRemoveFromCartData || [];
-
-                if (window.pysWooRemoveFromCartData[cart_item_hash].hasOwnProperty('ga')) {
-
-                    this.fireEvent('remove_from_cart', {
-                        params: Utils.copyProperties(window.pysWooRemoveFromCartData[cart_item_hash]['ga'], {})
-                    });
-
-                }
+                this.fireEvent(event.name, event);
 
             },
 
             onEddAddToCartOnButtonEvent: function (download_id, price_index, qty) {
+
+                if(!options.dynamicEvents.edd_add_to_cart_on_button_click.hasOwnProperty(this.tag()))
+                    return;
+                var event = Utils.clone(options.dynamicEvents.edd_add_to_cart_on_button_click[this.tag()]);
+
 
                 if (window.pysEddProductData.hasOwnProperty(download_id)) {
 
@@ -1317,14 +1425,12 @@ if (!Array.prototype.includes) {
                     if (window.pysEddProductData[download_id].hasOwnProperty(index)) {
                         if (window.pysEddProductData[download_id][index].hasOwnProperty('ga')) {
 
-                            var params = Utils.copyProperties(window.pysEddProductData[download_id][index]['ga'], {});
+                            Utils.copyProperties(window.pysEddProductData[download_id][index]['ga'].params, event.params);
 
                             // update items qty param
-                            params.items[0].quantity = qty;
+                            event.params.items[0].quantity = qty;
 
-                            this.fireEvent('add_to_cart', {
-                                params: params
-                            });
+                            this.fireEvent(event.name,event);
 
                         }
                     }
@@ -1333,17 +1439,15 @@ if (!Array.prototype.includes) {
 
             },
 
-            onEddRemoveFromCartEvent: function (item) {
-
-                if (item.hasOwnProperty('ga')) {
-
-                    this.fireEvent('remove_from_cart', {
-                        params: Utils.copyProperties(item['ga'], {})
-                    });
-
-                }
-
-            }
+            onEddRemoveFromCartEvent: function (event) {
+                this.fireEvent(event.name, event);
+            },
+            onPageScroll: function (event) {
+                this.fireEvent(event.name, event);
+            },
+            onTime: function (event) {
+                this.fireEvent(event.name, event);
+            },
 
         };
 
@@ -1354,15 +1458,106 @@ if (!Array.prototype.includes) {
     window.pys.Analytics = Analytics;
     window.pys.Utils = Utils;
 
+    function getPixelBySlag(slug) {
+        switch (slug) {
+            case "facebook": return window.pys.Facebook;
+            case "ga": return window.pys.Analytics;
+            case "bing": return window.pys.Bing;
+            case "pinterest": return window.pys.Pinterest;
+        }
+    }
+
+
     $(document).ready(function () {
 
         var Pinterest = Utils.setupPinterestObject();
         var Bing = Utils.setupBingObject();
 
         Utils.setupGdprCallbacks();
+        // page scroll event
+        if (options.dynamicEvents.hasOwnProperty("signal_page_scroll")) {
+
+            var singlePageScroll = function () {
+
+
+                var docHeight = $(document).height() - $(window).height();
+                var isFired = false;
+                var pixels = Object.keys(options.dynamicEvents.signal_page_scroll);
+
+                for(i = 0;i<pixels.length;i++) {
+                    var event = Utils.clone(options.dynamicEvents.signal_page_scroll[pixels[i]]);
+                    var scroll = Math.round(docHeight * event.scroll_percent / 100)// convert % to absolute positions
+
+                    if(scroll < $(window).scrollTop()) {
+                        Utils.copyProperties(Utils.getRequestParams(), event.params);
+                        getPixelBySlag(pixels[i]).onPageScroll(event);
+                        isFired = true
+                    }
+                }
+                if(isFired) {
+                    $(document).off("scroll",singlePageScroll);
+                }
+            }
+            $(document).on("scroll",singlePageScroll);
+        }
+        // page on time
+        if (options.dynamicEvents.hasOwnProperty("signal_time_on_page")) {
+            var pixels = Object.keys(options.dynamicEvents.signal_time_on_page);
+            var time = options.dynamicEvents.signal_time_on_page[pixels[0]].time_on_page; // the same for all pixel
+            setTimeout(function(){
+                for(i = 0;i<pixels.length;i++) {
+                    var event = Utils.clone(options.dynamicEvents.signal_time_on_page[pixels[i]]);
+                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                    getPixelBySlag(pixels[i]).onTime(event);
+                }
+            },time*1000);
+        }
+
+        // setup Click Event
+        if (options.dynamicEvents.hasOwnProperty("signal_download")) {
+
+            $(document).onFirst('click', 'a, button, input[type="button"], input[type="submit"]', function (e) {
+
+                var $elem = $(this);
+
+                // Download
+                if (options.dynamicEvents.hasOwnProperty("signal_download")) {
+                    var isFired = false;
+                    if ($elem.is('a')) {
+                        var href = $elem.attr('href');
+                        if (typeof href !== "string") {
+                            return;
+                        }
+                        href = href.trim();
+                        var extension = Utils.getLinkExtension(href);
+                        var track_download = false;
+
+                        if (extension.length > 0) {
+                            var pixels = Object.keys(options.dynamicEvents.signal_download);
+                            for (i = 0; i < pixels.length; i++) {
+                                var event = Utils.clone(options.dynamicEvents.signal_download[pixels[i]]);
+                                var extensions = event.extensions;
+                                if (extensions.includes(extension)) {
+                                    event.params.download_url = href;
+                                    event.params.download_type = extension;
+                                    event.params.download_name = Utils.getLinkFilename(href);
+
+                                    getPixelBySlag(pixels[i]).onDownloadEvent(event);
+                                    isFired = true;
+                                }
+                            }
+                        }
+                    }
+                    if (isFired) { // prevent duplicate events on the same element
+                        return;
+                    }
+                }
+            });
+        }
+
 
         // setup Dynamic events
-        $.each(options.dynamicEventsTriggers, function (triggerType, events) {
+        $.each(options.triggerEventTypes, function (triggerType, events) {
 
             $.each(events, function (eventId, triggers) {
 
@@ -1394,10 +1589,10 @@ if (!Array.prototype.includes) {
         if (options.woo.enabled) {
 
             // WooCommerce AddToCart
-            if (options.woo.addToCartOnButtonEnabled) {
+            if (options.dynamicEvents.hasOwnProperty("woo_add_to_cart_on_button_click")) {
 
                 // Loop, any kind of "simple" product, except external
-                $('.add_to_cart_button:not(.product_type_variable)').on("click",function (e) {
+                $('.add_to_cart_button:not(.product_type_variable,.single_add_to_cart_button)').on("click",function (e) {
 
                     var product_id = $(this).data('product_id');
 
@@ -1411,7 +1606,7 @@ if (!Array.prototype.includes) {
                 });
 
                 // Single Product
-                $('body').on('click','.single_add_to_cart_button',function (e) {
+                $('button.single_add_to_cart_button,.single_add_to_cart_button').onFirst('click tap',function (e) {
 
                     var $button = $(this);
 
@@ -1421,16 +1616,28 @@ if (!Array.prototype.includes) {
 
                     var $form = $button.closest('form');
 
+                    var product_type = Utils.PRODUCT_SIMPLE;
+
                     if ($form.length === 0) {
-                        return;
+                        return ;
+                    } else if ($form.hasClass('variations_form')) {
+                        product_type = Utils.PRODUCT_VARIABLE;
+                    } else if($form.hasClass('bundle_form')) {
+                        product_type = Utils.PRODUCT_BUNDLE;
+                    } else if($form.hasClass('grouped_form')) {
+                        product_type = Utils.PRODUCT_GROUPED;
                     }
 
-                    var is_variable = $form.hasClass('variations_form');
+
+
 
                     var product_id;
                     var qty;
 
-                    if (is_variable) {
+                    if (product_type === Utils.PRODUCT_GROUPED) {
+                        qty = 1;
+                        product_id = parseInt($form.find('*[name="add-to-cart"]').val());
+                    } else if (product_type === Utils.PRODUCT_VARIABLE) {
                         product_id = parseInt($form.find('*[name="add-to-cart"]').val());
                         var qtyTag = $form.find('input[name="quantity"]');
                         if(qtyTag.length <= 0) {
@@ -1446,17 +1653,18 @@ if (!Array.prototype.includes) {
                         qty = parseInt(qtyTag.val());
                     }
 
-                    Facebook.onWooAddToCartOnSingleEvent(product_id, qty, is_variable, $form);
-                    Analytics.onWooAddToCartOnSingleEvent(product_id, qty, is_variable, $form);
-                    Pinterest.onWooAddToCartOnSingleEvent(product_id, qty, is_variable, false, $form);
-                    Bing.onWooAddToCartOnSingleEvent(product_id, qty, is_variable, false, $form);
+                    Facebook.onWooAddToCartOnSingleEvent(product_id, qty, product_type, $form);
+                    Analytics.onWooAddToCartOnSingleEvent(product_id, qty, product_type, $form);
+
+                    Pinterest.onWooAddToCartOnSingleEvent(product_id, qty, product_type, false, $form);
+                    Bing.onWooAddToCartOnSingleEvent(product_id, qty, product_type, false, $form);
 
                 });
 
             }
 
             // WooCommerce RemoveFromCart
-            if (options.woo.removeFromCartEnabled) {
+            if (options.dynamicEvents.hasOwnProperty("woo_remove_from_cart")) {
 
                 $('body').on('click', options.woo.removeFromCartSelector, function (e) {
 
@@ -1470,28 +1678,23 @@ if (!Array.prototype.includes) {
                     if (results !== null) {
 
                         var item_hash = results[1];
-                        window.pysWooRemoveFromCartData = window.pysWooRemoveFromCartData || [];
 
-                        if (window.pysWooRemoveFromCartData.hasOwnProperty(item_hash)) {
-                            Facebook.onWooRemoveFromCartEvent(item_hash);
-                            Analytics.onWooRemoveFromCartEvent(item_hash);
-                            Pinterest.onWooRemoveFromCartEvent(item_hash);
-                            Bing.onWooRemoveFromCartEvent(item_hash);
+                        if (options.dynamicEvents["woo_remove_from_cart"].hasOwnProperty(item_hash)) {
+                            var events = options.dynamicEvents["woo_remove_from_cart"][item_hash];
+                            Utils.fireEventForAllPixel("onWooRemoveFromCartEvent",events)
                         }
 
                     }
 
                 });
-
             }
-
         }
 
         // setup EDD events
         if (options.edd.enabled) {
 
             // EDD AddToCart
-            if (options.edd.addToCartOnButtonEnabled) {
+            if (options.dynamicEvents.hasOwnProperty("edd_add_to_cart_on_button_click")) {
 
                 $('form.edd_download_purchase_form .edd-add-to-cart').on("click",function (e) {
 
@@ -1551,8 +1754,6 @@ if (!Array.prototype.includes) {
                         } else {
                             quantities.push(1);
                         }
-
-
                     }
 
                     // fire event for each download/variant
@@ -1578,25 +1779,18 @@ if (!Array.prototype.includes) {
 
             }
 
+
             // EDD RemoveFromCart
-            if (options.edd.removeFromCartEnabled) {
+            if (options.dynamicEvents.hasOwnProperty("edd_remove_from_cart") ) {
 
                 $('form#edd_checkout_cart_form .edd_cart_remove_item_btn').on("click",function (e) {
 
                     var href = $(this).attr('href');
                     var key = href.substring(href.indexOf('=') + 1).charAt(0);
 
-                    window.pysEddRemoveFromCartData = window.pysEddRemoveFromCartData || [];
-
-                    if (window.pysEddRemoveFromCartData[key]) {
-
-                        var item = window.pysEddRemoveFromCartData[key];
-
-                        Facebook.onEddRemoveFromCartEvent(item);
-                        Analytics.onEddRemoveFromCartEvent(item);
-                        Pinterest.onEddRemoveFromCartEvent(item);
-                        Bing.onEddRemoveFromCartEvent(item);
-
+                    if (options.dynamicEvents.edd_remove_from_cart.hasOwnProperty(key)) {
+                        var events = options.dynamicEvents.edd_remove_from_cart[key];
+                        Utils.fireEventForAllPixel("onEddRemoveFromCartEvent",events)
                     }
 
                 });
@@ -1606,72 +1800,25 @@ if (!Array.prototype.includes) {
         }
 
         // setup Comment Event
-        if (options.commentEventEnabled) {
+        if (options.dynamicEvents.hasOwnProperty("signal_comment")) {
 
             $('form.comment-form').on("submit",function () {
 
-                Facebook.onCommentEvent();
-                Analytics.onCommentEvent();
-                Pinterest.onCommentEvent();
-                Bing.onCommentEvent();
-
+                var pixels = Object.keys(options.dynamicEvents.signal_comment);
+                for(i = 0;i<pixels.length;i++) {
+                    var event = Utils.clone(options.dynamicEvents.signal_comment[pixels[i]]);
+                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                    getPixelBySlag(pixels[i]).onCommentEvent(event);
+                }
             });
 
         }
 
-        // setup DownloadDocs event
-        if (options.downloadEventEnabled && options.downloadExtensions.length > 0) {
-
-            $('body').on("click",function (event) {
-
-                var el = event.srcElement || event.target;
-
-                /* Loop up the DOM tree through parent elements if clicked element is not a link (eg: an image inside a link) */
-                while (el && (typeof el.tagName === 'undefined' || el.tagName.toLowerCase() !== 'a' || !el.href)) {
-                    el = el.parentNode;
-                }
-
-                if (el && el.href) {
-
-                    var extension = Utils.getLinkExtension(el.href);
-                    var track_download = false;
-
-                    if (extension.length > 0) {
-
-                        for (i = 0, len = options.downloadExtensions.length; i < len; ++i) {
-                            if (options.downloadExtensions[i] === extension) {
-                                track_download = true;
-                                break;
-                            }
-                        }
-
-                    }
-
-                    if (track_download) {
-
-                        var params = {
-                            download_url: el.href,
-                            download_type: extension,
-                            download_name: Utils.getLinkFilename(el.href)
-                        };
-
-                        Facebook.onDownloadEvent(params);
-                        Analytics.onDownloadEvent(params);
-                        Pinterest.onDownloadEvent(params);
-                        Bing.onDownloadEvent(params);
-
-                    }
-
-                }
-
-            });
-
-        }
 
         // setup Form Event
-        if (options.formEventEnabled) {
+        if ( options.dynamicEvents.hasOwnProperty("signal_form")) {
 
-            $(document).onFirst('submit', 'form', function () {
+            $(document).onFirst('submit', 'form', function (e) {
 
                 var $form = $(this);
 
@@ -1681,8 +1828,8 @@ if (!Array.prototype.includes) {
                 }
 
                 // exclude Woo forms
-                if ($form.hasClass('woocommerce-product-search') || $form.hasClass('cart') || $form.hasClass('woocommerce-cart-form')
-                    || $form.hasClass('woocommerce-shipping-calculator') || $form.hasClass('checkout') || $form.hasClass('checkout_coupon')) {
+                if ($form.hasClass('woocommerce-product-search') || $form.hasClass('cart') || $form.hasClass('woocommerce-cart-form') ||
+                    $form.hasClass('woocommerce-shipping-calculator') || $form.hasClass('checkout') || $form.hasClass('checkout_coupon')) {
                     return;
                 }
 
@@ -1693,14 +1840,33 @@ if (!Array.prototype.includes) {
 
                 var params = {
                     form_id: $form.attr('id'),
-                    form_class: $form.attr('class')
+                    form_class: $form.attr('class'),
+                    text: $form.find('[type="submit"]').is('input') ?
+                        $form.find('[type="submit"]').val() : $form.find('[type="submit"]').text()
+                };
+                var pixels = Object.keys(options.dynamicEvents.signal_form);
+                for(i = 0;i<pixels.length;i++) {
+                    var event = Utils.clone(options.dynamicEvents.signal_form[pixels[i]]);
+                    Utils.copyProperties(params,event.params,)
+                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                    getPixelBySlag(pixels[i]).onFormEvent(event);
+                }
+            });
+
+            //Forminator
+            $(document).on( 'forminator:form:submit:success', function( formData ){
+                var params = {
+                    form_id: $(formData.target).find('input[name="form_id"]').val(),
+                    text: $(formData.target).find('.forminator-button-submit').text()
                 };
 
-                Facebook.onFormEvent(params);
-                Analytics.onFormEvent(params);
-                Pinterest.onFormEvent(params);
-                Bing.onFormEvent(params);
-
+                var pixels = Object.keys(options.dynamicEvents.signal_form);
+                for(i = 0;i<pixels.length;i++) {
+                    var event = Utils.clone(options.dynamicEvents.signal_form[pixels[i]]);
+                    Utils.copyProperties(params,event.params)
+                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                    getPixelBySlag(pixels[i]).onFormEvent(event);
+                }
             });
 
             // Ninja Forms
@@ -1708,17 +1874,21 @@ if (!Array.prototype.includes) {
 
                 var params = {
                     form_id: data.response.data.form_id,
-                    form_title: data.response.data.settings.title
+                    text: data.response.data.settings.title
                 };
 
-                Facebook.onFormEvent(params);
-                Analytics.onFormEvent(params);
-                Pinterest.onFormEvent(params);
-                Bing.onFormEvent(params);
+                var pixels = Object.keys(options.dynamicEvents.signal_form);
+                for(i = 0;i<pixels.length;i++) {
+                    var event = Utils.clone(options.dynamicEvents.signal_form[pixels[i]]);
+                    Utils.copyProperties(params,event.params)
+                    Utils.copyProperties(Utils.getRequestParams(), event.params);
+                    getPixelBySlag(pixels[i]).onFormEvent(event);
+                }
 
             });
 
         }
+
 
         // load pixel APIs
         Utils.loadPixels();
@@ -1736,4 +1906,18 @@ function pys_generate_token(length){
         b[i] = a[j];
     }
     return b.join("");
+}
+
+function getBundlePriceOnSingleProduct(data) {
+    var items_sum = 0;
+    jQuery(".bundle_form .bundled_product").each(function(index){
+        var id = jQuery(this).find(".cart").data("bundled_item_id");
+        var item_price = data.prices[id];
+        var item_quantity = jQuery(this).find(".bundled_qty").val();
+        if(!jQuery(this).hasClass("bundled_item_optional") ||
+            jQuery(this).find(".bundled_product_optional_checkbox input").prop('checked')) {
+            items_sum += item_price*item_quantity;
+        }
+    });
+    return items_sum;
 }

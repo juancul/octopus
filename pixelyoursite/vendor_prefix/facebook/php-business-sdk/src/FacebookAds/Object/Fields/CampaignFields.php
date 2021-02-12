@@ -51,6 +51,7 @@ class CampaignFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const DAILY_BUDGET = 'daily_budget';
     const EFFECTIVE_STATUS = 'effective_status';
     const ID = 'id';
+    const IS_SKADNETWORK_ATTRIBUTION = 'is_skadnetwork_attribution';
     const ISSUES_INFO = 'issues_info';
     const LAST_BUDGET_TOGGLING_TIME = 'last_budget_toggling_time';
     const LIFETIME_BUDGET = 'lifetime_budget';
@@ -59,6 +60,7 @@ class CampaignFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const PACING_TYPE = 'pacing_type';
     const PROMOTED_OBJECT = 'promoted_object';
     const RECOMMENDATIONS = 'recommendations';
+    const SMART_PROMOTION_TYPE = 'smart_promotion_type';
     const SOURCE_CAMPAIGN = 'source_campaign';
     const SOURCE_CAMPAIGN_ID = 'source_campaign_id';
     const SPECIAL_AD_CATEGORIES = 'special_ad_categories';
@@ -73,10 +75,9 @@ class CampaignFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const ADBATCH = 'adbatch';
     const EXECUTION_OPTIONS = 'execution_options';
     const ITERATIVE_SPLIT_TEST_CONFIGS = 'iterative_split_test_configs';
-    const SMART_PROMOTION_TYPE = 'smart_promotion_type';
     const UPSTREAM_EVENTS = 'upstream_events';
     public function getFieldTypes()
     {
-        return array('account_id' => 'string', 'ad_strategy_id' => 'string', 'adlabels' => 'list<AdLabel>', 'bid_strategy' => 'BidStrategy', 'boosted_object_id' => 'string', 'brand_lift_studies' => 'list<AdStudy>', 'budget_rebalance_flag' => 'bool', 'budget_remaining' => 'string', 'buying_type' => 'string', 'can_create_brand_lift_study' => 'bool', 'can_use_spend_cap' => 'bool', 'configured_status' => 'ConfiguredStatus', 'created_time' => 'datetime', 'daily_budget' => 'string', 'effective_status' => 'EffectiveStatus', 'id' => 'string', 'issues_info' => 'list<AdCampaignIssuesInfo>', 'last_budget_toggling_time' => 'datetime', 'lifetime_budget' => 'string', 'name' => 'string', 'objective' => 'string', 'pacing_type' => 'list<string>', 'promoted_object' => 'AdPromotedObject', 'recommendations' => 'list<AdRecommendation>', 'source_campaign' => 'Campaign', 'source_campaign_id' => 'string', 'special_ad_categories' => 'list<string>', 'special_ad_category' => 'string', 'special_ad_category_country' => 'list<string>', 'spend_cap' => 'string', 'start_time' => 'datetime', 'status' => 'Status', 'stop_time' => 'datetime', 'topline_id' => 'string', 'updated_time' => 'datetime', 'adbatch' => 'list<Object>', 'execution_options' => 'list<ExecutionOptions>', 'iterative_split_test_configs' => 'list<Object>', 'smart_promotion_type' => 'SmartPromotionType', 'upstream_events' => 'map');
+        return array('account_id' => 'string', 'ad_strategy_id' => 'string', 'adlabels' => 'list<AdLabel>', 'bid_strategy' => 'BidStrategy', 'boosted_object_id' => 'string', 'brand_lift_studies' => 'list<AdStudy>', 'budget_rebalance_flag' => 'bool', 'budget_remaining' => 'string', 'buying_type' => 'string', 'can_create_brand_lift_study' => 'bool', 'can_use_spend_cap' => 'bool', 'configured_status' => 'ConfiguredStatus', 'created_time' => 'datetime', 'daily_budget' => 'string', 'effective_status' => 'EffectiveStatus', 'id' => 'string', 'is_skadnetwork_attribution' => 'bool', 'issues_info' => 'list<AdCampaignIssuesInfo>', 'last_budget_toggling_time' => 'datetime', 'lifetime_budget' => 'string', 'name' => 'string', 'objective' => 'string', 'pacing_type' => 'list<string>', 'promoted_object' => 'AdPromotedObject', 'recommendations' => 'list<AdRecommendation>', 'smart_promotion_type' => 'string', 'source_campaign' => 'Campaign', 'source_campaign_id' => 'string', 'special_ad_categories' => 'list<string>', 'special_ad_category' => 'string', 'special_ad_category_country' => 'list<string>', 'spend_cap' => 'string', 'start_time' => 'datetime', 'status' => 'Status', 'stop_time' => 'datetime', 'topline_id' => 'string', 'updated_time' => 'datetime', 'adbatch' => 'list<Object>', 'execution_options' => 'list<ExecutionOptions>', 'iterative_split_test_configs' => 'list<Object>', 'upstream_events' => 'map');
     }
 }

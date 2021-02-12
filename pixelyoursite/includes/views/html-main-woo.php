@@ -48,77 +48,23 @@ use PixelYourSite\Facebook\Helpers;
     </div>
 </div>
 
-<!-- Semafors -->
 <div class="card card-static">
     <div class="card-header">
-        Advanced Data Tracking
+        About WooCommerce Events Parameters
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-11">
-                <div class="indicator">ON</div>
-                <h4 class="indicator-label">Facebook Dynamic Product Ads</h4>
-            </div>
-            <div class="col-1">
-		        <?php renderPopoverButton( 'woo_facebook_am_params' ); ?>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-11">
-                <div class="indicator">ON</div>
-                <h4 class="indicator-label">Facebook & Pinterest parameters</h4>
-            </div>
-            <div class="col-1">
-                <?php renderPopoverButton( 'woo_facebook_and_pinterest_params' ); ?>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-11">
-                <div class="indicator indicator-off">OFF</div>
-                <h4 class="indicator-label">Facebook & Pinterest PRO parameters</h4>
-            </div>
-            <div class="col-1">
-			    <?php renderPopoverButton( 'woo_facebook_and_pinterest_pro_params' ); ?>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-11">
-                <div class="indicator">ON</div>
-                <h4 class="indicator-label">Facebook & Pinterest parameters for Purchase event</h4>
-            </div>
-            <div class="col-1">
-                <?php renderPopoverButton( 'woo_facebook_and_pinterest_purchase_params' ); ?>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-11">
-                <div class="indicator indicator-off">OFF</div>
-                <h4 class="indicator-label">Facebook & Pinterest PRO parameters for Purchase event</h4>
-            </div>
-            <div class="col-1">
-			    <?php renderPopoverButton( 'woo_facebook_and_pinterest_purchase_pro_params' ); ?>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-11">
-                <div class="indicator">ON</div>
-                <h4 class="indicator-label">Google Analytics Enhanced Ecommerce</h4>
-            </div>
-            <div class="col-1">
-			    <?php renderPopoverButton( 'woo_ga_enhanced_ecommerce_params' ); ?>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-11">
-                <div class="indicator indicator-off">OFF</div>
-                <h4 class="indicator-label">Google Ads Tag with Dynamic Remarketing Support</h4>
-            </div>
-            <div class="col-1">
-                <?php renderPopoverButton( 'woo_google_ads_enhanced_ecommerce_params' ); ?>
+            <div class="col">
+                <p>All events get the following parameters for all the tags: <i>page_title, post_type, post_id, event_URL, user_role, plugin, event_time (pro), event_day (pro), event_month (pro), traffic_source (pro), UTMs (pro).</i></p>
+                <p>The Purchase event will have the following extra-parameters: <i>category_name, num_items, tags, total (pro), transactions_count (pro), tax (pro), predicted_ltv (pro), average_order (pro), coupon_used (pro), coupon_code (pro), shipping (pro), shipping_cost (pro).</i></p>
+                <p>The Facebook Pixel events are Dynamic Ads ready.</p>
+                <p>The Google Analytics events track the data Enhanced Ecommerce or Monetization (GA4).</p>
+                <p>The Pinterest events have the required data for Dynamic Remarketing.</p>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- AddToCart -->
 <div class="card card-static">
@@ -423,8 +369,8 @@ e&utm_campaign=pro-feature' ); ?>
 
 <!-- Purchase -->
 <div class="card">
-    <div class="card-header">
-        Track Purchases <?php cardCollapseBtn(); ?>
+    <div class="card-header has_switch ">
+        <?php PYS()->render_switcher_input('woo_purchase_enabled');?>Track Purchases <?php cardCollapseBtn(); ?>
     </div>
     <div class="card-body">
         <div class="row mb-3">
@@ -555,8 +501,8 @@ e&utm_campaign=pro-feature' ); ?>
 
 <!-- InitiateCheckout -->
 <div class="card">
-    <div class="card-header">
-        Track the Checkout Page <?php cardCollapseBtn(); ?>
+    <div class="card-header has_switch">
+        <?php PYS()->render_switcher_input('woo_initiate_checkout_enabled');?>Track the Checkout Page <?php cardCollapseBtn(); ?>
     </div>
     <div class="card-body">
         
@@ -657,8 +603,8 @@ e&utm_campaign=pro-feature' ); ?>
 
 <!-- RemoveFromCart -->
 <div class="card">
-    <div class="card-header">
-        Track remove from cart <?php cardCollapseBtn(); ?>
+    <div class="card-header has_switch">
+        <?php PYS()->render_switcher_input('woo_remove_from_cart_enabled');?>Track remove from cart <?php cardCollapseBtn(); ?>
     </div>
     <div class="card-body">
         
@@ -719,8 +665,8 @@ e&utm_campaign=pro-feature' ); ?>
 
 <!-- AddToCart -->
 <div class="card">
-    <div class="card-header">
-        Track add to cart <?php cardCollapseBtn(); ?>
+    <div class="card-header has_switch">
+        <?php PYS()->render_switcher_input('woo_add_to_cart_enabled');?>Track add to cart <?php cardCollapseBtn(); ?>
     </div>
     <div class="card-body">
         
@@ -821,8 +767,8 @@ e&utm_campaign=pro-feature' ); ?>
 
 <!-- ViewContent -->
 <div class="card">
-    <div class="card-header">
-        Track product pages <?php cardCollapseBtn(); ?>
+    <div class="card-header has_switch">
+        <?php PYS()->render_switcher_input('woo_view_content_enabled');?>Track product pages <?php cardCollapseBtn(); ?>
     </div>
     <div class="card-body">
         
@@ -930,8 +876,8 @@ e&utm_campaign=pro-feature' ); ?>
 
 <!-- ViewCategory -->
 <div class="card">
-    <div class="card-header">
-        Track product category pages <?php cardCollapseBtn(); ?>
+    <div class="card-header has_switch">
+        <?php PYS()->render_switcher_input('woo_view_category_enabled');?>Track product category pages <?php cardCollapseBtn(); ?>
     </div>
     <div class="card-body">
         
@@ -1023,8 +969,8 @@ e&utm_campaign=pro-feature' ); ?>
 </div>
 
 <div class="card">
-    <div class="card-header">
-        CompleteRegistration for the Facebook Pixel<?php cardCollapseBtn(); ?>
+    <div class="card-header has_switch">
+        <?php PYS()->render_switcher_input('woo_complete_registration_enabled');?> CompleteRegistration for the Facebook Pixel<?php cardCollapseBtn(); ?>
     </div>
     <div class="card-body">
         <?php if ( Facebook()->enabled() ) : ?>

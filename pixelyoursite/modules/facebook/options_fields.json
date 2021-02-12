@@ -60,5 +60,7 @@
   "woo_complete_registration_use_custom_value": "checkbox",
   "woo_complete_registration_custom_value": "radio",
   "woo_complete_registration_custom_value_old": "radio",
-  "woo_complete_registration_send_from_server": "checkbox"
+  "woo_complete_registration_send_from_server": "checkbox",
+
+  "signal_events_enabled": "checkbox"
 }

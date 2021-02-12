@@ -41,7 +41,6 @@ class IGUserFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const FOLLOWS_COUNT = 'follows_count';
     const ID = 'id';
     const IG_ID = 'ig_id';
-    const IS_IG_SHOPPING_SELLER_POLICY_ENABLED = 'is_ig_shopping_seller_policy_enabled';
     const MEDIA_COUNT = 'media_count';
     const MENTIONED_COMMENT = 'mentioned_comment';
     const MENTIONED_MEDIA = 'mentioned_media';
@@ -52,6 +51,6 @@ class IGUserFields extends \PYS_PRO_GLOBAL\FacebookAds\Enum\AbstractEnum
     const WEBSITE = 'website';
     public function getFieldTypes()
     {
-        return array('biography' => 'string', 'business_discovery' => 'IGUser', 'followers_count' => 'int', 'follows_count' => 'int', 'id' => 'string', 'ig_id' => 'int', 'is_ig_shopping_seller_policy_enabled' => 'bool', 'media_count' => 'int', 'mentioned_comment' => 'IGComment', 'mentioned_media' => 'IGMedia', 'name' => 'string', 'profile_picture_url' => 'string', 'shopping_review_status' => 'string', 'username' => 'string', 'website' => 'string');
+        return array('biography' => 'string', 'business_discovery' => 'IGUser', 'followers_count' => 'int', 'follows_count' => 'int', 'id' => 'string', 'ig_id' => 'int', 'media_count' => 'int', 'mentioned_comment' => 'IGComment', 'mentioned_media' => 'IGMedia', 'name' => 'string', 'profile_picture_url' => 'string', 'shopping_review_status' => 'string', 'username' => 'string', 'website' => 'string');
     }
 }

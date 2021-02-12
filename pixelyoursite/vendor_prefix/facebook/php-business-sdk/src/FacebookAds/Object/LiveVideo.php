@@ -61,12 +61,12 @@ class LiveVideo extends \PYS_PRO_GLOBAL\FacebookAds\Object\AbstractCrudObject
     protected static function getReferencedEnums()
     {
         $ref_enums = array();
-        $ref_enums['BroadcastStatus'] = \PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoBroadcastStatusValues::getInstance()->getValues();
         $ref_enums['Projection'] = \PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoProjectionValues::getInstance()->getValues();
         $ref_enums['SpatialAudioFormat'] = \PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoSpatialAudioFormatValues::getInstance()->getValues();
         $ref_enums['Status'] = \PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoStatusValues::getInstance()->getValues();
         $ref_enums['StereoscopicMode'] = \PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoStereoscopicModeValues::getInstance()->getValues();
         $ref_enums['StreamType'] = \PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoStreamTypeValues::getInstance()->getValues();
+        $ref_enums['BroadcastStatus'] = \PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoBroadcastStatusValues::getInstance()->getValues();
         $ref_enums['Source'] = \PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoSourceValues::getInstance()->getValues();
         $ref_enums['LiveCommentModerationSetting'] = \PYS_PRO_GLOBAL\FacebookAds\Object\Values\LiveVideoLiveCommentModerationSettingValues::getInstance()->getValues();
         return $ref_enums;

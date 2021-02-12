@@ -9,35 +9,43 @@ if (!defined('ABSPATH')) {
 class Google extends Pixel
 {
     protected $google_business_vertical;
+    protected $conversion_identifiers;
 
     public function __construct($options, $options_obj)
     {
         parent::__construct($options, $options_obj);
 
         $this->google_business_vertical = $this->get_google_business_vertical($this->options['google']['ads']['google_business_vertical']);
+
+        $this->conversion_identifiers[$this->conversion_id] = $this->conversion_label;
+
+        $this->conversion_identifiers = apply_filters('wgact_google_ads_conversion_identifiers', $this->conversion_identifiers);
     }
 
     public function inject_everywhere()
     {
         if ($this->options_obj->google->optimize->container_id) {
             ?>
-            <script async
-                    src="https://www.googleoptimize.com/optimize.js?id=<?php _e($this->options_obj->google->optimize->container_id) ?>"></script>
+
+            <script async src="https://www.googleoptimize.com/optimize.js?id=<?php
+            echo $this->options_obj->google->optimize->container_id ?>"></script>
             <?php
         }
 
         if (!$this->options_obj->google->gtag->deactivation) {
             ?>
 
-            <!-- Global site tag (gtag.js) - Google Ads: <?php _e($this->conversion_id) ?> -->
-            <script async
-                    src="https://www.googletagmanager.com/gtag/js?id=<?php _e($this->get_gtag_id()) ?>"></script>
-            <script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=<?php
+            echo $this->get_gtag_id() ?>"></script>
+            <script<?php echo
+            $this->options_obj->shop->cookie_consent_mgmt->cookiebot->active ? ' data-cookieconsent="ignore"' : ''; ?>>
                 window.dataLayer = window.dataLayer || [];
 
                 function gtag() {
                     dataLayer.push(arguments);
                 }
+
+                <?php echo $this->options_obj->google->consent_mode->active ? $this->consent_mode_gtag_html() : ''; ?>
 
                 gtag('js', new Date());
 
@@ -49,13 +57,29 @@ class Google extends Pixel
         ?>
 
         <script>
-            <?php $this->options_obj->google->ads->conversion_id ? _e($this->gtag_config($this->options_obj->google->ads->conversion_id, 'ads')) : _e(PHP_EOL); ?>
-            <?php $this->options_obj->google->analytics->universal->property_id ? _e($this->gtag_config($this->options_obj->google->analytics->universal->property_id, 'analytics')) : _e(PHP_EOL); ?>
-            <?php $this->options_obj->google->analytics->ga4->measurement_id ? _e($this->gtag_config($this->options_obj->google->analytics->ga4->measurement_id, 'analytics')) : _e(PHP_EOL); ?>
+            <?php foreach ($this->conversion_identifiers as $conversion_id => $conversion_label): ?>
+            <?php echo $this->options_obj->google->ads->conversion_id ? $this->gtag_config($conversion_id, 'ads') : PHP_EOL; ?>
+            <?php endforeach; ?>
+
+            <?php echo $this->options_obj->google->analytics->universal->property_id ? $this->gtag_config($this->options_obj->google->analytics->universal->property_id, 'analytics') . PHP_EOL : PHP_EOL; ?>
+            <?php echo $this->options_obj->google->analytics->ga4->measurement_id ? $this->gtag_config($this->options_obj->google->analytics->ga4->measurement_id, 'analytics') : PHP_EOL; ?>
+
         </script>
         <?php
     }
 
+    private function consent_mode_gtag_html(): string
+    {
+        return "gtag('consent', 'default', {
+                    'ad_storage': 'denied', 
+                    'analytics_storage': 'denied',
+                    'wait_for_update': 500
+                });
+                
+                gtag('set', 'ads_data_redaction', true);
+                
+                gtag('set', 'url_passthrough', true);" . PHP_EOL;
+    }
 
     private function get_gtag_id(): string
     {
@@ -85,7 +109,7 @@ class Google extends Pixel
                 }, c);
                 h.timeout = c;
             })(window, document.documentElement, 'async-hide', 'dataLayer', 4000,
-                {'<?php _e($this->options_obj->google->optimize->container_id) ?>': true});</script>
+                {'<?php echo $this->options_obj->google->optimize->container_id ?>': true});</script>
         <?php
     }
 
@@ -100,7 +124,7 @@ class Google extends Pixel
 
             <script type="text/javascript">
                 gtag('event', 'view_item_list', {
-                    'send_to': 'AW-<?php _e($this->conversion_id) ?>',
+                    'send_to': <?php echo json_encode($this->get_google_ads_conversion_ids()) ?>,
                     'items'  : <?php echo json_encode($this->get_products_from_wp_query($wp_query)) . PHP_EOL ?>
                 });
             </script>
@@ -119,7 +143,7 @@ class Google extends Pixel
             <script type="text/javascript">
                 gtag('event', 'view_search_results',
                     {
-                        'send_to': 'AW-<?php _e($this->conversion_id) ?>',
+                        'send_to': <?php echo json_encode($this->get_google_ads_conversion_ids()) ?>,
                         'items'  : <?php echo json_encode($this->get_products_from_wp_query($wp_query)) . PHP_EOL ?>
                     });
             </script>
@@ -127,16 +151,16 @@ class Google extends Pixel
         }
     }
 
-    public function inject_product($product_id, $product)
+    public function inject_product($product_id_compiled, $product)
     {
         if ($this->is_dynamic_remarketing_active()) {
 
-            $product_details = $this->get_gads_formatted_product_details_from_product_id($product_id);
+            $product_details = $this->get_gads_formatted_product_details_from_product_id($product->get_id());
             ?>
 
             <script type="text/javascript">
                 gtag('event', 'view_item', {
-                    'send_to': 'AW-<?php _e($this->conversion_id) ?>',
+                    'send_to': <?php echo json_encode($this->get_google_ads_conversion_ids()) ?>,
                     'value'  : <?php echo $product_details['price'] ?>,
                     'items'  : [<?php echo(json_encode($product_details)) ?>]
                 });
@@ -153,7 +177,7 @@ class Google extends Pixel
 
             <script type="text/javascript">
                 gtag('event', 'add_to_cart', {
-                    'send_to': 'AW-<?php _e($this->conversion_id) ?>',
+                    'send_to': <?php echo json_encode($this->get_google_ads_conversion_ids()) ?>,
                     'value'  : <?php echo $cart_total ?>,
                     'items'  : <?php echo (json_encode($this->get_gads_formatted_cart_items($cart))) . PHP_EOL ?>
                 });
@@ -164,20 +188,17 @@ class Google extends Pixel
 
     private function is_dynamic_remarketing_active(): bool
     {
-        if($this->dynamic_remarketing && $this->options_obj->google->ads->conversion_id){
+        if ($this->dynamic_remarketing && $this->options_obj->google->ads->conversion_id) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function inject_order_received_page($order, $order_total)
+    public function inject_order_received_page($order, $order_total, $order_item_ids, $is_new_customer)
     {
         // use the right function to get the currency depending on the WooCommerce version
         $order_currency = $this->woocommerce_3_and_above() ? $order->get_currency() : $order->get_order_currency();
-
-        // filter to adjust the order value
-        $order_total_filtered = apply_filters('wgact_conversion_value_filter', $order_total, $order);
 
         $ratings                      = get_option(WGACT_DB_RATINGS);
         $ratings['conversions_count'] = $ratings['conversions_count'] + 1;
@@ -185,85 +206,76 @@ class Google extends Pixel
 
         ?>
 
-        <!-- Google Code for Sales Conversion Page -->
         <?php
 
         // Only run conversion script if the payment has not failed. (has_status('completed') is too restrictive)
         // Also don't run the pixel if an admin or shop manager is logged in.
-        if (!$order->has_status('failed') && !current_user_can('edit_others_pages') && ($this->add_cart_data == 0) && $this->options_obj->google->ads->conversion_id) {
+        if ($this->add_cart_data == 0 && $this->options_obj->google->ads->conversion_id) {
 //           if ( ! $order->has_status( 'failed' ) ) {
             ?>
 
-            <?php if ($this->options_obj->google->ads->conversion_label ): ?>
+            <?php
+            if ($this->options_obj->google->ads->conversion_label): ?>
 
-            <script>
-                gtag('event', 'conversion', {
-                    'send_to'       : 'AW-<?php _e($this->conversion_id) ?>/<?php _e($this->conversion_label) ?>',
-                    'value'         : <?php echo $order_total_filtered; ?>,
-                    'currency'      : '<?php echo $order_currency; ?>',
-                    'transaction_id': '<?php echo $order->get_order_number(); ?>',
-                });
-            </script>
-            <?php endif; ?>
-
-            <?php echo $this->get_dyn_remarketing_purchase_script($order, $order_total) ?>
+                <script>
+                    // no deduper needed here
+                    // Google does this server side
+                    gtag('event', 'conversion', {
+                        'send_to'       : <?php echo json_encode($this->get_google_ads_conversion_ids(true))?>,
+                        'value'         : <?php echo $order_total; ?>,
+                        'currency'      : '<?php echo $order_currency; ?>',
+                        'transaction_id': '<?php echo $order->get_order_number(); ?>',
+                    });
+                </script>
+            <?php
+            endif; ?>
 
             <?php
+            echo $this->get_dyn_remarketing_purchase_script($order, $order_total) ?>
 
+            <?php
         }
 
-        if (!$order->has_status('failed') && !current_user_can('edit_others_pages') && ($this->add_cart_data == 1 || $this->is_google_analytics_active())) {
+        if ($this->add_cart_data == 1 || $this->is_google_analytics_active()) {
             ?>
 
             <script>
+
                 <?php if ($this->add_cart_data && $this->conversion_id && $this->conversion_label ): ?>
-                gtag('event', 'purchase', <?php echo $this->get_event_purchase_json($order, $order_total_filtered, $order_currency, 'ads') ?>);
+                gtag('event', 'purchase', <?php echo $this->get_event_purchase_json($order, $order_total, $order_currency, $is_new_customer, 'ads') ?>);
                 <?php endif; ?>
 
-                <?php if ($this->is_google_analytics_active() ): ?>
-                gtag('event', 'purchase', <?php echo $this->get_event_purchase_json($order, $order_total_filtered, $order_currency, 'analytics') ?>);
-                <?php endif; ?>
-
+                if ((typeof wgact !== "undefined") && !wgact.isOrderIdStored(<?php echo $order->get_id() ?>)) {
+                    <?php if ($this->is_google_analytics_active() ): ?>
+                    gtag('event', 'purchase', <?php echo $this->get_event_purchase_json($order, $order_total, $order_currency, $is_new_customer, 'analytics') ?>);
+                    <?php endif; ?>
+                }
             </script>
             <?php
-
-
         }
-
-        if ($order->has_status('failed') || current_user_can('edit_others_pages')) {
-
-            ?>
-
-            <!-- The pixels have not been inserted. Possible reasons: -->
-            <!--    You are logged into WooCommerce as admin or shop manager. -->
-            <!--    The order payment has failed. -->
-            <!--    The pixel has already been fired. To prevent double counting the pixel is not being fired again. -->
-
-            <?php
-        } // end if order status
 
         ?>
 
-        <!-- END Google Code for Sales Conversion Page -->
         <?php
     }
 
-    private function get_event_purchase_json($order, $order_total_filtered, $order_currency, $channel)
+    private function get_event_purchase_json($order, $order_total, $order_currency, $is_new_customer, $channel)
     {
         $gtag_data = [
-            'send_to' => [],
+            'send_to'        => [],
             'transaction_id' => $order->get_order_number(),
-            'currency' => $order_currency,
-            'discount' => $order->get_total_discount(),
-            'items' => $this->get_gads_formatted_order_items($order),
+            'currency'       => $order_currency,
+            'discount'       => $order->get_total_discount(),
+            'items'          => $this->get_gads_formatted_order_items($order),
         ];
 
         if ('ads' === $channel) {
-            array_push($gtag_data['send_to'], 'AW-' . $this->conversion_id . '/' . $this->conversion_label);
-            $gtag_data['value']            = $order_total_filtered;
+            array_push($gtag_data['send_to'], $this->get_google_ads_conversion_ids(true));
+            $gtag_data['value']            = $order_total;
             $gtag_data['aw_merchant_id']   = $this->aw_merchant_id;
             $gtag_data['aw_feed_country']  = $this->get_visitor_country();
             $gtag_data['aw_feed_language'] = $this->get_gmc_language();
+            $gtag_data['new_customer']     = $is_new_customer;
         }
 
         if ('analytics' === $channel) {
@@ -272,7 +284,7 @@ class Google extends Pixel
             $gtag_data['affiliation'] = (string)get_bloginfo('name');
             $gtag_data['tax']         = (string)$order->get_total_tax();
             $gtag_data['shipping']    = (string)$order->get_total_shipping();
-            $gtag_data['value']       = (float) $order->get_total();
+            $gtag_data['value']       = (float)$order->get_total();
         }
 
         return json_encode($gtag_data);
@@ -299,7 +311,6 @@ class Google extends Pixel
             return false;
         }
     }
-
 
     protected function get_gmc_language(): string
     {
@@ -340,17 +351,6 @@ class Google extends Pixel
         return $order_items_array;
     }
 
-    protected function get_compiled_product_id($product_id, $product_sku): string
-    {
-        // depending on setting use product IDs or SKUs
-        if (0 == $this->product_identifier) {
-            return (string)$product_id;
-        } else if (1 == $this->product_identifier) {
-            return (string)'woocommerce_gpf_' . $product_id;
-        } else {
-            return (string)$product_sku;
-        }
-    }
 
     // get products from wp_query
     protected function get_products_from_wp_query($wp_query): array
@@ -378,10 +378,10 @@ class Google extends Pixel
 
     protected function gtag_config($id, $channel = ''): string
     {
-        if('ads' === $channel){
+        if ('ads' === $channel) {
             return "gtag('config', 'AW-" . $id . "');" . PHP_EOL;
-        } elseif ( 'analytics') {
-            return "gtag('config', '" . $id . "', { 'anonymize_ip': true });" . PHP_EOL;
+        } elseif ('analytics') {
+            return "gtag('config', '" . $id . "', { 'anonymize_ip': true });";
         }
     }
 
@@ -433,11 +433,13 @@ class Google extends Pixel
             ?>
 
             <script>
-                gtag('event', 'purchase', {
-                    'send_to': 'AW-<?php _e($this->conversion_id) ?>',
-                    'value'  : <?php echo $order_total; ?>,
-                    'items'  : <?php echo (json_encode($this->get_gads_formatted_order_items($order))) . PHP_EOL ?>
-                });
+                if ((typeof wgact !== "undefined") && !wgact.isOrderIdStored(<?php echo $order->get_id() ?>)) {
+                    gtag('event', 'purchase', {
+                        'send_to': <?php echo json_encode($this->get_google_ads_conversion_ids()) ?>,
+                        'value'  : <?php echo $order_total; ?>,
+                        'items'  : <?php echo (json_encode($this->get_gads_formatted_order_items($order))) . PHP_EOL ?>
+                    });
+                }
             </script>
             <?php
         }
@@ -458,5 +460,20 @@ class Google extends Pixel
         ];
 
         return $verticals[$id];
+    }
+
+    private function get_google_ads_conversion_ids($purchase = false): array
+    {
+        $formatted_conversion_ids = [];
+        if ($purchase) {
+            foreach ($this->conversion_identifiers as $conversion_id => $conversion_label) {
+                array_push($formatted_conversion_ids, 'AW-' . $conversion_id . '/' . $conversion_label);
+            }
+        } else {
+            foreach ($this->conversion_identifiers as $conversion_id => $conversion_label) {
+                array_push($formatted_conversion_ids, 'AW-' . $conversion_id);
+            }
+        }
+        return $formatted_conversion_ids;
     }
 }

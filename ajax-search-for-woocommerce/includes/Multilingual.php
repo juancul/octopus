@@ -69,14 +69,15 @@ class Multilingual {
 	}
 
 	/**
-	 * Check if language code has 2 leters
+	 * Check if language code has one of the following format:
+	 * aa, aaa, aa-aa
 	 *
 	 * @param $lang
 	 *
 	 * @return bool
 	 */
 	public static function isLangCode( $lang ) {
-		return (bool) preg_match( '/^[A-Za-z]{2}$/', $lang );
+		return ! empty( $lang ) && is_string( $lang ) && (bool) preg_match( '/^([a-z]{2,3})$|^([a-z]{2}\-[a-z]{2})$/', $lang );
 	}
 
 	/**
@@ -126,7 +127,7 @@ class Multilingual {
 		}
 
 		if ( empty( $currentLang ) && ! empty( $_GET['lang'] ) && self::isLangCode( $_GET['lang'] ) ) {
-			$currentLang = $_GET['lang'];
+			$currentLang = strtolower($_GET['lang']);
 		}
 
 		return $currentLang;
@@ -155,7 +156,7 @@ class Multilingual {
                                           AND element_id=%d", sanitize_key( $postType ), $postID );
 			$query            = $wpdb->get_var( $sql );
 
-			if ( ! empty( $query ) && strlen( $query ) === 2 ) {
+			if ( self::isLangCode( $query ) ) {
 				$lang = $query;
 			}
 		}
@@ -192,7 +193,7 @@ class Multilingual {
 
 			$query = $wpdb->get_var( $sql );
 
-			if ( ! empty( $query ) && strlen( $query ) == 2 ) {
+			if ( self::isLangCode( $query ) ) {
 				$lang = $query;
 			}
 		}
@@ -327,6 +328,74 @@ class Multilingual {
 
 		return $terms;
 	}
+
+	/**
+	 * Get terms in specific language
+	 *
+	 * @param array $args
+	 * @param string $lang
+	 *
+	 * @return \WP_Term[]
+	 */
+	public static function getTermsInLang( $args = array(), $lang = '' ) {
+		$terms = array();
+
+		if ( empty( $lang ) ) {
+			$lang = self::getDefaultLanguage();
+		}
+
+		if ( self::isWPML() ) {
+			$currentLang = self::getCurrentLanguage();
+			$usedIds     = array();
+
+			do_action( 'wpml_switch_language', $lang );
+			$args        = wp_parse_args( $args, array(
+				'taxonomy'         => '',
+				'hide_empty'       => true,
+				'suppress_filters' => false
+			) );
+			$termsInLang = get_terms( apply_filters( 'dgwt/wcas/search/' . $args['taxonomy'] . '/args', $args ) );
+
+			if ( ! empty( $termsInLang ) && is_array( $termsInLang ) ) {
+				foreach ( $termsInLang as $termInLang ) {
+
+					if ( ! in_array( $termInLang->term_id, $usedIds ) ) {
+						$terms[]   = $termInLang;
+						$usedIds[] = $termInLang->term_id;
+					}
+				}
+			}
+
+			do_action( 'wpml_switch_language', $currentLang );
+		}
+
+		if ( self::isPolylang() ) {
+
+			$terms = get_terms( array(
+				'taxonomy'   => $args['taxonomy'],
+				'hide_empty' => true,
+				'lang'       => $lang,
+			) );
+
+		}
+
+		return $terms;
+	}
+
+	public static function searchTerms($taxonomy, $query, $lang = ''){
+		$terms = array();
+
+		if ( empty( $lang ) ) {
+			$lang = self::getDefaultLanguage();
+		}
+
+		$args  = array(
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => false,
+			'search'     => $query,
+		);
+		$terms = get_terms( $args );
+}
 
 	/**
 	 * Get term in specific language
