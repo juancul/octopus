@@ -99,7 +99,7 @@ class Custom_Woocommerce_Subscription_Status
 
         $registered_statuses['wc-late-payment-90'] = _nx_noop('Pago Demorado 90 <span class="count">(%s)</span>', 'Pago Demorado 90 <span class="count">(%s)</span>', 'post status label including post count', 'custom-wcs-status-texts');
 
-        $registered_statuses['wc-late-payment.120'] = _nx_noop('Pago Demorado 120 <span class="count">(%s)</span>', 'Pago Demorado 120 <span class="count">(%s)</span>', 'post status label including post count', 'custom-wcs-status-texts');
+        $registered_statuses['wc-late-payment-120'] = _nx_noop('Pago Demorado 120 <span class="count">(%s)</span>', 'Pago Demorado 120 <span class="count">(%s)</span>', 'post status label including post count', 'custom-wcs-status-texts');
 
         $registered_statuses['wc-late-payment-150'] = _nx_noop('Pago Demorado 150 <span class="count">(%s)</span>', 'Pago Demorado 150 <span class="count">(%s)</span>', 'post status label including post count', 'custom-wcs-status-texts');
 
